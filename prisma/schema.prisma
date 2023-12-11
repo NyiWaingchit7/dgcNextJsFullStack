@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HomePage {
+  id          Int      @id @default(autoincrement())
+  assetUrl    String?
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Player {
+  id            Int             @id @default(autoincrement())
+  name          String
+  age           Int
+  city          String
+  joinDate      DateTime
+  assetUrl      String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  PlayerMatches PlayerMatches[]
+}
+
+model PlayerMatches {
+  id        Int     @id @default(autoincrement())
+  player    Player  @relation(fields: [playerId], references: [id])
+  playerId  Int
+  win Int @default(0)
+  draw Int @default(0)
+  lose Int @default(0)
+  winRate Int @default(0)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+}
+
+model OpponentTeam {
+  id        Int       @id @default(autoincrement())
+  name      String
+  assetUrl  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Fixture   Fixture[]
+}
+
+model Fixture {
+  id                 Int             @id @default(autoincrement())
+  myTeam             String          @default("Red Dragon")
+  opponentTeam       OpponentTeam    @relation(fields: [opponentTeamId], references: [id])
+  opponentTeamId     Int
+  matchDay           DateTime
+  myTeamResult       Int             @default(0)
+  opponentTeamResult Int             @default(0)
+  matchResult        Result
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+}
+
+model History {
+  id          Int      @id @default(autoincrement())
+  year        Int
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Result {
+  WIN
+  DRAW
+  LOSE
+}
