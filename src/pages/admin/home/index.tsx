@@ -1,6 +1,16 @@
-import { Box, Typography } from "@mui/material";
-
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { Box, Button, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { useState } from "react";
+import NewHome from "@/component/NewHome";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { deleteHomeText } from "@/store/slice/homeSlice";
 const Home = () => {
+  const data = useAppSelector((store) => store.home.items);
+  const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
+
   return (
     <Box sx={{ minHeight: "90vh" }}>
       <Box sx={{ display: { xs: "none", lg: "block" }, mt: 5 }}>
@@ -39,25 +49,63 @@ const Home = () => {
             borderRadius: 5,
           }}
         >
-          <Typography
-            sx={{
-              color: "primary.light",
-              fontWeight: "light",
-              fontSize: { xs: "0.85rem", sm: "1.2rem" },
-            }}
-          >
-            Hello,honorable audience., Welcome to our red dragon efootball
-            club.Our team was one of the first team to participate in Myanmar's
-            e league since its establishment. We have been able to firmly prove
-            ourselves as the big team in Myanmar.The achievements we have been
-            owned by the third place in myanmar e league twice (season 3 and 4)
-            and the entry into the Asian Champions League twice.We managed to
-            find and recruit good efootball players in Myanmar in a systematic
-            way and become a strong great,together with the managers and all the
-            members of the team.Moving forward, we will try to introduce the
-            most skilled,sharp and top-level players for the Myanmar efootball
-            community.
-          </Typography>
+          {data[0]?.description ? (
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  sx={{ p: 1 }}
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                >
+                  <EditIcon sx={{ fontSize: "1.7rem" }} />
+                </Box>
+                <Box
+                  sx={{ p: 1 }}
+                  onClick={() => dispatch(deleteHomeText({ id: data[0].id }))}
+                >
+                  <DeleteForeverIcon
+                    sx={{ fontSize: "1.7rem", color: "success.main" }}
+                  />
+                </Box>
+              </Box>
+              <Typography
+                sx={{
+                  color: "primary.light",
+                  fontWeight: "light",
+                  fontSize: { xs: "0.85rem", sm: "1.2rem" },
+                  lineHeight: 1.5,
+                }}
+              >
+                {data[0].description}
+              </Typography>
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                height: "20vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                variant="contained"
+                sx={{ px: 4 }}
+                onClick={() => {
+                  setOpen(true);
+                }}
+              >
+                Add <AddIcon sx={{ fontSize: "1.5rem" }} />
+              </Button>
+            </Box>
+          )}
         </Box>
       </Box>
       {/* <Box sx={{ display: "flex", mx: "auto", mt: 5 }}>
@@ -84,6 +132,12 @@ const Home = () => {
           ))}
         </Box>
       </Box> */}
+      <NewHome
+        open={open}
+        setOpen={setOpen}
+        updateText={data[0]?.description}
+        id={data[0]?.id}
+      />
     </Box>
   );
 };
