@@ -103,7 +103,7 @@ const Player = () => {
                 m: 2,
               }}
             >
-              <PlayerCard id={p.id} name={p.name} />
+              <PlayerCard id={p.id} name={p.name} role={p.role} />
             </Box>
           ))
         ) : (

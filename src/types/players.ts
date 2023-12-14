@@ -14,3 +14,15 @@ export interface CreatePlayer extends BaseOptions {
   role: Role;
   head?: Head | null | string;
 }
+export interface UpdatePlayer extends BaseOptions {
+  id: number;
+  name: string;
+  age: number;
+  city: string;
+  joinDate: number;
+  role: Role;
+  head?: Head | null | string;
+}
+export interface DeletePlayer extends BaseOptions {
+  id: number;
+}

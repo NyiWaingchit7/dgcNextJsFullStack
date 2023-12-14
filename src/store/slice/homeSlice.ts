@@ -38,6 +38,7 @@ export const updateHomeText = createAsyncThunk(
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ description }),
       });
+      const data = await response.json();
       onSuccess && onSuccess();
     } catch (err) {
       onError && onError();

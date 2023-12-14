@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/store/hooks";
 import { fetchAppData } from "@/store/slice/appSlice";
-import { createPlayer } from "@/store/slice/playersSlice";
+import { createPlayer, updatePlayer } from "@/store/slice/playersSlice";
 import {
   Box,
   Button,
@@ -60,6 +60,21 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
       })
     );
   };
+  const handleUpdatePlayer = () => {
+    dispatch(
+      updatePlayer({
+        ...player,
+        role: role,
+        head: head,
+        id: playerData?.id as number,
+        onSuccess: () => {
+          dispatch(fetchAppData());
+          setOpen(false);
+          setPlayer(defaultPlayer);
+        },
+      })
+    );
+  };
   useEffect(() => {
     if (playerData) {
       setPlayer(playerData as DefaultPlayer);
@@ -79,7 +94,9 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
           setPlayer(defaultPlayer);
         }}
       >
-        <DialogTitle sx={{ mb: 3 }}>Add New Player</DialogTitle>
+        <DialogTitle sx={{ mb: 3 }}>
+          {playerData ? "Update Player" : "Add New Player"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText
             sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
@@ -161,17 +178,31 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
             Cancle
           </Button>
 
-          <Button
-            variant="contained"
-            // disabled={
-            //   !player.name || !player.age || !player.city || !player.joinDate
-            //     ? true
-            //     : false
-            // }
-            onClick={handleCreatePlayer}
-          >
-            Save
-          </Button>
+          {playerData ? (
+            <Button
+              variant="contained"
+              disabled={
+                !player.name || !player.age || !player.city || !player.joinDate
+                  ? true
+                  : false
+              }
+              onClick={handleUpdatePlayer}
+            >
+              Update
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              disabled={
+                !player.name || !player.age || !player.city || !player.joinDate
+                  ? true
+                  : false
+              }
+              onClick={handleCreatePlayer}
+            >
+              Save
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </Box>

@@ -22,6 +22,29 @@ export default async function handler(
       data: { name, age, city, joinDate, role, head },
     });
     return res.status(200).json({ data });
+  } else if (method === "PUT") {
+    const id = Number(req.query.id);
+    const { name, age, city, joinDate, role, head } = req.body;
+    const isValidate = name && age && city && joinDate;
+    if (!isValidate) return res.status(405).send("bad request");
+    const isExist = await prisma.player.findFirst({
+      where: { id },
+    });
+    if (!isExist) return res.status(405).send("This request does not exist");
+
+    const data = await prisma.player.update({
+      data: { name, age, city, joinDate, role, head },
+      where: { id },
+    });
+    return res.status(200).json({ data });
+  } else if (method === "DELETE") {
+    const id = Number(req.query.id);
+    const isExist = await prisma.player.findFirst({
+      where: { id },
+    });
+    if (!isExist) return res.status(405).send("bad request");
+    await prisma.player.delete({ where: { id } });
+    return res.status(200).send("deleted Successfully");
   }
   res.status(405).send("method not allowed");
 }

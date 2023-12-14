@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { Role } from "@prisma/client";
 import Link from "next/link";
 
 interface prop {
@@ -69,6 +70,10 @@ const PlayerCard = ({ id, name, role, assetUrl }: prop) => {
               fontSize: { xs: "0.7rem", sm: "1rem" },
               fontWeight: "bold",
               mb: 1,
+              p: 1,
+              bgcolor: "success.main",
+              color: "info.main",
+              borderRadius: 2,
             }}
           >
             {role}

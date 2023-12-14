@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Box, Button, Typography } from "@mui/material";
 import { Player } from "@prisma/client";
 import { useRouter } from "next/router";
@@ -6,9 +6,14 @@ import { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import NewPlayer from "@/component/NewPlayer";
+import { deletePlayer } from "@/store/slice/playersSlice";
+import { fetchAppData } from "@/store/slice/appSlice";
 
 const PlayerDetail = () => {
-  const id = useRouter().query.id;
+  const router = useRouter();
+  const id = router.query.id;
+
+  const dispatch = useAppDispatch();
   const players = useAppSelector((store) => store.player.items) as Player[];
   const playerData = players.find((p) => p.id === Number(id));
   const [open, setOpen] = useState(false);
@@ -27,7 +32,7 @@ const PlayerDetail = () => {
     >
       <Box
         sx={{
-          width: { xs: "70%", sm: "30%", md: "25%", lg: "20%" },
+          width: { xs: "50%", sm: "30%", md: "25%", lg: "20%" },
           height: { sm: 320, lg: 500 },
           borderRadius: 5,
           mb: 2,
@@ -59,32 +64,69 @@ const PlayerDetail = () => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "flex-end",
+              justifyContent: "space-between",
               alignItems: "center",
-              mt: 3,
-              mx: 3,
             }}
           >
+            <Box sx={{ mx: 3 }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  textAlign: "center",
+                  bgcolor: "info.dark",
+                  color: "info.main",
+                  px: 2,
+                  borderRadius: 2,
+                  fontWeight: "bold",
+                  "&:hover": { transform: "scale(1.05)" },
+                }}
+              >
+                {playerData.role}
+              </Typography>
+            </Box>
             <Box
               sx={{
-                p: 1,
-                "&:hover": { transform: "scale(1.2)" },
-                color: "info.main",
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                mt: 3,
+                mx: 3,
               }}
-              onClick={() => setOpen(true)}
             >
-              <EditIcon sx={{ fontSize: "1.7rem" }} />
-            </Box>
-            <Box sx={{ p: 1, "&:hover": { transform: "scale(1.2)" } }}>
-              <DeleteForeverIcon
-                sx={{ fontSize: "1.7rem", color: "info.main" }}
-              />
+              <Box
+                sx={{
+                  p: 1,
+                  "&:hover": { transform: "scale(1.2)" },
+                  color: "info.main",
+                }}
+                onClick={() => setOpen(true)}
+              >
+                <EditIcon sx={{ fontSize: "1.7rem" }} />
+              </Box>
+              <Box
+                sx={{ p: 1, "&:hover": { transform: "scale(1.2)" } }}
+                onClick={() => {
+                  dispatch(
+                    deletePlayer({
+                      id: Number(id),
+                      onSuccess: () => {
+                        dispatch(fetchAppData());
+                        router.push("/admin/player");
+                      },
+                    })
+                  );
+                }}
+              >
+                <DeleteForeverIcon
+                  sx={{ fontSize: "1.7rem", color: "info.main" }}
+                />
+              </Box>
             </Box>
           </Box>
         </Box>
         <Box
           sx={{
-            height: { sm: 320, lg: 500 },
+            height: { sm: 300, lg: 400 },
             color: "info.light",
             display: "flex",
             flexDirection: "column",
