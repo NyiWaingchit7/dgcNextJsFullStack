@@ -31,9 +31,11 @@ model HomePage {
 model Player {
   id            Int             @id @default(autoincrement())
   name          String
+  role           Role
+  head Head? 
   age           Int
   city          String
-  joinDate      DateTime
+  joinDate      Int
   assetUrl      String?
   isArchive Boolean @default(false)
   createdAt     DateTime        @default(now())
@@ -92,4 +94,15 @@ enum Result {
   WIN
   DRAW
   LOSE
+}
+
+enum Head {
+  MANAGER
+  FOUNDER
+  CO_FOUNDER
+}
+enum Role {
+PLAYER
+CAPTAIN
+V_CAPTAIN
 }

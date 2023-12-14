@@ -17,7 +17,9 @@ export default async function handler(
   const method = req.method;
   if (method === "GET") {
     const homeData = await prisma.homePage.findMany();
-    return res.status(200).json({ homeData });
+
+    const playerData = await prisma.player.findMany();
+    return res.status(200).json({ homeData, playerData });
   }
   res.status(405).send("method not allowed");
 }

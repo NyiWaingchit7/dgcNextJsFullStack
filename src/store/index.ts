@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 // ...
 import appReducer from "./slice/appSlice";
 import homePageReducer from "./slice/homeSlice";
+import playerReducer from "./slice/playersSlice";
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
     home: homePageReducer,
+    player: playerReducer,
   },
 });
 

@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Box, Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewHome from "@/component/NewHome";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { deleteHomeText } from "@/store/slice/homeSlice";
+import { fetchAppData } from "@/store/slice/appSlice";
 const Home = () => {
   const data = useAppSelector((store) => store.home.items);
   const [open, setOpen] = useState(false);
@@ -59,7 +60,7 @@ const Home = () => {
                 }}
               >
                 <Box
-                  sx={{ p: 1 }}
+                  sx={{ p: 1, "&:hover": { transform: "scale(1.2)" } }}
                   onClick={() => {
                     setOpen(true);
                   }}
@@ -67,8 +68,17 @@ const Home = () => {
                   <EditIcon sx={{ fontSize: "1.7rem" }} />
                 </Box>
                 <Box
-                  sx={{ p: 1 }}
-                  onClick={() => dispatch(deleteHomeText({ id: data[0].id }))}
+                  sx={{ p: 1, "&:hover": { transform: "scale(1.2)" } }}
+                  onClick={() =>
+                    dispatch(
+                      deleteHomeText({
+                        id: data[0].id,
+                        onSuccess: () => {
+                          dispatch(fetchAppData());
+                        },
+                      })
+                    )
+                  }
                 >
                   <DeleteForeverIcon
                     sx={{ fontSize: "1.7rem", color: "success.main" }}

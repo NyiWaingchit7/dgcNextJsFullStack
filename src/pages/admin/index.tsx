@@ -1,30 +1,30 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-const Admin = () => {
+export default function Home() {
   const { data } = useSession();
   const router = useRouter();
+
   if (!data) {
     return (
       <Box
         sx={{
-          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          height: "80vh",
         }}
       >
         <Button
           variant="contained"
-          onClick={() => signIn("google", { callbackUrl: "/admin/home" })}
+          onClick={() => signIn("google", { callbackUrl: "/admin" })}
         >
-          sign in
+          Sign in
         </Button>
       </Box>
     );
   } else {
     router.push("/admin/home");
   }
-};
-export default Admin;
+}

@@ -137,12 +137,12 @@ export const sideBar = [
   {
     id: 1,
     name: "Home",
-    route: "/",
+    route: "/admin/home",
   },
   {
     id: 2,
     name: "Player",
-    route: "/player",
+    route: "/admin/player",
   },
   {
     id: 3,
@@ -152,7 +152,7 @@ export const sideBar = [
   {
     id: 4,
     name: "Fixture",
-    route: "/fixture",
+    route: "/admin/fixture",
   },
   {
     id: 5,

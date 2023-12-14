@@ -1,4 +1,5 @@
 import { useAppDispatch } from "@/store/hooks";
+import { fetchAppData } from "@/store/slice/appSlice";
 import { createHomeText, updateHomeText } from "@/store/slice/homeSlice";
 import {
   Box,
@@ -21,14 +22,16 @@ interface Props {
 const NewHome = ({ open, setOpen, updateText, id }: Props) => {
   const [text, setText] = useState("");
   const dispatch = useAppDispatch();
+  const onSuccess = () => {
+    setOpen(false), setText("");
+    dispatch(fetchAppData());
+  };
 
   const handleCreateHomeText = () => {
     dispatch(
       createHomeText({
         description: text,
-        onSuccess: () => {
-          setOpen(false), setText("");
-        },
+        onSuccess,
       })
     );
   };
@@ -37,9 +40,7 @@ const NewHome = ({ open, setOpen, updateText, id }: Props) => {
       updateHomeText({
         id,
         description: text,
-        onSuccess: () => {
-          setOpen(false), setText("");
-        },
+        onSuccess,
       })
     );
   };

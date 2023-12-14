@@ -22,8 +22,6 @@ export const createHomeText = createAsyncThunk(
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ description }),
       });
-      const { homeData } = await response.json();
-      thunkApi.dispatch(addHomeData(homeData));
       onSuccess && onSuccess();
     } catch (err) {
       onError && onError();
@@ -40,8 +38,6 @@ export const updateHomeText = createAsyncThunk(
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ description }),
       });
-      const { homeData } = await response.json();
-      thunkApi.dispatch(updateHomeData(homeData));
       onSuccess && onSuccess();
     } catch (err) {
       onError && onError();
@@ -58,7 +54,7 @@ export const deleteHomeText = createAsyncThunk(
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ id }),
       });
-      thunkApi.dispatch(deleteHomeData([]));
+
       onSuccess && onSuccess();
     } catch (err) {
       onError && onError();
@@ -73,18 +69,7 @@ const homeSlice = createSlice({
     setHomeData: (state, action) => {
       state.items = action.payload;
     },
-    addHomeData: (state, action) => {
-      state.items = [...state.items, action.payload];
-    },
-    updateHomeData: (state, action) => {
-      state.items = [action.payload];
-    },
-
-    deleteHomeData: (state, action) => {
-      state.items = action.payload;
-    },
   },
 });
-export const { setHomeData, addHomeData, updateHomeData, deleteHomeData } =
-  homeSlice.actions;
+export const { setHomeData } = homeSlice.actions;
 export default homeSlice.reducer;

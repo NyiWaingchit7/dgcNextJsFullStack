@@ -4,7 +4,7 @@ import AdminLayout from "./AdminLayout";
 import { useRouter } from "next/router";
 
 interface Prop {
-  children: ReactNode;
+  children: string | JSX.Element | JSX.Element[];
 }
 const Layout = ({ children }: Prop) => {
   const router = useRouter();
