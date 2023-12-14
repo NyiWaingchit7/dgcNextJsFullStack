@@ -12,5 +12,5 @@ export interface CreatePlayer extends BaseOptions {
   city: string;
   joinDate: number;
   role: Role;
-  head?: Head | string;
+  head?: Head | null | string;
 }

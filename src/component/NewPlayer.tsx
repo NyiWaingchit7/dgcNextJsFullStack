@@ -15,19 +15,21 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { Head, Role } from "@prisma/client";
-import { useState } from "react";
+import { Head, Player, Role } from "@prisma/client";
+import { useEffect, useState } from "react";
 
-import { text } from "stream/consumers";
 interface Props {
   open: boolean;
   setOpen: (data: boolean) => void;
+  playerData?: Player;
 }
 interface DefaultPlayer {
   name: string;
   age: number;
   city: string;
   joinDate: number;
+  role?: Role;
+  head?: Head | string;
 }
 const defaultPlayer = {
   name: "",
@@ -36,12 +38,15 @@ const defaultPlayer = {
   joinDate: 0,
 };
 
-const NewPlayers = ({ open, setOpen }: Props) => {
+const NewPlayers = ({ open, setOpen, playerData }: Props) => {
   const [role, setRole] = useState<Role>(Role.PLAYER);
-  const [head, setHead] = useState<Head | string>("");
   const [player, setPlayer] = useState<DefaultPlayer>(defaultPlayer);
+  const [head, setHead] = useState<Head | string>("");
   const dispatch = useAppDispatch();
+
   const handleCreatePlayer = () => {
+    console.log(player);
+
     dispatch(
       createPlayer({
         ...player,
@@ -55,6 +60,15 @@ const NewPlayers = ({ open, setOpen }: Props) => {
       })
     );
   };
+  useEffect(() => {
+    if (playerData) {
+      setPlayer(playerData as DefaultPlayer);
+      setHead(playerData.head as Head);
+      setRole(playerData.role as Role);
+    } else {
+      setPlayer(defaultPlayer as DefaultPlayer);
+    }
+  }, [open]);
 
   return (
     <Box>
@@ -71,11 +85,13 @@ const NewPlayers = ({ open, setOpen }: Props) => {
             sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
           >
             <TextField
+              defaultValue={player.name}
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}
               placeholder="Name"
               onChange={(e) => setPlayer({ ...player, name: e.target.value })}
             />
             <TextField
+              defaultValue={player.age ? player.age : ""}
               type="number"
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}
               placeholder="Age"
@@ -84,11 +100,13 @@ const NewPlayers = ({ open, setOpen }: Props) => {
               }
             />
             <TextField
+              defaultValue={player.city}
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}
               placeholder="City"
               onChange={(e) => setPlayer({ ...player, city: e.target.value })}
             />
             <TextField
+              defaultValue={player.joinDate ? player.joinDate : ""}
               type="number"
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}
               placeholder="Join Date"
@@ -118,11 +136,11 @@ const NewPlayers = ({ open, setOpen }: Props) => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={head}
+                  value={head || null || ""}
                   label="Role"
                   onChange={(e) => setHead(e.target.value as Head)}
                 >
-                  <MenuItem value={""}>None of them</MenuItem>
+                  <MenuItem value="">None of them</MenuItem>
                   <MenuItem value={Head.MANAGER}>Manager</MenuItem>
                   <MenuItem value={Head.FOUNDER}>Founder</MenuItem>
                   <MenuItem value={Head.CO_FOUNDER}>Co-Founder</MenuItem>
@@ -145,11 +163,11 @@ const NewPlayers = ({ open, setOpen }: Props) => {
 
           <Button
             variant="contained"
-            disabled={
-              !player.name || !player.age || !player.city || !player.joinDate
-                ? true
-                : false
-            }
+            // disabled={
+            //   !player.name || !player.age || !player.city || !player.joinDate
+            //     ? true
+            //     : false
+            // }
             onClick={handleCreatePlayer}
           >
             Save
