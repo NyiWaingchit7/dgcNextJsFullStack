@@ -21,7 +21,10 @@ export default async function handler(
     const data = await prisma.player.create({
       data: { name, age, city, joinDate, role, head },
     });
-    return res.status(200).json({ data });
+    const playerMatch = await prisma.playerMatches.create({
+      data: { playerId: data.id },
+    });
+    return res.status(200).json({ data, playerMatch });
   } else if (method === "PUT") {
     const id = Number(req.query.id);
     const { name, age, city, joinDate, role, head } = req.body;
@@ -39,11 +42,17 @@ export default async function handler(
     return res.status(200).json({ data });
   } else if (method === "DELETE") {
     const id = Number(req.query.id);
-    const isExist = await prisma.player.findFirst({
+    const playerExist = await prisma.player.findFirst({
       where: { id },
     });
-    if (!isExist) return res.status(405).send("bad request");
+    if (!playerExist) return res.status(405).send("bad request");
+    const isPlayerMatchExist = await prisma.playerMatches.findFirst({
+      where: { playerId: id },
+    });
+    if (!isPlayerMatchExist) return res.status(405).send("bad request");
+    await prisma.playerMatches.deleteMany({ where: { playerId: id } });
     await prisma.player.delete({ where: { id } });
+
     return res.status(200).send("deleted Successfully");
   }
   res.status(405).send("method not allowed");

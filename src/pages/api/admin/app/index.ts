@@ -19,7 +19,8 @@ export default async function handler(
     const homeData = await prisma.homePage.findMany();
 
     const playerData = await prisma.player.findMany();
-    return res.status(200).json({ homeData, playerData });
+    const playerMatches = await prisma.playerMatches.findMany();
+    return res.status(200).json({ homeData, playerData, playerMatches });
   }
   res.status(405).send("method not allowed");
 }

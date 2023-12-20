@@ -7,7 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import LogoutIcon from "@mui/icons-material/Logout";
+
 import AdminDrawer from "./AdminDrawer";
 const TopBar = () => {
   const { data } = useSession();
@@ -79,7 +79,7 @@ const TopBar = () => {
             <Box
               sx={{ width: "100%", "&:hover": { transform: "scale(1.1)" } }}
               component="img"
-              src="../Red_Dragon.png"
+              src="../../Red_Dragon.png"
             />
           </Box>
           <Box sx={{ display: { xs: "none", lg: "block" } }}>

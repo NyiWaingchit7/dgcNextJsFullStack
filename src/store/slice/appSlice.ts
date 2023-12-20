@@ -3,6 +3,7 @@ import { config } from "@/utils/config";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { setHomeData } from "./homeSlice";
 import { setPlayer } from "./playersSlice";
+import { setPlayerMatches } from "./playerMatchesSlice";
 const initialState: AppSlice = {
   init: false,
   isLoading: false,
@@ -12,10 +13,11 @@ export const fetchAppData = createAsyncThunk(
   "app/data",
   async (option, thunApi) => {
     const response = await fetch(`${config.apiBaseUrl}/admin/app`);
-    const { homeData, playerData } = await response.json();
+    const { homeData, playerData, playerMatches } = await response.json();
     thunApi.dispatch(setInit(true));
     thunApi.dispatch(setHomeData(homeData));
     thunApi.dispatch(setPlayer(playerData));
+    thunApi.dispatch(setPlayerMatches(playerMatches));
   }
 );
 
