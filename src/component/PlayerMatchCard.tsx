@@ -11,6 +11,7 @@ const PlayerMatchesCard = ({ id }: Prop) => {
   const playerMatches = useAppSelector((store) => store.playerMatches.items);
   const data = playerMatches.find((d) => d.playerId === id);
   const [open, setOpen] = useState(false);
+
   if (!data) return null;
   return (
     <Box
@@ -24,9 +25,8 @@ const PlayerMatchesCard = ({ id }: Prop) => {
       }}
     >
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button sx={{ px: 2 }} variant="contained">
-          {" "}
-          <AddIcon sx={{ fontSize: "2rem" }} />{" "}
+        <Button variant="contained" color="info" onClick={() => setOpen(true)}>
+          <AddIcon sx={{ fontSize: "1.5rem" }} />{" "}
         </Button>
       </Box>
       <Box
@@ -107,7 +107,7 @@ const PlayerMatchesCard = ({ id }: Prop) => {
           <Typography>{data.winRate}%</Typography>
         </Box>
       </Box>
-      <PlayerMatches open={open} setOpen={setOpen} />
+      <PlayerMatches open={open} setOpen={setOpen} data={data} />
     </Box>
   );
 };

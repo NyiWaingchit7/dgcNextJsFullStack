@@ -46,7 +46,9 @@ const TopBar = () => {
                         color: "info.main",
                         m: 1,
                         px: 2,
-                        "&:hover": { transform: "scale(1.1)" },
+                        "&:active::selection": {
+                          bgcolor: "success.dark",
+                        },
                       }}
                     >
                       <Typography sx={{ fontWeight: "bold" }}>

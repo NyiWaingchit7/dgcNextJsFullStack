@@ -7,10 +7,9 @@ export interface PlayerMatchesSlice {
   error: Error | null;
 }
 export interface UpdatePlayerMatches extends BaseOptions {
-  id: number;
+  id?: number;
   win: number;
   draw: number;
   lose: number;
-  winRate: number;
   playerId: number;
 }

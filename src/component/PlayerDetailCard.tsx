@@ -37,7 +37,7 @@ const PlayerDetailCard = ({ id }: Prop) => {
           height: { xs: 270, sm: 320, md: 320, lg: 420 },
           borderRadius: 5,
           mb: 2,
-          bgcolor: "success.main",
+          bgcolor: "primary.dark",
         }}
       >
         <Box

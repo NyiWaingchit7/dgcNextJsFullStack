@@ -72,10 +72,9 @@ model Fixture {
   myTeam             String          @default("Red Dragon")
   opponentTeam       OpponentTeam    @relation(fields: [opponentTeamId], references: [id])
   opponentTeamId     Int
-  matchDay           DateTime
-  myTeamResult       Int             @default(0)
-  opponentTeamResult Int             @default(0)
-  matchResult        Result
+  myTeamResult       Int ?            @default(0)
+  opponentTeamResult Int?             @default(0)
+  matchResult        Result?
   isArchive Boolean @default(false)
   createdAt          DateTime        @default(now())
   updatedAt          DateTime        @updatedAt

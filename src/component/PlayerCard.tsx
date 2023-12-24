@@ -25,7 +25,7 @@ const PlayerCard = ({ id, name, role, assetUrl }: prop) => {
 
           borderTopRightRadius: 10,
           borderTopLeftRadius: 10,
-          bgcolor: "success.main",
+          bgcolor: "primary.dark",
         }}
       >
         <Box
@@ -50,7 +50,7 @@ const PlayerCard = ({ id, name, role, assetUrl }: prop) => {
           alignItems: "center",
           color: "primary.main",
           width: "100%",
-          bgcolor: "info.dark",
+          bgcolor: "info.main",
           borderBottomRightRadius: 10,
           borderBottomLeftRadius: 10,
         }}

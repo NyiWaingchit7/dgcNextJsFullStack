@@ -4,6 +4,8 @@ import appReducer from "./slice/appSlice";
 import homePageReducer from "./slice/homeSlice";
 import playerReducer from "./slice/playersSlice";
 import playerMatchesReducer from "./slice/playerMatchesSlice";
+import opponentTeamReducer from "./slice/opponentTeamSlice";
+import fixtureReducer from "./slice/fixtureSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +13,8 @@ export const store = configureStore({
     home: homePageReducer,
     player: playerReducer,
     playerMatches: playerMatchesReducer,
+    opponentTeam: opponentTeamReducer,
+    fixture: fixtureReducer,
   },
 });
 
