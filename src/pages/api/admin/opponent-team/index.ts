@@ -41,8 +41,8 @@ export default async function handler(
       where: { id },
     });
     if (!exist) return res.status(405).send("bad request");
-
-    await prisma.opponentTeam.delete({ where: { id } });
+    await prisma.fixture.deleteMany({ where: { opponentTeamId: id } });
+    const data = await prisma.opponentTeam.delete({ where: { id } });
 
     return res.status(200).send("deleted Successfully");
   }

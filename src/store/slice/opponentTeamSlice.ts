@@ -64,7 +64,6 @@ export const deleteOpponentTeam = createAsyncThunk(
         {
           method: "DELETE",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ id }),
         }
       );
 

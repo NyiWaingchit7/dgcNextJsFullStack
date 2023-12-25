@@ -69,7 +69,7 @@ export const deleteFixture = createAsyncThunk(
     const { id, onSuccess, onError } = options;
     try {
       const response = await fetch(
-        `${config.apiBaseUrl}/admin/opponent-team?id=${id}`,
+        `${config.apiBaseUrl}/admin/fixture?id=${id}`,
         {
           method: "DELETE",
           headers: { "content-type": "application/json" },

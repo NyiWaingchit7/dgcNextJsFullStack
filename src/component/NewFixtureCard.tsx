@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchAppData } from "@/store/slice/appSlice";
+import { createFixture, updateFixture } from "@/store/slice/fixtureSlice";
 import {
   createOpponentTeam,
   updateOpponentTeam,
@@ -14,6 +15,10 @@ import {
   DialogActions,
   Button,
   TextField,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import { OpponentTeam, PlayerMatches } from "@prisma/client";
 import { useEffect, useState } from "react";
@@ -21,47 +26,52 @@ import { useEffect, useState } from "react";
 interface Props {
   open: boolean;
   setOpen: (data: boolean) => void;
-  id: number;
+  id?: number;
 }
 const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
   const [name, setName] = useState("");
   const dispatch = useAppDispatch();
   const data = useAppSelector((store) => store.opponentTeam.items);
-  //   const handleCreateOpponentTeam = () => {
-  //     dispatch(
-  //       createOpponentTeam({
-  //         name,
-  //         onSuccess: () => {
-  //           dispatch(fetchAppData());
-  //           setOpen(false);
-  //         },
-  //       })
-  //     );
-  //   };
-  //   const handleUpdateOpponentTeam = () => {
-  //     dispatch(
-  //       updateOpponentTeam({
-  //         id,
-  //         name,
-  //         onSuccess: () => {
-  //           dispatch(fetchAppData());
-  //           setOpen(false);
-  //         },
-  //       })
-  //     );
-  //   };
-  //   useEffect(() => {
-  //     console.log(id);
-
-  //     if (id) {
-  //       const teamName = data.find((d) => d.id === id)?.name as string;
-  //       console.log(teamName);
-
-  //       setName(teamName);
-  //     } else {
-  //       setName("");
-  //     }
-  //   }, [id, open]);
+  const fixtureData = useAppSelector((store) => store.fixture.items);
+  const defaultOpponenTeam = fixtureData.find(
+    (d) => d.id === id
+  )?.opponentTeamId;
+  const [value, setValue] = useState<number>();
+  const [result, setResult] = useState({
+    myTeamResult: 0,
+    opponentTeamResult: 0,
+  });
+  const handleCreatFixture = () => {
+    dispatch(
+      createFixture({
+        opponentTeamId: value as number,
+        onSuccess: () => {
+          dispatch(fetchAppData());
+          setOpen(false);
+          setValue(undefined);
+        },
+      })
+    );
+  };
+  const handleUpdateFixture = () => {
+    dispatch(
+      updateFixture({
+        id: id as number,
+        opponentTeamId: value as number,
+        myTeamResult: result.myTeamResult,
+        opponentTeamResult: result.opponentTeamResult,
+        onSuccess: () => {
+          dispatch(fetchAppData());
+          setOpen(false);
+        },
+      })
+    );
+  };
+  useEffect(() => {
+    if (id) {
+      setValue(defaultOpponenTeam);
+    }
+  }, [open]);
 
   return (
     <Box>
@@ -69,9 +79,10 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
         open={open}
         onClose={() => {
           setOpen(false);
+          setValue(undefined);
         }}
       >
-        <DialogTitle>Add New Opponent Team</DialogTitle>
+        <DialogTitle>Add New Fixture</DialogTitle>
         <DialogContent
           sx={{
             display: "flex",
@@ -80,19 +91,52 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
             alignItems: "center",
           }}
         >
-          <TextField
-            sx={{ m: 1 }}
-            placeholder="New Opponent Team"
-            value={name ? name : ""}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
+          <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
+            <InputLabel id="demo-simple-select-label">Opponent Team</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={value || ""}
+              defaultValue={defaultOpponenTeam}
+              label="Opponent Team"
+              onChange={(e) => setValue(e.target.value as number)}
+            >
+              {data.map((d) => (
+                <MenuItem key={d.id} value={d.id}>
+                  {d.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {id && (
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <TextField
+                type="number"
+                placeholder="My Team Rresult"
+                sx={{ mb: 2 }}
+                onChange={(e) =>
+                  setResult({ ...result, myTeamResult: Number(e.target.value) })
+                }
+              />
+              <TextField
+                type="number"
+                placeholder="Opponent Team Rresult"
+                sx={{ mb: 2 }}
+                onChange={(e) =>
+                  setResult({
+                    ...result,
+                    opponentTeamResult: Number(e.target.value),
+                  })
+                }
+              />
+            </Box>
+          )}
         </DialogContent>
         <DialogActions>
           <Button
             onClick={() => {
               setOpen(false);
+              setValue(undefined);
             }}
             variant="contained"
             sx={{ m: 1 }}
@@ -100,13 +144,25 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
             Cancle
           </Button>
 
-          <Button variant="contained" sx={{ m: 1 }} disabled={!name}>
-            Update
-          </Button>
-
-          <Button variant="contained" sx={{ m: 1 }} disabled={!name}>
-            Comfirm
-          </Button>
+          {id ? (
+            <Button
+              variant="contained"
+              sx={{ m: 1 }}
+              disabled={!value}
+              onClick={handleUpdateFixture}
+            >
+              Update
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              sx={{ m: 1 }}
+              disabled={!value}
+              onClick={handleCreatFixture}
+            >
+              Comfirm
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </Box>

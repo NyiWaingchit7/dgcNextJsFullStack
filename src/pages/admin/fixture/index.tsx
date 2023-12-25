@@ -8,7 +8,11 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import NewFixtureCard from "@/component/NewFixtureCard";
+import FixtureCard from "@/component/FixtureCard";
+import { useAppSelector } from "@/store/hooks";
+import { Fixture } from "@prisma/client";
 
 const Fixture = () => {
   const router = useRouter();
@@ -17,6 +21,20 @@ const Fixture = () => {
     result: "result",
   };
   const [value, setValue] = useState(originalValue.fixture);
+  const [open, setOpen] = useState(false);
+  const data = useAppSelector((store) => store.fixture.items);
+  const [matches, setMatches] = useState<Fixture[]>([]);
+
+  useEffect(() => {
+    const fixtureData =
+      value === originalValue.fixture
+        ? data.filter((d) => d.matchResult === null)
+        : data.filter((d) => d.matchResult !== null);
+
+    setMatches(fixtureData);
+    console.log(data);
+  }, [value, data]);
+  if (!matches) return null;
   return (
     <Box>
       <Box
@@ -27,7 +45,12 @@ const Fixture = () => {
         }}
       >
         <Box>
-          <Button variant="contained" color="primary" sx={{ m: 2 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ m: 2 }}
+            onClick={() => setOpen(true)}
+          >
             <AddIcon sx={{ fontSize: "1.5rem" }} />
           </Button>
           <Button
@@ -57,6 +80,21 @@ const Fixture = () => {
           </ToggleButtonGroup>
         </Box>
       </Box>
+      <Box
+        sx={{
+          mt: 5,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+          mx: "auto",
+        }}
+      >
+        {matches.map((d) => (
+          <FixtureCard key={d.id} data={d} />
+        ))}
+      </Box>
+      <NewFixtureCard open={open} setOpen={setOpen} />
     </Box>
   );
 };

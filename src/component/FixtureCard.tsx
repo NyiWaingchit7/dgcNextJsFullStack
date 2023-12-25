@@ -1,98 +1,99 @@
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   Box,
+  Button,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
+import { Fixture } from "@prisma/client";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useEffect, useState } from "react";
+import { deleteFixture } from "@/store/slice/fixtureSlice";
+import { fetchAppData } from "@/store/slice/appSlice";
+import NewFixtureCard from "./NewFixtureCard";
 
-const FixtureCard = () => {
-  const originalValue = {
-    fixture: "fixture",
-    result: "result",
+interface prop {
+  data: Fixture;
+}
+const FixtureCard = ({ data }: prop) => {
+  const opponentTeams = useAppSelector((store) => store.opponentTeam.items);
+  const opponentTeam = opponentTeams.find(
+    (d) => d.id === data.opponentTeamId
+  )?.name;
+  const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const handleDeleteFixture = () => {
+    dispatch(
+      deleteFixture({
+        id: data.id,
+        onSuccess: () => {
+          dispatch(fetchAppData());
+        },
+      })
+    );
   };
-  const [value, setValue] = useState(originalValue.fixture);
-  // const [matches, setMatches] = useState<FixtureType[]>([]);
-
-  // useEffect(() => {
-  //   const data =
-  //     value === originalValue.fixture
-  //       ? fixture.filter((d) => d.result === "")
-  //       : fixture.filter((d) => d.result !== "");
-
-  //   setMatches(data);
-  // }, [value, !matches]);
-  // if (!matches) return null;
   return (
-    <Box sx={{ my: 3, minHeight: "70vh" }}>
-      <Box>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <ToggleButtonGroup
-            sx={{ px: 3 }}
-            color="primary"
-            value={value}
-            exclusive
-            onChange={(evt, value) => setValue(value)}
-          >
-            <ToggleButton sx={{ px: 3 }} value={originalValue.fixture}>
-              Fixture
-            </ToggleButton>
-            <ToggleButton sx={{ px: 3 }} value={originalValue.result}>
-              Result
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
-      </Box>
+    <Box
+      sx={{
+        width: { xs: "90%", md: "40%" },
+        bgcolor: "info.main",
+        borderRadius: 3,
+        m: 2,
+        p: 2,
+      }}
+    >
       <Box
         sx={{
-          mt: 5,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexWrap: "wrap",
-          mx: "auto",
+          width: "100%",
         }}
       >
-        {/* {matches.map((d) => (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                width: { xs: "190%", md: "40%" },
-                p: { xs: 2, sm: 3 },
-                m: 2,
-                bgcolor: "info.main",
-                borderRadius: 3,
-              }}
-              key={d.id}
-            >
-              <Typography
-                sx={{
-                  width: "40%",
-                  fontSize: { xs: "0.85rem", sm: "1rem" },
-                  fontWeight: { xs: "bold" },
-                  textAlign: "center",
-                }}
-              >
-                Red Dragon
-              </Typography>
-              {d.result ? (
-                <Typography sx={{ textAlign: "center" }}>{d.result}</Typography>
-              ) : (
-                <Typography>Vs</Typography>
-              )}
-              <Typography
-                sx={{
-                  width: "40%",
-                  fontSize: { xs: "0.85rem", sm: "1rem" },
-                  textAlign: "center",
-                }}
-              >
-                {d.teamName}
-              </Typography>
-            </Box>
-          ))} */}
+        <Typography
+          sx={{
+            width: "45%",
+            fontSize: { xs: "0.7rem", sm: "1rem" },
+            fontWeight: { xs: "bold" },
+            textAlign: "center",
+          }}
+        >
+          Red Dragon
+        </Typography>
+        {data.matchResult ? (
+          <Typography
+            sx={{
+              textAlign: "center",
+              width: "45%",
+              fontSize: { xs: "0.7rem", sm: "1rem" },
+            }}
+          >
+            {data.myTeamResult} - {data.opponentTeamResult}
+          </Typography>
+        ) : (
+          <Typography>Vs</Typography>
+        )}
+        <Typography
+          sx={{
+            width: "45%",
+            fontSize: { xs: "0.7rem", sm: "1rem" },
+            textAlign: "center",
+          }}
+        >
+          {opponentTeam}
+        </Typography>
+        <Button onClick={() => setOpen(true)}>
+          <EditIcon sx={{ fontSize: "1.5rem" }} />
+        </Button>
+        <Button onClick={handleDeleteFixture}>
+          <DeleteForeverIcon
+            sx={{ fontSize: "1.5rem", color: "success.main" }}
+          />
+        </Button>
       </Box>
+      <NewFixtureCard open={open} setOpen={setOpen} id={data.id} />
     </Box>
   );
 };
