@@ -53,9 +53,9 @@ const OpponentTeam = () => {
               width: "100%",
               display: "flex",
               alignItems: "center",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               flexWrap: "wrap",
-              mx: 3,
+              mx: 2,
             }}
           >
             {data.map((d, index) => {
@@ -65,23 +65,29 @@ const OpponentTeam = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    width: { xs: "80%", md: "25%" },
-                    m: 2,
+                    width: { xs: "100%", sm: "80%", md: "40%" },
+                    m: 1,
                     p: 2,
                     bgcolor: "info.main",
                     borderRadius: 5,
                   }}
                   key={d.id}
                 >
-                  <Typography>
-                    {index + 1} - {d.name}
+                  <Typography sx={{ width: "fit-content" }}>
+                    {d.name}
                   </Typography>
-                  <Box>
+                  <Box
+                    sx={{
+                      width: "fit-content",
+                      display: "flex",
+                    }}
+                  >
                     <Button
                       onClick={() => {
                         setId(d.id);
                         setOpen(true);
                       }}
+                      sx={{ width: "40%" }}
                     >
                       <EditIcon
                         sx={{ fontSize: "1.5rem", color: "primary.main" }}
@@ -91,6 +97,7 @@ const OpponentTeam = () => {
                       onClick={() => {
                         handleDeleteOpponentTeam(d.id);
                       }}
+                      sx={{ width: "40%" }}
                     >
                       <DeleteForeverIcon
                         sx={{ fontSize: "1.5rem", color: "success.main" }}

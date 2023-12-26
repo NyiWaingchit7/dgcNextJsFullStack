@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { Player } from "@prisma/client";
+import PlayerMatchesCard from "./PlayerMatchCard";
 
 interface Prop {
   playerData: Player;

@@ -47,14 +47,15 @@ const FixtureCard = ({ data }: prop) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
           alignItems: "center",
           width: "100%",
         }}
       >
         <Typography
           sx={{
-            width: "45%",
+            width: "fit-content",
+            mx: 2,
             fontSize: { xs: "0.7rem", sm: "1rem" },
             fontWeight: { xs: "bold" },
             textAlign: "center",
@@ -66,7 +67,8 @@ const FixtureCard = ({ data }: prop) => {
           <Typography
             sx={{
               textAlign: "center",
-              width: "45%",
+              width: "fit-content",
+              mx: 2,
               fontSize: { xs: "0.7rem", sm: "1rem" },
             }}
           >
@@ -77,7 +79,8 @@ const FixtureCard = ({ data }: prop) => {
         )}
         <Typography
           sx={{
-            width: "45%",
+            width: "fit-content",
+            mx: 2,
             fontSize: { xs: "0.7rem", sm: "1rem" },
             textAlign: "center",
           }}

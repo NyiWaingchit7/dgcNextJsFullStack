@@ -9,6 +9,7 @@ import NewPlayer from "./NewPlayer";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PlayerDetail from "./PlayerDetail";
+import PlayerMatchesCard from "./PlayerMatchCard";
 
 interface Prop {
   id: number;
@@ -28,13 +29,14 @@ const PlayerDetailCard = ({ id }: Prop) => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: { xs: "column", sm: "row" },
-        my: 10,
+        my: 5,
       }}
     >
       <Box
         sx={{
           width: { xs: "50%", sm: "30%", md: "25%", lg: "20%" },
           height: { xs: 270, sm: 320, md: 320, lg: 420 },
+
           borderRadius: 5,
           mb: 2,
           bgcolor: "primary.dark",
@@ -54,9 +56,11 @@ const PlayerDetailCard = ({ id }: Prop) => {
           }}
         />
       </Box>
+
       <Box
         sx={{
-          width: { xs: "80%", sm: "50%", md: "40%", lg: "45%" },
+          width: { xs: "100%", sm: "50%", md: "40%", lg: "60%" },
+
           borderRadius: 5,
           mx: 2,
           bgcolor: "success.main",
@@ -123,9 +127,10 @@ const PlayerDetailCard = ({ id }: Prop) => {
               </Box>
             </Box>
           </Box>
-        </Box>
-        <Box>
-          <PlayerDetail playerData={playerData} />
+
+          <Box>
+            <PlayerDetail playerData={playerData} />
+          </Box>
         </Box>
       </Box>
       <NewPlayer open={open} setOpen={setOpen} playerData={playerData} />

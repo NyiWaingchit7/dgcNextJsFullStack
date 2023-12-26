@@ -146,19 +146,10 @@ export const sideBar = [
     name: "Player",
     route: "/admin/player",
   },
-  {
-    id: 3,
-    name: "Achievement",
-    route: "/",
-  },
+
   {
     id: 4,
     name: "Fixture",
     route: "/admin/fixture",
-  },
-  {
-    id: 5,
-    name: "Event",
-    route: "/event",
   },
 ];
