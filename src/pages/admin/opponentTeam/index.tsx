@@ -110,8 +110,17 @@ const OpponentTeam = () => {
           </Box>
         </Box>
       ) : (
-        <Box>
-          <Typography>There is no team</Typography>
+        <Box
+          sx={{
+            minHeight: "60vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography sx={{ fontSize: "1.5rem", color: "success.main" }}>
+            There is no team...!
+          </Typography>
         </Box>
       )}
       <NewOpponentTeam open={open} setOpen={setOpen} id={id as number} />

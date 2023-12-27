@@ -14,7 +14,9 @@ const TopBar = () => {
 
   const [open, setOpen] = useState(false);
   return (
-    <Box sx={{ bgcolor: "success.main" }}>
+    <Box
+      sx={{ bgcolor: "success.main", position: "sticky", top: 0, zIndex: 5 }}
+    >
       {data ? (
         <Box
           sx={{

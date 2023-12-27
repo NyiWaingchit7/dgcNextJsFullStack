@@ -80,20 +80,35 @@ const Fixture = () => {
           </ToggleButtonGroup>
         </Box>
       </Box>
-      <Box
-        sx={{
-          mt: 5,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexWrap: "wrap",
-          mx: "auto",
-        }}
-      >
-        {matches.map((d) => (
-          <FixtureCard key={d.id} data={d} />
-        ))}
-      </Box>
+      {matches.length > 0 ? (
+        <Box
+          sx={{
+            mt: 5,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            mx: "auto",
+          }}
+        >
+          {matches.map((d) => (
+            <FixtureCard key={d.id} data={d} />
+          ))}
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            minHeight: "60vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography sx={{ fontSize: "1.5rem", color: "success.main" }}>
+            There is no fixture right now .... !
+          </Typography>
+        </Box>
+      )}
       <NewFixtureCard open={open} setOpen={setOpen} />
     </Box>
   );

@@ -55,7 +55,7 @@ const FixtureCard = ({ data }: prop) => {
         <Typography
           sx={{
             width: "fit-content",
-            mx: 2,
+            mx: 1,
             fontSize: { xs: "0.7rem", sm: "1rem" },
             fontWeight: { xs: "bold" },
             textAlign: "center",
@@ -68,7 +68,7 @@ const FixtureCard = ({ data }: prop) => {
             sx={{
               textAlign: "center",
               width: "fit-content",
-              mx: 2,
+              mx: 1,
               fontSize: { xs: "0.7rem", sm: "1rem" },
             }}
           >
@@ -80,21 +80,35 @@ const FixtureCard = ({ data }: prop) => {
         <Typography
           sx={{
             width: "fit-content",
-            mx: 2,
+            mx: 1,
             fontSize: { xs: "0.7rem", sm: "1rem" },
             textAlign: "center",
           }}
         >
           {opponentTeam}
         </Typography>
-        <Button onClick={() => setOpen(true)}>
-          <EditIcon sx={{ fontSize: "1.5rem" }} />
-        </Button>
-        <Button onClick={handleDeleteFixture}>
-          <DeleteForeverIcon
-            sx={{ fontSize: "1.5rem", color: "success.main" }}
-          />
-        </Button>
+        <Box
+          sx={{
+            width: "fit-content",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Box
+            onClick={() => setOpen(true)}
+            sx={{ width: "fit-content", m: 1 }}
+          >
+            <EditIcon sx={{ fontSize: "1.5rem" }} />
+          </Box>
+          <Box
+            onClick={handleDeleteFixture}
+            sx={{ width: "fit-content", m: 1 }}
+          >
+            <DeleteForeverIcon
+              sx={{ fontSize: "1.5rem", color: "success.main" }}
+            />
+          </Box>
+        </Box>
       </Box>
       <NewFixtureCard open={open} setOpen={setOpen} id={data.id} />
     </Box>
