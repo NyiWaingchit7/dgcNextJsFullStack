@@ -5,9 +5,10 @@ import { useAppSelector } from "@/store/hooks";
 import AddIcon from "@mui/icons-material/Add";
 interface Prop {
   id: number;
+  path?: boolean;
 }
 
-const PlayerMatchesCard = ({ id }: Prop) => {
+const PlayerMatchesCard = ({ id, path }: Prop) => {
   const playerMatches = useAppSelector((store) => store.playerMatches.items);
   const data = playerMatches.find((d) => d.playerId === id);
   const [open, setOpen] = useState(false);
@@ -24,11 +25,17 @@ const PlayerMatchesCard = ({ id }: Prop) => {
         borderRadius: 3,
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button variant="contained" color="info" onClick={() => setOpen(true)}>
-          <AddIcon sx={{ fontSize: "1.5rem" }} />{" "}
-        </Button>
-      </Box>
+      {!path && (
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            variant="contained"
+            color="info"
+            onClick={() => setOpen(true)}
+          >
+            <AddIcon sx={{ fontSize: "1.5rem" }} />{" "}
+          </Button>
+        </Box>
+      )}
       <Box
         sx={{
           width: "100%",

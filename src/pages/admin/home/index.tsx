@@ -118,30 +118,6 @@ const Home = () => {
           )}
         </Box>
       </Box>
-      {/* <Box sx={{ display: "flex", mx: "auto", mt: 5 }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {head.map((p) => (
-            <Box
-              key={p.id}
-              sx={{
-                width: { xs: "40%", sm: "26%", md: "28%", lg: "20%" },
-
-                m: 2,
-              }}
-            >
-              <PlayerCard id={p.id} name={p.name} img={p.img} role={p.role} />
-            </Box>
-          ))}
-        </Box>
-      </Box> */}
       <NewHome
         open={open}
         setOpen={setOpen}

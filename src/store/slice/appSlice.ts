@@ -25,6 +25,20 @@ export const fetchAppData = createAsyncThunk(
     thunApi.dispatch(setFixture(fixture));
   }
 );
+export const fetchUserAppData = createAsyncThunk(
+  "app/userData",
+  async (option, thunApi) => {
+    const response = await fetch(`${config.apiBaseUrl}/user`);
+    const { homeData, playerData, playerMatches, opponentTeam, fixture } =
+      await response.json();
+    thunApi.dispatch(setInit(true));
+    thunApi.dispatch(setHomeData(homeData));
+    thunApi.dispatch(setPlayer(playerData));
+    thunApi.dispatch(setPlayerMatches(playerMatches));
+    thunApi.dispatch(setOpponentTeam(opponentTeam));
+    thunApi.dispatch(setFixture(fixture));
+  }
+);
 
 const appSlice = createSlice({
   name: "appSlice",

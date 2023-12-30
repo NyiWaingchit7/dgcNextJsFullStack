@@ -1,18 +1,22 @@
 import { Box, Typography } from "@mui/material";
 import { Role } from "@prisma/client";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface prop {
   id: number;
   name: string;
   assetUrl?: string;
   role?: string;
+  head?: string;
 }
 
-const PlayerCard = ({ id, name, role, assetUrl }: prop) => {
-  const toPath = role ? `/head/${id}` : `${id}`;
+const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
+  const router = useRouter();
+  const path = router.pathname.includes("user");
+  const toPath = path ? `/user/player/${id}` : `/admin/player${id}`;
   return (
-    <Link href={`/admin/player/${id}`} style={{ textDecoration: "none" }}>
+    <Link href={toPath} style={{ textDecoration: "none" }}>
       <Box
         sx={{
           width: "100%",

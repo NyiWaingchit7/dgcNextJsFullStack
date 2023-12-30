@@ -100,6 +100,7 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
               defaultValue={defaultOpponenTeam}
               label="Opponent Team"
               onChange={(e) => setValue(e.target.value as number)}
+              disabled={id ? true : false}
             >
               {data.map((d) => (
                 <MenuItem key={d.id} value={d.id}>

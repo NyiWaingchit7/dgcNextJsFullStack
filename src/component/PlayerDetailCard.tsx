@@ -3,23 +3,24 @@ import { fetchAppData } from "@/store/slice/appSlice";
 import { deletePlayer } from "@/store/slice/playersSlice";
 import { Box, Typography } from "@mui/material";
 import { Player } from "@prisma/client";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { useState } from "react";
 import NewPlayer from "./NewPlayer";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PlayerDetail from "./PlayerDetail";
-import PlayerMatchesCard from "./PlayerMatchCard";
 
 interface Prop {
   id: number;
+  path?: boolean;
 }
 
-const PlayerDetailCard = ({ id }: Prop) => {
+const PlayerDetailCard = ({ id, path }: Prop) => {
   const dispatch = useAppDispatch();
   const players = useAppSelector((store) => store.player.items) as Player[];
   const playerData = players.find((p) => p.id === id);
   const [open, setOpen] = useState(false);
+
   if (!playerData) return null;
   return (
     <Box
@@ -83,6 +84,7 @@ const PlayerDetailCard = ({ id }: Prop) => {
                   px: 2,
                   borderRadius: 2,
                   fontWeight: "bold",
+                  my: 2,
                   "&:hover": { transform: "scale(1.05)" },
                   color: "primary.main",
                 }}
@@ -90,42 +92,44 @@ const PlayerDetailCard = ({ id }: Prop) => {
                 {playerData.role}
               </Typography>
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                mt: 3,
-                mx: 2,
-              }}
-            >
+            {!path && (
               <Box
                 sx={{
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-                onClick={() => setOpen(true)}
-              >
-                <EditIcon sx={{ fontSize: "2rem", m: 1 }} />
-              </Box>
-              <Box
-                sx={{ "&:hover": { transform: "scale(1.2)" } }}
-                onClick={() => {
-                  dispatch(
-                    deletePlayer({
-                      id: Number(id),
-                      onSuccess: () => {
-                        dispatch(fetchAppData());
-                        router.push("/admin/player");
-                      },
-                    })
-                  );
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  mt: 3,
+                  mx: 2,
                 }}
               >
-                <DeleteForeverIcon
-                  sx={{ fontSize: "2rem", color: "info.main" }}
-                />
+                <Box
+                  sx={{
+                    "&:hover": { transform: "scale(1.2)" },
+                  }}
+                  onClick={() => setOpen(true)}
+                >
+                  <EditIcon sx={{ fontSize: "2rem", m: 1 }} />
+                </Box>
+                <Box
+                  sx={{ "&:hover": { transform: "scale(1.2)" } }}
+                  onClick={() => {
+                    dispatch(
+                      deletePlayer({
+                        id: Number(id),
+                        onSuccess: () => {
+                          dispatch(fetchAppData());
+                          router.push("/admin/player");
+                        },
+                      })
+                    );
+                  }}
+                >
+                  <DeleteForeverIcon
+                    sx={{ fontSize: "2rem", color: "info.main" }}
+                  />
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
 
           <Box>

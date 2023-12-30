@@ -16,8 +16,9 @@ import NewFixtureCard from "./NewFixtureCard";
 
 interface prop {
   data: Fixture;
+  path?: boolean;
 }
-const FixtureCard = ({ data }: prop) => {
+const FixtureCard = ({ data, path }: prop) => {
   const opponentTeams = useAppSelector((store) => store.opponentTeam.items);
   const opponentTeam = opponentTeams.find(
     (d) => d.id === data.opponentTeamId
@@ -54,7 +55,7 @@ const FixtureCard = ({ data }: prop) => {
       >
         <Typography
           sx={{
-            width: "fit-content",
+            width: "40%",
             mx: 1,
             fontSize: { xs: "0.7rem", sm: "1rem" },
             fontWeight: { xs: "bold" },
@@ -67,7 +68,7 @@ const FixtureCard = ({ data }: prop) => {
           <Typography
             sx={{
               textAlign: "center",
-              width: "fit-content",
+              width: "15%",
               mx: 1,
               fontSize: { xs: "0.7rem", sm: "1rem" },
             }}
@@ -79,7 +80,7 @@ const FixtureCard = ({ data }: prop) => {
         )}
         <Typography
           sx={{
-            width: "fit-content",
+            width: "40%",
             mx: 1,
             fontSize: { xs: "0.7rem", sm: "1rem" },
             textAlign: "center",
@@ -87,28 +88,30 @@ const FixtureCard = ({ data }: prop) => {
         >
           {opponentTeam}
         </Typography>
-        <Box
-          sx={{
-            width: "fit-content",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        {!path && (
           <Box
-            onClick={() => setOpen(true)}
-            sx={{ width: "fit-content", m: 1 }}
+            sx={{
+              width: "fit-content",
+              display: "flex",
+              flexDirection: "column",
+            }}
           >
-            <EditIcon sx={{ fontSize: "1.5rem" }} />
+            <Box
+              onClick={() => setOpen(true)}
+              sx={{ width: "fit-content", m: 1 }}
+            >
+              <EditIcon sx={{ fontSize: "1.5rem" }} />
+            </Box>
+            <Box
+              onClick={handleDeleteFixture}
+              sx={{ width: "fit-content", m: 1 }}
+            >
+              <DeleteForeverIcon
+                sx={{ fontSize: "1.5rem", color: "success.main" }}
+              />
+            </Box>
           </Box>
-          <Box
-            onClick={handleDeleteFixture}
-            sx={{ width: "fit-content", m: 1 }}
-          >
-            <DeleteForeverIcon
-              sx={{ fontSize: "1.5rem", color: "success.main" }}
-            />
-          </Box>
-        </Box>
+        )}
       </Box>
       <NewFixtureCard open={open} setOpen={setOpen} id={data.id} />
     </Box>
