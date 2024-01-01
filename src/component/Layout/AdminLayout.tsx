@@ -18,11 +18,14 @@ const AdminLayout = ({ children }: Prop) => {
   const { init } = useAppSelector((state) => state.app);
   useEffect(() => {
     if (data && !init) {
+      localStorage.setItem("login", data?.user?.name as string);
       dispatch(fetchAppData());
+    } else {
+      const check = localStorage.getItem("login");
+      if (!check) {
+        router.push("/admin");
+      }
     }
-    // if (isReady && !data) {
-    //   router.push("/admin");
-    // }
   }, [data, isReady]);
 
   return (

@@ -90,7 +90,10 @@ const TopBar = () => {
             <Button
               variant="contained"
               sx={{ px: 1 }}
-              onClick={() => signOut({ callbackUrl: "/admin" })}
+              onClick={() => {
+                signOut({ callbackUrl: "/admin" });
+                localStorage.removeItem("login");
+              }}
             >
               Log Out
             </Button>

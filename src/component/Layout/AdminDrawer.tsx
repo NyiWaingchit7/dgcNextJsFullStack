@@ -78,7 +78,10 @@ const AdminDrawer = ({ sideBar, open, setOpen, Icon }: props) => {
             <Button
               variant="contained"
               sx={{ px: 1 }}
-              onClick={() => signOut({ callbackUrl: "/admin" })}
+              onClick={() => {
+                signOut({ callbackUrl: "/admin" });
+                localStorage.removeItem("login");
+              }}
               size="small"
             >
               Log Out <LogoutIcon sx={{ fontSize: "1rem", m: 1 }} />
