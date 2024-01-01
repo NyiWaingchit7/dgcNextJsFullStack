@@ -13,8 +13,6 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
 
-  if (!data.length) return <Loading />;
-
   return (
     <Box sx={{ minHeight: "90vh" }}>
       <Box sx={{ display: { xs: "none", lg: "block" }, mt: 5 }}>
