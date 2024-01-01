@@ -14,7 +14,7 @@ interface prop {
 const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
   const router = useRouter();
   const path = router.pathname.includes("user");
-  const toPath = path ? `/user/player/${id}` : `/admin/player${id}`;
+  const toPath = path ? `/user/player/${id}` : `/admin/player/${id}`;
   return (
     <Link href={toPath} style={{ textDecoration: "none" }}>
       <Box
@@ -29,7 +29,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
 
           borderTopRightRadius: 10,
           borderTopLeftRadius: 10,
-          bgcolor: "primary.dark",
+          bgcolor: "info.main",
         }}
       >
         <Box

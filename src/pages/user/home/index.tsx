@@ -9,18 +9,6 @@ const UserHome = () => {
   const head = playerData.filter((d) => d.head !== null);
   return (
     <Box sx={{ minHeight: "90vh" }}>
-      <Box sx={{ display: { xs: "none", lg: "block" }, mt: 5 }}>
-        <Typography
-          sx={{
-            fontSize: "1.7rem",
-            color: "secondary.main",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
-          RED DRAGON E.F.C
-        </Typography>
-      </Box>
       <Box
         sx={{
           display: "flex",

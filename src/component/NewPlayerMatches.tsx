@@ -84,6 +84,7 @@ const PlayerMatches = ({ open, setOpen, data }: Props) => {
               setOpen(false);
             }}
             variant="contained"
+            color="success"
             sx={{ m: 1 }}
           >
             Cancle

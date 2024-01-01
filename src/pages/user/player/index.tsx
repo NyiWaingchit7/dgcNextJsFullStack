@@ -38,6 +38,7 @@ const Player = () => {
         sx={{
           my: 2,
           maxWidth: "100vw",
+
           display: "flex",
           justifyContent: "space-between",
         }}

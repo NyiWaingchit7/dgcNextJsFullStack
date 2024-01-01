@@ -77,10 +77,11 @@ const AdminDrawer = ({ sideBar, open, setOpen, Icon }: props) => {
           <Box sx={{ mx: "auto", mt: 2 }}>
             <Button
               variant="contained"
-              sx={{ px: 3 }}
+              sx={{ px: 1 }}
               onClick={() => signOut({ callbackUrl: "/admin" })}
+              size="small"
             >
-              Log Out <LogoutIcon sx={{ fontSize: "1.5rem", m: 1 }} />
+              Log Out <LogoutIcon sx={{ fontSize: "1rem", m: 1 }} />
             </Button>
           </Box>
         </Box>

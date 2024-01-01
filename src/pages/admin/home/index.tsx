@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 import NewHome from "@/component/NewHome";
@@ -7,10 +7,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { deleteHomeText } from "@/store/slice/homeSlice";
 import { fetchAppData } from "@/store/slice/appSlice";
+import Loading from "@/component/Loading";
 const Home = () => {
   const data = useAppSelector((store) => store.home.items);
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+
+  if (!data.length) return <Loading />;
 
   return (
     <Box sx={{ minHeight: "90vh" }}>
@@ -93,7 +96,11 @@ const Home = () => {
                   lineHeight: 1.5,
                 }}
               >
-                {data[0].description}
+                {data[0].description ? (
+                  data[0].description
+                ) : (
+                  <CircularProgress />
+                )}
               </Typography>
             </Box>
           ) : (

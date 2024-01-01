@@ -37,7 +37,7 @@ const Fixture = () => {
   }, [value, data]);
   if (!matches) return null;
   return (
-    <Box>
+    <Box sx={{ minHeight: "70vh", mt: 3 }}>
       <Box
         sx={{
           display: "flex",

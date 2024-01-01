@@ -73,6 +73,7 @@ const NewHome = ({ open, setOpen, updateText, id }: Props) => {
         <DialogActions>
           <Button
             variant="contained"
+            color="success"
             onClick={() => {
               setOpen(false);
               setText("");

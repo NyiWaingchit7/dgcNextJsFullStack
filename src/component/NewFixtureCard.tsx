@@ -140,6 +140,7 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
               setValue(undefined);
             }}
             variant="contained"
+            color="success"
             sx={{ m: 1 }}
           >
             Cancle

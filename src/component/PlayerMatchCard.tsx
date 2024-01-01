@@ -20,7 +20,7 @@ const PlayerMatchesCard = ({ id, path }: Prop) => {
         maxWidth: "1100px",
         mx: { xs: 3, lg: "auto" },
         mt: 2,
-        bgcolor: "success.main",
+        bgcolor: "info.main",
         p: 2,
         borderRadius: 3,
       }}
@@ -42,7 +42,7 @@ const PlayerMatchesCard = ({ id, path }: Prop) => {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: { xs: "center", sm: "space-evenly" },
-          color: "info.light",
+          color: "primary.light",
         }}
       >
         <Box

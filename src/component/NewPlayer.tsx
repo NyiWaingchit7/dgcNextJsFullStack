@@ -174,6 +174,7 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
               setOpen(false);
               setPlayer(defaultPlayer);
             }}
+            color="success"
           >
             Cancle
           </Button>

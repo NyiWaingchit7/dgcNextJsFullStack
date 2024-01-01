@@ -4,6 +4,9 @@ import AdminLayout from "./AdminLayout";
 import { useRouter } from "next/router";
 import UserLayout from "./UseLayout";
 
+import Footer from "./Footer";
+import LandingTopBar from "./LandingTopBar";
+
 interface Prop {
   children: string | JSX.Element | JSX.Element[];
 }
@@ -26,6 +29,12 @@ const Layout = ({ children }: Prop) => {
       </Box>
     );
   }
-  return <Box>{children}</Box>;
+  return (
+    <Box>
+      <LandingTopBar />
+      {children}
+      <Footer />
+    </Box>
+  );
 };
 export default Layout;

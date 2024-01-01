@@ -40,7 +40,7 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
 
           borderRadius: 5,
           mb: 2,
-          bgcolor: "primary.dark",
+          bgcolor: "info.main",
         }}
       >
         <Box
