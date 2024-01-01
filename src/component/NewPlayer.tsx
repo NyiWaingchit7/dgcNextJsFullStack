@@ -56,6 +56,7 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
           dispatch(fetchAppData());
           setOpen(false);
           setPlayer(defaultPlayer);
+          setHead("");
         },
       })
     );
@@ -71,6 +72,7 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
           dispatch(fetchAppData());
           setOpen(false);
           setPlayer(defaultPlayer);
+          setHead("");
         },
       })
     );
