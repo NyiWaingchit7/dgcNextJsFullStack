@@ -13,6 +13,7 @@ import NewFixtureCard from "@/component/NewFixtureCard";
 import FixtureCard from "@/component/FixtureCard";
 import { useAppSelector } from "@/store/hooks";
 import { Fixture } from "@prisma/client";
+import Loading from "@/component/Loading";
 
 const Fixture = () => {
   const router = useRouter();
@@ -97,18 +98,7 @@ const Fixture = () => {
           ))}
         </Box>
       ) : (
-        <Box
-          sx={{
-            minHeight: "60vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Typography sx={{ fontSize: "1.5rem", color: "success.main" }}>
-            There is no fixture right now .... !
-          </Typography>
-        </Box>
+        <Loading />
       )}
       <NewFixtureCard open={open} setOpen={setOpen} />
     </Box>

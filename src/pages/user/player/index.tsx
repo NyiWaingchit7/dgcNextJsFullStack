@@ -13,6 +13,7 @@ import { useAppSelector } from "@/store/hooks";
 import AddIcon from "@mui/icons-material/Add";
 import { Player } from "@prisma/client";
 import PlayerCard from "@/component/PlayerCard";
+import Loading from "@/component/Loading";
 
 const Player = () => {
   const [open, setOpen] = useState(false);
@@ -88,21 +89,7 @@ const Player = () => {
             </Box>
           ))
         ) : (
-          <Box
-            sx={{
-              minHeight: "70vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              sx={{ fontSize: { xs: "1rem", sm: "1.5rem" } }}
-              color="success.main"
-            >
-              There is no player
-            </Typography>
-          </Box>
+          <Loading />
         )}
       </Box>
       <NewPlayers open={open} setOpen={setOpen} />

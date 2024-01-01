@@ -36,6 +36,7 @@ const App = () => {
             bgcolor: "info.main",
             color: "primary.main",
             lineHeight: 2,
+            borderRadius: 3,
           }}
         >
           It is our team(Red Dragon Efootball Club) mini website develope with
