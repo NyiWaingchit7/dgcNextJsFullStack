@@ -26,7 +26,6 @@ const Player = () => {
       p.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
     );
     setFilterPlayer(data);
-    console.log(filterPlayer, name);
   };
   useEffect(() => {
     setFilterPlayer(players);

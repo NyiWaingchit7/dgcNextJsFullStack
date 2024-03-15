@@ -13,7 +13,6 @@ export default async function handler(
   const method = req.method;
   if (method === "POST") {
     const { name, age, city, joinDate, role, head } = req.body;
-    console.log(req.body);
 
     const isValidate = name && age && city && joinDate;
     if (!isValidate) return res.status(405).send("bad request");

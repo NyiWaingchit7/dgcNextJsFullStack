@@ -51,11 +51,8 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
     );
   };
   useEffect(() => {
-    console.log(id);
-
     if (id) {
       const teamName = data.find((d) => d.id === id)?.name as string;
-      console.log(teamName);
 
       setName(teamName);
     } else {

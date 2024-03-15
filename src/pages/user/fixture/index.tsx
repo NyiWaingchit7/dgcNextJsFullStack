@@ -34,7 +34,6 @@ const Fixture = () => {
         : data.filter((d) => d.matchResult !== null);
 
     setMatches(fixtureData);
-    console.log(data);
   }, [value, data]);
   if (!matches) return null;
   return (
@@ -46,25 +45,6 @@ const Fixture = () => {
           alignItems: "center",
         }}
       >
-        <Box>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ m: 2 }}
-            onClick={() => setOpen(true)}
-          >
-            <AddIcon sx={{ fontSize: "1.5rem" }} />
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ m: 2 }}
-            onClick={() => {
-              router.push("/admin/opponentTeam");
-            }}
-          >
-            <WorkspacesIcon sx={{ fontSize: "1.5rem" }} />
-          </Button>
-        </Box>
         <Box>
           <ToggleButtonGroup
             sx={{ px: 3 }}

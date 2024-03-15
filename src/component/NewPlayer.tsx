@@ -45,8 +45,6 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleCreatePlayer = () => {
-    console.log(player);
-
     dispatch(
       createPlayer({
         ...player,

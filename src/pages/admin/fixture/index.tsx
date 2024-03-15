@@ -32,7 +32,6 @@ const Fixture = () => {
         : data.filter((d) => d.matchResult !== null);
 
     setMatches(fixtureData);
-    console.log(data);
   }, [value, data]);
   if (!matches) return null;
   return (
