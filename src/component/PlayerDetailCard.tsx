@@ -60,7 +60,7 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
 
       <Box
         sx={{
-          width: { xs: "100%", sm: "50%", md: "40%", lg: "60%" },
+          width: { xs: "90%", sm: "50%", md: "40%", lg: "40%" },
 
           borderRadius: 5,
           mx: 2,
@@ -84,6 +84,7 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
                   px: 2,
                   borderRadius: 2,
                   fontWeight: "bold",
+                  cursor: "pointer",
                   my: 2,
                   "&:hover": { transform: "scale(1.05)" },
                   color: "primary.main",
@@ -104,14 +105,24 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
               >
                 <Box
                   sx={{
-                    "&:hover": { transform: "scale(1.2)" },
+                    "&:hover": {
+                      transform: "scale(1.2)",
+                    },
+                    transition: "all ease-in 0.2s",
                   }}
                   onClick={() => setOpen(true)}
                 >
-                  <EditIcon sx={{ fontSize: "2rem", m: 1 }} />
+                  <EditIcon
+                    sx={{ fontSize: { xs: "1.5rem", md: "2rem" }, m: 1 }}
+                  />
                 </Box>
                 <Box
-                  sx={{ "&:hover": { transform: "scale(1.2)" } }}
+                  sx={{
+                    "&:hover": {
+                      transform: "scale(1.2)",
+                    },
+                    transition: "all ease-in 0.2s",
+                  }}
                   onClick={() => {
                     dispatch(
                       deletePlayer({
@@ -125,7 +136,10 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
                   }}
                 >
                   <DeleteForeverIcon
-                    sx={{ fontSize: "2rem", color: "info.main" }}
+                    sx={{
+                      fontSize: { xs: "1.5rem", md: "2rem" },
+                      color: "info.main",
+                    }}
                   />
                 </Box>
               </Box>

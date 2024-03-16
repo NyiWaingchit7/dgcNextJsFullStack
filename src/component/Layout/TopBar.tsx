@@ -2,17 +2,29 @@ import { Box, Button, Divider, Drawer, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
 import AdminDrawer from "./AdminDrawer";
+import { useRouter } from "next/router";
 const TopBar = () => {
   const { data } = useSession();
-
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("Home");
+  useEffect(() => {
+    const selectedItem = localStorage.getItem("adminSelectedItem");
+
+    if (selectedItem) {
+      setSelected(selectedItem);
+      router.push(`/admin/${selectedItem.toLocaleLowerCase()}`);
+    } else {
+      setSelected("Home");
+    }
+  }, [selected]);
   return (
     <Box
       sx={{ bgcolor: "success.main", position: "sticky", top: 0, zIndex: 5 }}
@@ -41,14 +53,22 @@ const TopBar = () => {
                     key={s.id}
                     style={{ textDecoration: "none" }}
                     href={s.route}
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false);
+                      setSelected(s.name);
+                      localStorage.setItem("adminSelectedItem", s.name);
+                    }}
                   >
                     <Box
                       sx={{
                         color: "info.main",
                         m: 1,
-                        px: 2,
-                        "&:active::selection": {
+                        px: 3,
+                        py: 1,
+                        bgcolor:
+                          selected === s.name ? "success.dark" : "success.main",
+                        borderRadius: 4,
+                        ":hover": {
                           bgcolor: "success.dark",
                         },
                       }}
@@ -133,6 +153,8 @@ const TopBar = () => {
           sideBar={sideBar}
           open={open}
           setOpen={setOpen}
+          selected={selected}
+          setSelected={setSelected}
           Icon={<CloseIcon sx={{ fontSize: "3rem", color: "info.main" }} />}
         />
       </Box>

@@ -1,8 +1,9 @@
 import { Box, Drawer, Typography, Divider, Button } from "@mui/material";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useRouter } from "next/router";
 interface SideBar {
   id: number;
   name: string;
@@ -12,10 +13,30 @@ interface props {
   sideBar: SideBar[];
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  selected: string;
+  setSelected: (d: string) => void;
   Icon: ReactNode;
 }
 
-const AdminDrawer = ({ sideBar, open, setOpen, Icon }: props) => {
+const AdminDrawer = ({
+  sideBar,
+  open,
+  setOpen,
+  Icon,
+  selected,
+  setSelected,
+}: props) => {
+  const router = useRouter();
+  useEffect(() => {
+    const selectedItem = localStorage.getItem("adminSelectedItem");
+
+    if (selectedItem) {
+      setSelected(selectedItem);
+      router.push(`/admin/${selectedItem.toLocaleLowerCase()}`);
+    } else {
+      setSelected("Home");
+    }
+  }, [selected]);
   return (
     <Box>
       <Drawer
@@ -49,13 +70,23 @@ const AdminDrawer = ({ sideBar, open, setOpen, Icon }: props) => {
                 style={{ textDecoration: "none" }}
                 key={s.id}
                 href={s.route}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  setSelected(s.name);
+                  localStorage.setItem("adminSelectedItem", s.name);
+                }}
               >
                 <Box
                   sx={{
                     color: "info.main",
-                    px: 2,
-                    "&:hover": { boxShadow: 3 },
+                    px: 3,
+                    py: 1,
+                    bgcolor:
+                      selected === s.name ? "success.dark" : "success.main",
+                    borderRadius: 4,
+                    ":hover": {
+                      bgcolor: "success.dark",
+                    },
                   }}
                 >
                   <Typography sx={{ fontWeight: "bold", p: 1 }}>

@@ -61,7 +61,11 @@ const Home = () => {
                 }}
               >
                 <Box
-                  sx={{ p: 1, "&:hover": { transform: "scale(1.2)" } }}
+                  sx={{
+                    p: 1,
+                    "&:hover": { transform: "scale(1.2)" },
+                    transition: "all ease-in 0.2s",
+                  }}
                   onClick={() => {
                     setOpen(true);
                   }}
@@ -90,8 +94,8 @@ const Home = () => {
                 sx={{
                   color: "primary.light",
                   fontWeight: "light",
-                  fontSize: { xs: "0.85rem", sm: "1.2rem" },
-                  lineHeight: 1.5,
+                  fontSize: { xs: "0.85rem", sm: "1.3rem" },
+                  lineHeight: 1.7,
                 }}
               >
                 {data[0].description ? (

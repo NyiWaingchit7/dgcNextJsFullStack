@@ -19,71 +19,78 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
     <Link href={toPath} style={{ textDecoration: "none" }}>
       <Box
         sx={{
-          width: "100%",
-          height: {
-            xs: "125px",
-            sm: "150px",
-            md: "200px",
-            lg: "250px",
-          },
-
-          borderTopRightRadius: 10,
-          borderTopLeftRadius: 10,
-          bgcolor: "info.main",
+          ":hover": { transform: "scale(1.1)" },
+          transition: "all ease-in 0.2s",
         }}
       >
         <Box
-          component="img"
-          src={assetUrl || `../unknown.png`}
           sx={{
             width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            backgroundImage: "url(../Red_Dragon.png)",
-            backgroundPosition: "center",
-            backgroundSize: "70%",
-            backgroundRepeat: "no-repeat",
-          }}
-        />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "primary.main",
-          width: "100%",
-          bgcolor: "info.main",
-          borderBottomRightRadius: 10,
-          borderBottomLeftRadius: 10,
-        }}
-      >
-        <Typography
-          sx={{
-            fontSize: { xs: "0.7rem", sm: "1rem" },
-            fontWeight: "bold",
-            mb: 1,
-            mt: role ? 1 : 0,
+            height: {
+              xs: "125px",
+              sm: "150px",
+              md: "200px",
+              lg: "250px",
+            },
+
+            borderTopRightRadius: 10,
+            borderTopLeftRadius: 10,
+            bgcolor: "info.main",
           }}
         >
-          {name}
-        </Typography>
-        {role && (
+          <Box
+            component="img"
+            src={assetUrl || `../unknown.png`}
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              backgroundImage: "url(../Red_Dragon.png)",
+              backgroundPosition: "center",
+              backgroundSize: "70%",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "primary.dark",
+            width: "100%",
+            bgcolor: "info.dark",
+            borderBottomRightRadius: 10,
+            borderBottomLeftRadius: 10,
+          }}
+        >
           <Typography
             sx={{
               fontSize: { xs: "0.7rem", sm: "1rem" },
               fontWeight: "bold",
               mb: 1,
-              p: 1,
-              bgcolor: "success.main",
-              color: "info.main",
-              borderRadius: 2,
+              mt: role ? 1 : 0,
             }}
           >
-            {role}
+            {name}
           </Typography>
-        )}
+          {role && (
+            <Typography
+              sx={{
+                fontSize: { xs: "0.7rem", sm: "1rem" },
+                fontWeight: "bold",
+                mb: 1,
+                p: 1,
+                bgcolor: "success.main",
+                color: "info.main",
+                borderRadius: 2,
+              }}
+            >
+              {role}
+            </Typography>
+          )}
+        </Box>
       </Box>
     </Link>
   );

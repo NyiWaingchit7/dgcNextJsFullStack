@@ -20,7 +20,7 @@ const UserHome = () => {
       >
         <Box
           sx={{
-            width: { xs: "50%", sm: "35%", md: "20%" },
+            width: { xs: "50%", sm: "35%", md: "15%" },
             display: "flex",
             justifyContent: "center",
           }}

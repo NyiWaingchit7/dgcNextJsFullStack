@@ -2,15 +2,27 @@ import { Box, Divider, Drawer, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import GroupsIcon from "@mui/icons-material/Groups";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+
 import Link from "next/link";
+import { useRouter } from "next/router";
 const UserTopBar = () => {
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("");
+  const router = useRouter();
+  useEffect(() => {
+    const selectedItem = localStorage.getItem("selectedItem");
+    if (selectedItem) {
+      setSelected(selectedItem);
+      router.push(`/user/${selectedItem.toLocaleLowerCase()}`);
+    } else {
+      setSelected("Home");
+    }
+  }, [selected]);
   return (
     <Box sx={{ bgcolor: "success.main", position: "sticky", top: 0 }}>
       <Box
@@ -36,14 +48,25 @@ const UserTopBar = () => {
                   key={s.id}
                   style={{ textDecoration: "none" }}
                   href={s.route}
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    setSelected(s.name);
+                    localStorage.setItem("selectedItem", s.name);
+                  }}
                 >
                   <Box
                     sx={{
                       color: "info.main",
                       m: 1,
-                      px: 2,
-                      "&:hover": { bgcolor: "success.dark" },
+                      px: 3,
+                      py: 1,
+                      height: "30px",
+                      bgcolor:
+                        selected === s.name ? "success.dark" : "success.main",
+                      borderRadius: 4,
+                      ":hover": {
+                        bgcolor: "success.dark",
+                      },
                     }}
                   >
                     <Typography sx={{ fontWeight: "bold" }}>
@@ -102,13 +125,22 @@ const UserTopBar = () => {
                   style={{ textDecoration: "none" }}
                   key={s.id}
                   href={s.route}
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    setSelected(s.name);
+                    localStorage.setItem("selectedItem", s.name);
+                  }}
                 >
                   <Box
                     sx={{
                       color: "info.main",
                       px: 2,
-                      "&:hover": { boxShadow: 3 },
+                      bgcolor:
+                        selected === s.name ? "success.dark" : "success.main",
+                      borderRadius: 4,
+                      ":hover": {
+                        bgcolor: "success.dark",
+                      },
                     }}
                   >
                     <Typography sx={{ fontWeight: "bold", p: 1 }}>

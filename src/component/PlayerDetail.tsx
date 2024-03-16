@@ -12,7 +12,7 @@ const PlayerDetail = ({ playerData }: Prop) => {
       <Box
         sx={{
           width: "100%",
-          height: { xs: 250, lg: 350 },
+          height: { xs: 200, lg: 350 },
           color: "info.light",
           display: "flex",
           flexDirection: "column",
@@ -29,14 +29,17 @@ const PlayerDetail = ({ playerData }: Prop) => {
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1.2rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
           >
             Name
           </Typography>
-          <Typography sx={{ width: "100%" }}> - </Typography>
+          <Typography sx={{ width: { xs: "50px", md: "100px" } }}>
+            {" "}
+            -{" "}
+          </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1.2rem", lg: "1.5rem" },
+              fontSize: { xs: "1rem", lg: "1.5rem" },
               textAlign: "start",
               width: "100%",
             }}
@@ -53,14 +56,16 @@ const PlayerDetail = ({ playerData }: Prop) => {
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1.2rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
           >
             Age
           </Typography>
-          <Typography sx={{ width: "100%" }}> - </Typography>
+          <Typography sx={{ width: { xs: "50px", md: "100px" } }}>
+            -{" "}
+          </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1.2rem", lg: "1.5rem" },
+              fontSize: { xs: "1rem", lg: "1.5rem" },
               textAlign: "start",
               width: "100%",
             }}
@@ -77,14 +82,17 @@ const PlayerDetail = ({ playerData }: Prop) => {
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1.2rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
           >
             City
           </Typography>
-          <Typography sx={{ width: "100%" }}> - </Typography>
+          <Typography sx={{ width: { xs: "50px", md: "100px" } }}>
+            {" "}
+            -{" "}
+          </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1.2rem", lg: "1.5rem" },
+              fontSize: { xs: "1rem", lg: "1.5rem" },
               textAlign: "start",
               width: "100%",
             }}
@@ -101,14 +109,17 @@ const PlayerDetail = ({ playerData }: Prop) => {
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1.2rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
           >
             Join Date{" "}
           </Typography>
-          <Typography sx={{ width: "100%" }}> - </Typography>
+          <Typography sx={{ width: { xs: "50px", md: "100px" } }}>
+            {" "}
+            -{" "}
+          </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1.2rem", lg: "1.5rem" },
+              fontSize: { xs: "1rem", lg: "1.5rem" },
               textAlign: "start",
               width: "100%",
             }}
