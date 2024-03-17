@@ -112,6 +112,9 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
           {id && (
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <TextField
+                autoFocus
+                required
+                label="My Team Rresult"
                 type="number"
                 placeholder="My Team Rresult"
                 sx={{ mb: 2 }}
@@ -121,6 +124,8 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
               />
               <TextField
                 type="number"
+                required
+                label="Opponent Team Rresult"
                 placeholder="Opponent Team Rresult"
                 sx={{ mb: 2 }}
                 onChange={(e) =>

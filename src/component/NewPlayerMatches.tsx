@@ -51,6 +51,9 @@ const PlayerMatches = ({ open, setOpen, data }: Props) => {
           }}
         >
           <TextField
+            autoFocus
+            required
+            label="Win"
             type="number"
             sx={{ m: 1 }}
             placeholder="Win"
@@ -60,6 +63,8 @@ const PlayerMatches = ({ open, setOpen, data }: Props) => {
             }}
           />
           <TextField
+            required
+            label="Draw"
             type="number"
             sx={{ m: 1 }}
             placeholder="Draw"
@@ -69,6 +74,8 @@ const PlayerMatches = ({ open, setOpen, data }: Props) => {
             }}
           />
           <TextField
+            required
+            label="Lose"
             type="number"
             sx={{ m: 1 }}
             placeholder="Lose"

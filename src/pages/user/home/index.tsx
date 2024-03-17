@@ -64,6 +64,7 @@ const UserHome = () => {
                   width: { xs: "40%", sm: "26%", md: "28%", lg: "20%" },
 
                   m: 2,
+                  mb: 3,
                 }}
               >
                 <PlayerCard id={p.id} name={p.name} role={p.head as Head} />

@@ -82,6 +82,9 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
           <TextField
             sx={{ m: 1 }}
             placeholder="New Opponent Team"
+            autoFocus
+            required
+            label="New Opponent Team"
             value={name ? name : ""}
             onChange={(e) => {
               setName(e.target.value);

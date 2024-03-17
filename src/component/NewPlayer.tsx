@@ -102,12 +102,17 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
             sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
           >
             <TextField
+              autoFocus
+              required
+              label="Name"
               defaultValue={player.name}
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}
               placeholder="Name"
               onChange={(e) => setPlayer({ ...player, name: e.target.value })}
             />
             <TextField
+              required
+              label="Age"
               defaultValue={player.age ? player.age : ""}
               type="number"
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}
@@ -117,12 +122,16 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
               }
             />
             <TextField
+              required
+              label="City"
               defaultValue={player.city}
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}
               placeholder="City"
               onChange={(e) => setPlayer({ ...player, city: e.target.value })}
             />
             <TextField
+              required
+              label="Join Date"
               defaultValue={player.joinDate ? player.joinDate : ""}
               type="number"
               sx={{ width: { xs: "90%", sm: "40%" }, m: 2 }}

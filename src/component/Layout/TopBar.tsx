@@ -173,6 +173,11 @@ export const sideBar = [
     name: "Player",
     route: "/admin/player",
   },
+  {
+    id: 3,
+    name: "Achievement",
+    route: "/admin/achievement",
+  },
 
   {
     id: 4,

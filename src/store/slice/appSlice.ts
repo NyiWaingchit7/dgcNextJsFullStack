@@ -6,6 +6,7 @@ import { setPlayer } from "./playersSlice";
 import { setPlayerMatches } from "./playerMatchesSlice";
 import { setOpponentTeam } from "./opponentTeamSlice";
 import { setFixture } from "./fixtureSlice";
+import { setAchievement } from "./achievementSlice";
 const initialState: AppSlice = {
   init: false,
   isLoading: false,
@@ -15,28 +16,42 @@ export const fetchAppData = createAsyncThunk(
   "app/data",
   async (option, thunApi) => {
     const response = await fetch(`${config.apiBaseUrl}/admin/app`);
-    const { homeData, playerData, playerMatches, opponentTeam, fixture } =
-      await response.json();
+    const {
+      homeData,
+      playerData,
+      playerMatches,
+      opponentTeam,
+      fixture,
+      achievement,
+    } = await response.json();
     thunApi.dispatch(setInit(true));
     thunApi.dispatch(setHomeData(homeData));
     thunApi.dispatch(setPlayer(playerData));
     thunApi.dispatch(setPlayerMatches(playerMatches));
     thunApi.dispatch(setOpponentTeam(opponentTeam));
     thunApi.dispatch(setFixture(fixture));
+    thunApi.dispatch(setAchievement(achievement));
   }
 );
 export const fetchUserAppData = createAsyncThunk(
   "app/userData",
   async (option, thunApi) => {
     const response = await fetch(`${config.apiBaseUrl}/user`);
-    const { homeData, playerData, playerMatches, opponentTeam, fixture } =
-      await response.json();
+    const {
+      homeData,
+      playerData,
+      playerMatches,
+      opponentTeam,
+      fixture,
+      achievement,
+    } = await response.json();
     thunApi.dispatch(setInit(true));
     thunApi.dispatch(setHomeData(homeData));
     thunApi.dispatch(setPlayer(playerData));
     thunApi.dispatch(setPlayerMatches(playerMatches));
     thunApi.dispatch(setOpponentTeam(opponentTeam));
     thunApi.dispatch(setFixture(fixture));
+    thunApi.dispatch(setAchievement(achievement));
   }
 );
 

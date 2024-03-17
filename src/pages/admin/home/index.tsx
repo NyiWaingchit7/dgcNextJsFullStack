@@ -36,9 +36,10 @@ const Home = () => {
       >
         <Box
           sx={{
-            width: { xs: "50%", sm: "35%", md: "20%" },
+            width: { xs: "50%", sm: "35%", md: "15%" },
             display: "flex",
             justifyContent: "center",
+            mb: 3,
           }}
         >
           <Box sx={{ width: "100%" }} component="img" src="../Red_Dragon.png" />

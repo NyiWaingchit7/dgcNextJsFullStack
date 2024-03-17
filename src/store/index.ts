@@ -6,6 +6,7 @@ import playerReducer from "./slice/playersSlice";
 import playerMatchesReducer from "./slice/playerMatchesSlice";
 import opponentTeamReducer from "./slice/opponentTeamSlice";
 import fixtureReducer from "./slice/fixtureSlice";
+import achievementReducer from "./slice/achievementSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     playerMatches: playerMatchesReducer,
     opponentTeam: opponentTeamReducer,
     fixture: fixtureReducer,
+    achievement: achievementReducer,
   },
 });
 
