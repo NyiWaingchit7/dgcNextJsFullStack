@@ -26,9 +26,19 @@ export default async function handler(
     const fixture = await prisma.fixture.findMany({
       orderBy: { id: "asc" },
     });
+    const achievement = await prisma.achievement.findMany({
+      orderBy: { id: "asc" },
+    });
     return res
       .status(200)
-      .json({ homeData, playerData, playerMatches, opponentTeam, fixture });
+      .json({
+        homeData,
+        playerData,
+        playerMatches,
+        opponentTeam,
+        fixture,
+        achievement,
+      });
   }
   res.status(405).send("method not allowed");
 }

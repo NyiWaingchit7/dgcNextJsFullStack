@@ -20,7 +20,7 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { OpponentTeam, PlayerMatches } from "@prisma/client";
+
 import { useEffect, useState } from "react";
 
 interface Props {
