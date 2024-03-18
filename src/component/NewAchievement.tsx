@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { createAchievement } from "@/store/slice/achievementSlice";
 import { fetchAppData } from "@/store/slice/appSlice";
 import {
@@ -10,7 +10,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 interface Props {
   open: boolean;
   setOpen: (data: boolean) => void;
@@ -28,6 +28,7 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
   const [achievementData, setAchievementData] =
     useState<DefaultAchievement>(defaultAchievement);
   const dispatch = useAppDispatch();
+  const allAchievement = useAppSelector((store) => store.achievement.items);
   const onSuccess = () => {
     dispatch(fetchAppData());
     setOpen(false);
@@ -36,10 +37,20 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
   const handleCreateAchievement = () => {
     dispatch(createAchievement({ ...achievementData, onSuccess }));
   };
+  useEffect(() => {
+    if (id) {
+      const intialData = allAchievement.find(
+        (d) => d.id === id
+      ) as DefaultAchievement;
+      setAchievementData(intialData);
+    } else {
+      setAchievementData(defaultAchievement);
+    }
+  }, [id, open]);
   return (
     <Box>
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Add New Achievement</DialogTitle>
+        <DialogTitle>{id ? "Updating" : "Creating"}</DialogTitle>
         <DialogContent
           sx={{
             display: "flex",
@@ -56,6 +67,7 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
             label="Year"
             placeholder="Year"
             type="number"
+            defaultValue={achievementData.year ? achievementData.year : ""}
             onChange={(e) =>
               setAchievementData({
                 ...achievementData,
@@ -64,12 +76,15 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
             }
           />
           <TextField
+            rows={3}
+            multiline
             sx={{ mt: 2 }}
             autoFocus
             required
             label="Description"
             placeholder="Description"
             type="text"
+            defaultValue={achievementData.description}
             onChange={(e) =>
               setAchievementData({
                 ...achievementData,

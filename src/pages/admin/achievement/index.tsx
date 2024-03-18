@@ -10,7 +10,8 @@ const Achievement = () => {
   return (
     <Box
       sx={{
-        height: "90vh",
+        minHeight: "90vh",
+        mb: 3,
       }}
     >
       <Box sx={{ display: "flex", justifyContent: "flex-end", mx: 3, p: 3 }}>
@@ -23,7 +24,7 @@ const Achievement = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: 2,
+          gap: 4,
           flexWrap: "wrap",
         }}
       >

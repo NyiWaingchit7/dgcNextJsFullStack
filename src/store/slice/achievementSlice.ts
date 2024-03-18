@@ -55,9 +55,10 @@ export const deleteAchievement = createAsyncThunk(
         `${config.apiBaseUrl}/admin/achievement?id=${id}`,
         {
           method: "DELETE",
+          headers: { "content-type": "application/json" },
         }
       );
-      const data = await response.json();
+
       onSuccess && onSuccess();
     } catch (err) {
       onError && onError();
