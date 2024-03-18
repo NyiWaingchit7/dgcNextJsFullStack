@@ -1,5 +1,8 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { createAchievement } from "@/store/slice/achievementSlice";
+import {
+  createAchievement,
+  updateAchievement,
+} from "@/store/slice/achievementSlice";
 import { fetchAppData } from "@/store/slice/appSlice";
 import {
   Box,
@@ -37,6 +40,11 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
   const handleCreateAchievement = () => {
     dispatch(createAchievement({ ...achievementData, onSuccess }));
   };
+  const handleUpdateAchievement = () => {
+    dispatch(
+      updateAchievement({ id: id as number, ...achievementData, onSuccess })
+    );
+  };
   useEffect(() => {
     if (id) {
       const intialData = allAchievement.find(
@@ -53,15 +61,12 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
         <DialogTitle>{id ? "Updating" : "Creating"}</DialogTitle>
         <DialogContent
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
             mt: 2,
           }}
         >
           <TextField
             sx={{ mt: 2 }}
+            fullWidth
             autoFocus
             required
             label="Year"
@@ -76,10 +81,10 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
             }
           />
           <TextField
+            fullWidth
             rows={3}
             multiline
             sx={{ mt: 2 }}
-            autoFocus
             required
             label="Description"
             placeholder="Description"
@@ -105,15 +110,27 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
           >
             Cancle
           </Button>
-          <Button
-            onClick={handleCreateAchievement}
-            variant="contained"
-            color="primary"
-            sx={{ m: 1 }}
-            disabled={!achievementData.year || !achievementData.description}
-          >
-            Comfirm
-          </Button>
+          {id ? (
+            <Button
+              onClick={handleUpdateAchievement}
+              variant="contained"
+              color="primary"
+              sx={{ m: 1 }}
+              disabled={!achievementData.year || !achievementData.description}
+            >
+              Update
+            </Button>
+          ) : (
+            <Button
+              onClick={handleCreateAchievement}
+              variant="contained"
+              color="primary"
+              sx={{ m: 1 }}
+              disabled={!achievementData.year || !achievementData.description}
+            >
+              Comfirm
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </Box>

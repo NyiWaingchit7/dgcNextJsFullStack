@@ -64,6 +64,7 @@ const AchievementDetail = () => {
               {data.year}
             </Typography>
           </Box>
+
           <Box>
             <EditIcon
               onClick={() => setOpen(true)}
@@ -106,13 +107,20 @@ const AchievementDetail = () => {
             />
           </Box>
         </Box>
-        <Box sx={{ width: 325, p: 1, borderRadius: 3 }}>
+        <Box
+          sx={{
+            width: { xs: 325, sm: 500 },
+            p: 1,
+            borderRadius: 3,
+            boxShadow: 2,
+          }}
+        >
           <Box
             component="img"
             src={data.assetUrl || "../../defaultAch.webp"}
             sx={{
               width: "100%",
-              height: { xs: "150px", sm: "200px" },
+              height: { xs: "210px", sm: "250px" },
               borderRadius: 3,
             }}
           />

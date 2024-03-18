@@ -170,20 +170,21 @@ export const sideBar = [
   {
     id: 1,
     name: "Home",
-    icon: <HomeIcon sx={{ fontSize: "2rem" }} />,
     route: "/user/home",
   },
   {
     id: 2,
     name: "Player",
-    icon: <GroupsIcon sx={{ fontSize: "2rem" }} />,
     route: "/user/player",
   },
-
+  {
+    id: 3,
+    name: "Achievement",
+    route: "/user/achievement",
+  },
   {
     id: 4,
     name: "Fixture",
-    icon: <SportsSoccerIcon sx={{ fontSize: "2rem" }} />,
     route: "/user/fixture",
   },
 ];

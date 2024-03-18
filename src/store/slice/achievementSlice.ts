@@ -34,11 +34,14 @@ export const updateAchievement = createAsyncThunk(
   async (option: UpdateAchievement, thunkApi) => {
     const { id, year, description, assetUrl, onSuccess, onError } = option;
     try {
-      const response = await fetch(`${config.apiBaseUrl}/admin/achievement`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ id, year, description }),
-      });
+      const response = await fetch(
+        `${config.apiBaseUrl}/admin/achievement?id=${id}`,
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ id, year, description }),
+        }
+      );
       const data = await response.json();
       onSuccess && onSuccess();
     } catch (err) {

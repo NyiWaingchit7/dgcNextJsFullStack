@@ -4,11 +4,13 @@ import Link from "next/link";
 import React from "react";
 interface Props {
   data: Achievement;
+  path?: Boolean;
 }
-const AchievementCard = ({ data }: Props) => {
+const AchievementCard = ({ data, path }: Props) => {
+  const linkTo = path ? "user" : "admin";
   return (
     <Link
-      href={`/admin/achievement/${data.id}`}
+      href={`/${linkTo}/achievement/${data.id}`}
       style={{ textDecoration: "none" }}
     >
       <Box
