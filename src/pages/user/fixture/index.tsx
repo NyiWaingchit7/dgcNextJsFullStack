@@ -47,6 +47,7 @@ const Fixture = () => {
           textDecoration: "underline",
           textUnderlineOffset: 3,
           mb: 5,
+          cursor: "pointer",
         }}
       >
         Fixture and Results

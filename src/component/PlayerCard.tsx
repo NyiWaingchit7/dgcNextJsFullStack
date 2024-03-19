@@ -19,8 +19,10 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
     <Link href={toPath} style={{ textDecoration: "none" }}>
       <Box
         sx={{
-          ":hover": { transform: "scale(1.02)" },
-          transition: "all ease-in 0.2s",
+          transition: "all ease-in 0.3s",
+          border: 5,
+          borderColor: "info.dark",
+          borderRadius: 3,
         }}
       >
         <Box
@@ -61,8 +63,8 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
             color: "primary.dark",
             width: "100%",
             bgcolor: "info.dark",
-            borderBottomRightRadius: 10,
-            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 3,
+            borderBottomLeftRadius: 3,
           }}
         >
           <Typography
@@ -73,7 +75,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
               mt: role ? 1 : 0,
             }}
           >
-            {name}
+            {name.toLocaleUpperCase()}
           </Typography>
           {role && (
             <Typography

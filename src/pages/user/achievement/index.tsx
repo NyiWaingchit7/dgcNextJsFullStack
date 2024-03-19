@@ -25,6 +25,7 @@ const Achievement = () => {
           textDecoration: "underline",
           textUnderlineOffset: 3,
           mb: 5,
+          cursor: "pointer",
         }}
       >
         Achievements

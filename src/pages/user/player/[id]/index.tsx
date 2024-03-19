@@ -32,6 +32,7 @@ const PlayerDetail = () => {
           textDecoration: "underline",
           textUnderlineOffset: 3,
           mb: 5,
+          cursor: "pointer",
         }}
       >
         Player Details

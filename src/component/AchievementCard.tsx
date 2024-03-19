@@ -21,11 +21,12 @@ const AchievementCard = ({ data, path }: Props) => {
     <Box
       sx={{
         width: { xs: 350, sm: 375 },
-        boxShadow: 2,
         borderRadius: 3,
         cursor: "pointer",
-        ":hover": { transform: "scale(1.05)" },
-        transition: "all ease-in 0.2s",
+        ":hover": { borderColor: "info.dark" },
+        transition: "all ease-in 0.3s",
+        border: 3,
+        borderColor: "secondary.main",
       }}
     >
       {!path && (
@@ -77,6 +78,7 @@ const AchievementCard = ({ data, path }: Props) => {
           flexDirection: "column",
           alignItems: "center",
           width: 350,
+          mx: "auto",
         }}
       >
         <Box sx={{ width: 325, p: 1, borderRadius: 3 }}>

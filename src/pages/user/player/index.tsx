@@ -43,6 +43,7 @@ const Player = () => {
           textDecoration: "underline",
           textUnderlineOffset: 3,
           mb: 5,
+          cursor: "pointer",
         }}
       >
         Players

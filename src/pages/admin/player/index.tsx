@@ -39,7 +39,7 @@ const Player = () => {
           textAlign: "center",
           mt: 5,
           fontWeight: "bold",
-          textDecoration: "underline",
+
           textUnderlineOffset: 3,
           mb: 5,
         }}
