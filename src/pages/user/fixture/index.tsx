@@ -38,6 +38,19 @@ const Fixture = () => {
   if (!matches) return null;
   return (
     <Box sx={{ minHeight: "70vh", mt: 3 }}>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          mt: 5,
+          fontWeight: "bold",
+          textDecoration: "underline",
+          textUnderlineOffset: 3,
+          mb: 5,
+        }}
+      >
+        Fixture and Results
+      </Typography>
       <Box
         sx={{
           display: "flex",

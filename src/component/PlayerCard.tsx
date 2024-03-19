@@ -19,7 +19,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
     <Link href={toPath} style={{ textDecoration: "none" }}>
       <Box
         sx={{
-          ":hover": { transform: "scale(1.1)" },
+          ":hover": { transform: "scale(1.02)" },
           transition: "all ease-in 0.2s",
         }}
       >

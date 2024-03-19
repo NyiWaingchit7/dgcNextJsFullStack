@@ -1,30 +1,82 @@
 import { Box, Typography } from "@mui/material";
 import { Achievement } from "@prisma/client";
 import Link from "next/link";
-import React from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import React, { useState } from "react";
+import NewAchievement from "./NewAchievement";
+import { useAppDispatch } from "@/store/hooks";
+import { deleteAchievement } from "@/store/slice/achievementSlice";
+import { fetchAppData } from "@/store/slice/appSlice";
+import { useRouter } from "next/router";
 interface Props {
   data: Achievement;
   path?: Boolean;
 }
 const AchievementCard = ({ data, path }: Props) => {
-  const linkTo = path ? "user" : "admin";
+  const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   return (
-    <Link
-      href={`/${linkTo}/achievement/${data.id}`}
-      style={{ textDecoration: "none" }}
+    <Box
+      sx={{
+        width: { xs: 350, sm: 375 },
+        boxShadow: 2,
+        borderRadius: 3,
+        cursor: "pointer",
+        ":hover": { transform: "scale(1.05)" },
+        transition: "all ease-in 0.2s",
+      }}
     >
+      {!path && (
+        <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
+          <EditIcon
+            onClick={() => setOpen(true)}
+            sx={{
+              mx: 1,
+              ":hover": { transform: "scale(1.1)" },
+              transition: "all ease-in 0.2s",
+              fontSize: { xs: "1rem", sm: "1.7rem" },
+              width: "30px",
+              bgcolor: "success.main",
+              color: "info.main",
+              p: 1,
+              borderRadius: 3,
+            }}
+          />
+
+          <DeleteForeverIcon
+            onClick={() =>
+              dispatch(
+                deleteAchievement({
+                  id: data.id,
+                  onSuccess: () => {
+                    dispatch(fetchAppData());
+                    router.push("/admin/achievement");
+                  },
+                })
+              )
+            }
+            sx={{
+              mx: 1,
+              ":hover": { transform: "scale(1.2)" },
+              transition: "all ease-in 0.2s",
+              fontSize: { xs: "1rem", sm: "1.7rem" },
+              width: "30px",
+              bgcolor: "primary.main",
+              color: "info.main",
+              p: 1,
+              borderRadius: 3,
+            }}
+          />
+        </Box>
+      )}
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           width: 350,
-
-          boxShadow: 2,
-          borderRadius: 3,
-          cursor: "pointer",
-          ":hover": { transform: "scale(1.05)" },
-          transition: "all ease-in 0.2s",
         }}
       >
         <Box sx={{ width: 325, p: 1, borderRadius: 3 }}>
@@ -61,7 +113,8 @@ const AchievementCard = ({ data, path }: Props) => {
           </Typography>
         </Box>
       </Box>
-    </Link>
+      <NewAchievement open={open} setOpen={setOpen} id={data.id} />
+    </Box>
   );
 };
 

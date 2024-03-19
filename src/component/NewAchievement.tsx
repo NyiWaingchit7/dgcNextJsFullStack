@@ -21,11 +21,10 @@ interface Props {
 }
 interface DefaultAchievement {
   year: number;
-  description: string;
+  //asseurl
 }
 const defaultAchievement: DefaultAchievement = {
   year: 0,
-  description: "",
 };
 const NewAchievement = ({ open, setOpen, id }: Props) => {
   const [achievementData, setAchievementData] =
@@ -54,7 +53,7 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
     } else {
       setAchievementData(defaultAchievement);
     }
-  }, [id, open]);
+  }, [open, allAchievement]);
   return (
     <Box>
       <Dialog open={open} onClose={() => setOpen(false)}>
@@ -80,23 +79,6 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
               })
             }
           />
-          <TextField
-            fullWidth
-            rows={3}
-            multiline
-            sx={{ mt: 2 }}
-            required
-            label="Description"
-            placeholder="Description"
-            type="text"
-            defaultValue={achievementData.description}
-            onChange={(e) =>
-              setAchievementData({
-                ...achievementData,
-                description: e.target.value,
-              })
-            }
-          />
         </DialogContent>
         <DialogActions>
           <Button
@@ -116,7 +98,7 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
               variant="contained"
               color="primary"
               sx={{ m: 1 }}
-              disabled={!achievementData.year || !achievementData.description}
+              disabled={!achievementData.year}
             >
               Update
             </Button>
@@ -126,7 +108,7 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
               variant="contained"
               color="primary"
               sx={{ m: 1 }}
-              disabled={!achievementData.year || !achievementData.description}
+              disabled={!achievementData.year}
             >
               Comfirm
             </Button>

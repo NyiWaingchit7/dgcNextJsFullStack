@@ -33,6 +33,19 @@ const Player = () => {
   if (!players) return null;
   return (
     <Box sx={{ minHeight: "70vh" }}>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          mt: 5,
+          fontWeight: "bold",
+          textDecoration: "underline",
+          textUnderlineOffset: 3,
+          mb: 5,
+        }}
+      >
+        Players
+      </Typography>
       <Box
         sx={{
           my: 2,

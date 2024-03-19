@@ -1,7 +1,7 @@
 import AchievementCard from "@/component/AchievementCard";
 import NewAchievement from "@/component/NewAchievement";
 import { useAppSelector } from "@/store/hooks";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -15,6 +15,19 @@ const Achievement = () => {
         mb: 3,
       }}
     >
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          mt: 5,
+          fontWeight: "bold",
+          textDecoration: "underline",
+          textUnderlineOffset: 3,
+          mb: 5,
+        }}
+      >
+        Achievements
+      </Typography>
       <Box
         sx={{ display: "flex", justifyContent: "flex-end", mx: 3, p: 3 }}
         onClick={() => setOpen(true)}

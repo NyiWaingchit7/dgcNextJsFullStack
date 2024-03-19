@@ -35,7 +35,20 @@ const Fixture = () => {
   }, [value, data]);
   if (!matches) return null;
   return (
-    <Box>
+    <Box sx={{ minHeight: "70vh" }}>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          mt: 5,
+          fontWeight: "bold",
+          textDecoration: "underline",
+          textUnderlineOffset: 3,
+          mb: 5,
+        }}
+      >
+        Fixture and Opponent Team
+      </Typography>
       <Box
         sx={{
           display: "flex",

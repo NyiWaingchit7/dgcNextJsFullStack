@@ -13,19 +13,19 @@ export default async function handler(
   if (!session) return res.status(401).send("Unauthorized.");
   const method = req.method;
   if (method === "POST") {
-    const { year, description } = req.body;
-    const isValid = year && description;
-    if (!isValid) return res.status(405).send("bad request");
+    const { year } = req.body;
+
+    if (!year) return res.status(405).send("bad request");
 
     const data = await prisma.achievement.create({
-      data: { year, description },
+      data: { year },
     });
     return res.status(200).json({ data });
   } else if (method === "PUT") {
     const id = Number(req.query.id);
-    const { year, description } = req.body;
-    const isValid = year && description;
-    if (!isValid) return res.status(405).send("bad request");
+    const { year } = req.body;
+
+    if (!year) return res.status(405).send("bad request");
 
     const isExist = await prisma.achievement.findFirst({
       where: { id },
@@ -33,7 +33,7 @@ export default async function handler(
     if (!isExist) return res.status(405).send("This request does not exist");
 
     const data = await prisma.achievement.update({
-      data: { year, description },
+      data: { year },
       where: { id },
     });
     return res.status(200).json({ data });

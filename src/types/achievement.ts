@@ -8,13 +8,13 @@ export interface AchievementSlice {
 }
 export interface CreateAchievement extends BaseOptions {
   year: number;
-  description: string;
+
   assetUrl?: string;
 }
 export interface UpdateAchievement extends BaseOptions {
   id: number;
   year: number;
-  description: string;
+
   assetUrl?: string;
 }
 export interface DeleteAchievement extends BaseOptions {

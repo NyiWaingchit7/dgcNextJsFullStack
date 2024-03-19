@@ -23,6 +23,19 @@ const PlayerDetail = () => {
         justifyContent: "center",
       }}
     >
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          mt: 5,
+          fontWeight: "bold",
+          textDecoration: "underline",
+          textUnderlineOffset: 3,
+          mb: 5,
+        }}
+      >
+        Player Details
+      </Typography>
       <Box sx={{ width: "100%" }}>
         <PlayerMatchesCard id={Number(id)} path={path} />
       </Box>

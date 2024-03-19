@@ -26,7 +26,29 @@ const OpponentTeam = () => {
 
   return (
     <Box sx={{ minHeight: "70vh" }}>
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          mt: 5,
+          fontWeight: "bold",
+          textDecoration: "underline",
+          textUnderlineOffset: 3,
+          mb: 5,
+        }}
+      >
+        Opponent Teams{" "}
+      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-between", mx: 2 }}>
+        <Button
+          variant="contained"
+          sx={{ m: 2, px: 2, borderRadius: 3 }}
+          onClick={() => {
+            history.back();
+          }}
+        >
+          Back
+        </Button>
         <Button
           variant="contained"
           sx={{ m: 2 }}

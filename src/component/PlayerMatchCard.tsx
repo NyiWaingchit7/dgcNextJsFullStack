@@ -27,11 +27,7 @@ const PlayerMatchesCard = ({ id, path }: Prop) => {
     >
       {!path && (
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            variant="contained"
-            color="info"
-            onClick={() => setOpen(true)}
-          >
+          <Button variant="contained" onClick={() => setOpen(true)}>
             <AddIcon sx={{ fontSize: "1.5rem" }} />{" "}
           </Button>
         </Box>
