@@ -7,6 +7,7 @@ import { setPlayerMatches } from "./playerMatchesSlice";
 import { setOpponentTeam } from "./opponentTeamSlice";
 import { setFixture } from "./fixtureSlice";
 import { setAchievement } from "./achievementSlice";
+import { setEvent } from "./eventSlice";
 const initialState: AppSlice = {
   init: false,
   isLoading: false,
@@ -23,6 +24,7 @@ export const fetchAppData = createAsyncThunk(
       opponentTeam,
       fixture,
       achievement,
+      event,
     } = await response.json();
     thunApi.dispatch(setInit(true));
     thunApi.dispatch(setHomeData(homeData));
@@ -31,6 +33,7 @@ export const fetchAppData = createAsyncThunk(
     thunApi.dispatch(setOpponentTeam(opponentTeam));
     thunApi.dispatch(setFixture(fixture));
     thunApi.dispatch(setAchievement(achievement));
+    thunApi.dispatch(setEvent(event));
   }
 );
 export const fetchUserAppData = createAsyncThunk(
@@ -44,6 +47,7 @@ export const fetchUserAppData = createAsyncThunk(
       opponentTeam,
       fixture,
       achievement,
+      event,
     } = await response.json();
     thunApi.dispatch(setInit(true));
     thunApi.dispatch(setHomeData(homeData));
@@ -52,6 +56,7 @@ export const fetchUserAppData = createAsyncThunk(
     thunApi.dispatch(setOpponentTeam(opponentTeam));
     thunApi.dispatch(setFixture(fixture));
     thunApi.dispatch(setAchievement(achievement));
+    thunApi.dispatch(setEvent(event));
   }
 );
 

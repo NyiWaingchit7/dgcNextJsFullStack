@@ -75,6 +75,16 @@ model OpponentTeam {
   Fixture   Fixture[]
 }
 
+model Event {
+  id Int @id @default(autoincrement())
+  title String
+  assetUrl String?
+  ended Boolean @default(false)
+  description String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
 model Fixture {
   id                 Int             @id @default(autoincrement())
   myTeam             String          @default("Red Dragon")

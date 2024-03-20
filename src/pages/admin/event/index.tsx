@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import NewEvent from "@/component/NewEvent";
 
 const Event = () => {
   const [open, setOpen] = useState(false);
@@ -45,6 +46,7 @@ const Event = () => {
           }}
         />
       </Box>
+      <NewEvent open={open} setOpen={setOpen} />
     </Box>
   );
 };
