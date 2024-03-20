@@ -210,4 +210,9 @@ export const sideBar = [
     name: "Fixture",
     route: "/admin/fixture",
   },
+  {
+    id: 5,
+    name: "Event",
+    route: "/admin/event",
+  },
 ];

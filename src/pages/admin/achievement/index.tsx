@@ -4,10 +4,12 @@ import { useAppSelector } from "@/store/hooks";
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import Loading from "@/component/Loading";
 
 const Achievement = () => {
   const [open, setOpen] = useState(false);
   const data = useAppSelector((store) => store.achievement.items);
+
   return (
     <Box
       sx={{
@@ -54,19 +56,23 @@ const Achievement = () => {
           }}
         />
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 4,
-          flexWrap: "wrap",
-        }}
-      >
-        {data.map((d) => (
-          <AchievementCard key={d.id} data={d} />
-        ))}
-      </Box>
+      {data.length > 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 4,
+            flexWrap: "wrap",
+          }}
+        >
+          {data.map((d) => (
+            <AchievementCard key={d.id} data={d} />
+          ))}
+        </Box>
+      ) : (
+        <Loading />
+      )}
       <NewAchievement open={open} setOpen={setOpen} />
     </Box>
   );

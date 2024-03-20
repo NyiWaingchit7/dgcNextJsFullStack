@@ -19,10 +19,11 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
     <Link href={toPath} style={{ textDecoration: "none" }}>
       <Box
         sx={{
-          transition: "all ease-in 0.3s",
           border: 5,
           borderColor: "info.dark",
           borderRadius: 3,
+          ":hover": { filter: "brightness(0.9)" },
+          transition: "all ease-in 0.3s",
         }}
       >
         <Box

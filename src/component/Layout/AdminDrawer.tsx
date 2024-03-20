@@ -52,7 +52,7 @@ const AdminDrawer = ({
           },
         }}
       >
-        <Box onClick={() => setOpen(false)} sx={{ mx: "auto", mt: 3, p: 2 }}>
+        <Box onClick={() => setOpen(false)} sx={{ mx: "auto", mt: 2, p: 1 }}>
           {Icon}
         </Box>
         <Box
@@ -89,7 +89,12 @@ const AdminDrawer = ({
                     },
                   }}
                 >
-                  <Typography sx={{ fontWeight: "bold", p: 1 }}>
+                  <Typography
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: { xs: "0.8rem", sm: "1rem" },
+                    }}
+                  >
                     {s.name}
                   </Typography>
                 </Box>
@@ -97,7 +102,7 @@ const AdminDrawer = ({
                   variant={"middle"}
                   sx={{
                     bgcolor: "info.light",
-                    mb: 2,
+
                     px: 2,
                     width: "150px",
                   }}
@@ -105,7 +110,7 @@ const AdminDrawer = ({
               </Link>
             );
           })}
-          <Box sx={{ mx: "auto", mt: 2 }}>
+          <Box sx={{ mx: "auto", mt: 1 }}>
             <Button
               variant="contained"
               sx={{ px: 1 }}
