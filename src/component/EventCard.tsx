@@ -35,6 +35,7 @@ const EventCard = ({ data, id, path }: Props) => {
               textAlign: "center",
               color: "primary.dark",
               p: 1,
+              fontSize: "1.2rem",
             }}
           >
             {data.title.toUpperCase()}

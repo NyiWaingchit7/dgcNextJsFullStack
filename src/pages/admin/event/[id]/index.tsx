@@ -1,16 +1,21 @@
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import React from "react";
+import React, { useState } from "react";
+import NewEvent from "@/component/NewEvent";
+import { deleteEvent } from "@/store/slice/eventSlice";
+import { fetchAppData } from "@/store/slice/appSlice";
 
 const EventDetail = () => {
   const router = useRouter();
   const id = Number(router.query.id);
   const allEvents = useAppSelector((store) => store.event.items);
   const data = allEvents.find((d) => d.id === id);
+  const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
   if (!data) return null;
   return (
     <Box>
@@ -31,7 +36,7 @@ const EventDetail = () => {
         </Button>
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <EditIcon
-            // onClick={() => setOpen(true)}
+            onClick={() => setOpen(true)}
             sx={{
               mx: 1,
               ":hover": { transform: "scale(1.1)" },
@@ -46,17 +51,17 @@ const EventDetail = () => {
           />
 
           <DeleteForeverIcon
-            // onClick={() =>
-            //   dispatch(
-            //     deleteAchievement({
-            //       id: data.id,
-            //       onSuccess: () => {
-            //         dispatch(fetchAppData());
-            //         router.push("/admin/achievement");
-            //       },
-            //     })
-            //   )
-            // }
+            onClick={() =>
+              dispatch(
+                deleteEvent({
+                  id: data.id,
+                  onSuccess: () => {
+                    dispatch(fetchAppData());
+                    router.push("/admin/event");
+                  },
+                })
+              )
+            }
             sx={{
               mx: 1,
               ":hover": { transform: "scale(1.2)" },
@@ -92,7 +97,7 @@ const EventDetail = () => {
         </Box>
         <Box sx={{ p: 2, maxWidth: "500px", cursor: "pointer" }}>
           <Typography
-            sx={{ fontSize: "1.1rem", fontWeight: "bold", textAlign: "center" }}
+            sx={{ fontSize: "1.3rem", fontWeight: "bold", textAlign: "center" }}
           >
             {data.title.toUpperCase()}
           </Typography>
@@ -115,19 +120,25 @@ const EventDetail = () => {
             target="_blink"
             style={{ textDecoration: "none" }}
           >
-            <Typography
-              sx={{
-                mx: 1,
-                color: "success.main",
-                fontWeight: "bold",
-                textAlign: "end",
-              }}
-            >
-              Click here see more {">>>>"}
-            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Typography
+                sx={{
+                  mx: 1,
+                  color: "info.main",
+                  fontWeight: "bold",
+                  px: 1,
+                  bgcolor: "success.main",
+                  width: "fit-content",
+                  borderRadius: 1,
+                }}
+              >
+                Click here see more {">>>>"}
+              </Typography>
+            </Box>
           </Link>
         </Box>
       </Box>
+      <NewEvent open={open} setOpen={setOpen} id={data.id} />
     </Box>
   );
 };

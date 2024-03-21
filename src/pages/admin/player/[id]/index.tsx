@@ -36,6 +36,11 @@ const PlayerDetail = () => {
       >
         Player Details
       </Typography>
+      <Box sx={{ width: "90vw", mx: 2 }}>
+        <Button variant="contained" sx={{}} onClick={() => history.back()}>
+          Back
+        </Button>
+      </Box>
       <Box sx={{ width: "100%" }}>
         <PlayerMatchesCard id={Number(id)} />
       </Box>

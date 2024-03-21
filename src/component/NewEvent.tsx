@@ -1,6 +1,6 @@
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchAppData } from "@/store/slice/appSlice";
-import { createEvent } from "@/store/slice/eventSlice";
+import { createEvent, updateEvent } from "@/store/slice/eventSlice";
 import {
   Box,
   Button,
@@ -12,7 +12,7 @@ import {
   Switch,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 interface Props {
   open: boolean;
   setOpen: (data: boolean) => void;
@@ -31,6 +31,9 @@ const defaultEvent: DefaultEvent = {
 const NewEvent = ({ open, setOpen, id }: Props) => {
   const [data, setData] = useState(defaultEvent);
   const dispatch = useAppDispatch();
+  const allEvents = useAppSelector((store) => store.event.items);
+  const eventData = allEvents.find((d) => d.id === id) as DefaultEvent;
+
   const onSuccess = () => {
     setOpen(false);
     dispatch(fetchAppData());
@@ -38,6 +41,22 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
   const handleCreateEvent = () => {
     dispatch(createEvent({ ...data, onSuccess }));
   };
+  const handleUpdateEvent = () => {
+    dispatch(
+      updateEvent({
+        id: id as number,
+        ...data,
+        onSuccess,
+      })
+    );
+  };
+  useEffect(() => {
+    if (id) {
+      setData(eventData);
+    } else {
+      setData(defaultEvent);
+    }
+  }, [open, allEvents]);
   return (
     <Box>
       <Dialog open={open} onClose={() => setOpen(false)}>
@@ -55,6 +74,7 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
             placeholder="Title"
             label="Title"
             fullWidth
+            defaultValue={data?.title}
             onChange={(e) => setData({ ...data, title: e.target.value })}
           />
           <TextField
@@ -66,11 +86,13 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
             placeholder="Description"
             label="Description"
             fullWidth
+            defaultValue={data?.description}
             onChange={(e) => setData({ ...data, description: e.target.value })}
           />
           <FormControlLabel
             control={
               <Switch
+                defaultChecked={data.ended || false}
                 onChange={(evt, value) => setData({ ...data, ended: value })}
               />
             }
@@ -91,11 +113,11 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
           </Button>
           {id ? (
             <Button
-              //   onClick={handleUpdateAchievement}
+              onClick={handleUpdateEvent}
               variant="contained"
               color="primary"
               sx={{ m: 1 }}
-              //   disabled={!achievementData.year}
+              disabled={!data.description || !data.description}
             >
               Update
             </Button>
