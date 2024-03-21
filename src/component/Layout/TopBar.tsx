@@ -48,7 +48,7 @@ const TopBar = () => {
             textAlign: "center",
           }}
         >
-          RED DRAGON E.F.C
+          RED DRAGON E.F.C (Admin Dashboard)
         </Typography>
       </Box>
       <Box>
@@ -115,7 +115,7 @@ const TopBar = () => {
                   fontWeight: "bold",
                 }}
               >
-                RED DRAGON E.F.C
+                Admin Dashboard
               </Typography>
             </Box>
             <Box

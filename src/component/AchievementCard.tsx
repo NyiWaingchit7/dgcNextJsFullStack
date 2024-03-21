@@ -21,12 +21,13 @@ const AchievementCard = ({ data, path }: Props) => {
     <Box
       sx={{
         width: { xs: 350, sm: 375 },
+        bgcolor: "info.main",
         borderRadius: 3,
         cursor: "pointer",
         ":hover": { borderColor: "info.dark" },
         transition: "all ease-in 0.3s",
-        border: 3,
-        borderColor: "secondary.main",
+        border: 2,
+        borderColor: "primary.main",
       }}
     >
       {!path && (

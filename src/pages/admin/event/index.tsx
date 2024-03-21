@@ -2,11 +2,16 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import NewEvent from "@/component/NewEvent";
+import { useAppSelector } from "@/store/hooks";
+import Loading from "@/component/Loading";
+import EventCard from "@/component/EventCard";
 
 const Event = () => {
   const [open, setOpen] = useState(false);
+  const data = useAppSelector((store) => store.event.items);
+
   return (
-    <Box sx={{ minHeight: "70vh" }}>
+    <Box sx={{ minHeight: "90vh", mb: 3 }}>
       <Typography
         variant="h5"
         sx={{
@@ -46,6 +51,23 @@ const Event = () => {
           }}
         />
       </Box>
+      {data.length > 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 4,
+          }}
+        >
+          {data.map((d) => (
+            <EventCard data={d} />
+          ))}
+        </Box>
+      ) : (
+        <Loading />
+      )}
       <NewEvent open={open} setOpen={setOpen} />
     </Box>
   );
