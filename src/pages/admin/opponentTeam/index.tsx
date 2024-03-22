@@ -97,7 +97,7 @@ const OpponentTeam = () => {
                   key={d.id}
                 >
                   <Typography sx={{ width: "fit-content" }}>
-                    {d.name}
+                    {d.name.toUpperCase()}
                   </Typography>
                   <Box
                     sx={{

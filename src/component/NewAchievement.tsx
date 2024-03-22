@@ -7,6 +7,7 @@ import { fetchAppData } from "@/store/slice/appSlice";
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -29,17 +30,21 @@ const defaultAchievement: DefaultAchievement = {
 const NewAchievement = ({ open, setOpen, id }: Props) => {
   const [achievementData, setAchievementData] =
     useState<DefaultAchievement>(defaultAchievement);
+  const [buttonLoad, setButtonLoad] = useState(false);
   const dispatch = useAppDispatch();
   const allAchievement = useAppSelector((store) => store.achievement.items);
   const onSuccess = () => {
     dispatch(fetchAppData());
     setOpen(false);
     setAchievementData(defaultAchievement);
+    setButtonLoad(false);
   };
   const handleCreateAchievement = () => {
+    setButtonLoad(true);
     dispatch(createAchievement({ ...achievementData, onSuccess }));
   };
   const handleUpdateAchievement = () => {
+    setButtonLoad(true);
     dispatch(
       updateAchievement({ id: id as number, ...achievementData, onSuccess })
     );
@@ -98,9 +103,9 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
               variant="contained"
               color="primary"
               sx={{ m: 1 }}
-              disabled={!achievementData.year}
+              disabled={!achievementData.year || buttonLoad}
             >
-              Update
+              Update {buttonLoad && <CircularProgress size={15} />}
             </Button>
           ) : (
             <Button
@@ -108,9 +113,9 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
               variant="contained"
               color="primary"
               sx={{ m: 1 }}
-              disabled={!achievementData.year}
+              disabled={!achievementData.year || buttonLoad}
             >
-              Comfirm
+              Comfirm {buttonLoad && <CircularProgress size={15} />}
             </Button>
           )}
         </DialogActions>

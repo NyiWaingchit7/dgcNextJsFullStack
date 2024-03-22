@@ -62,7 +62,7 @@ const FixtureCard = ({ data, path }: prop) => {
             textAlign: "center",
           }}
         >
-          Red Dragon
+          RED DRAGON
         </Typography>
         {data.matchResult ? (
           <Typography
@@ -86,7 +86,7 @@ const FixtureCard = ({ data, path }: prop) => {
             textAlign: "center",
           }}
         >
-          {opponentTeam}
+          {opponentTeam?.toUpperCase()}
         </Typography>
         {!path && (
           <Box

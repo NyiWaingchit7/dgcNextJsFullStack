@@ -19,6 +19,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  CircularProgress,
 } from "@mui/material";
 
 import { useEffect, useState } from "react";
@@ -41,29 +42,31 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
     myTeamResult: 0,
     opponentTeamResult: 0,
   });
+  const [buttonLoad, setButtonLoad] = useState(false);
+  const onSuccess = () => {
+    dispatch(fetchAppData());
+    setOpen(false);
+    setValue(undefined);
+    setButtonLoad(false);
+  };
   const handleCreatFixture = () => {
+    setButtonLoad(true);
     dispatch(
       createFixture({
         opponentTeamId: value as number,
-        onSuccess: () => {
-          dispatch(fetchAppData());
-          setOpen(false);
-          setValue(undefined);
-        },
+        onSuccess,
       })
     );
   };
   const handleUpdateFixture = () => {
+    setButtonLoad(true);
     dispatch(
       updateFixture({
         id: id as number,
         opponentTeamId: value as number,
         myTeamResult: result.myTeamResult,
         opponentTeamResult: result.opponentTeamResult,
-        onSuccess: () => {
-          dispatch(fetchAppData());
-          setOpen(false);
-        },
+        onSuccess,
       })
     );
   };
@@ -155,19 +158,19 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
             <Button
               variant="contained"
               sx={{ m: 1 }}
-              disabled={!value}
+              disabled={!value || buttonLoad}
               onClick={handleUpdateFixture}
             >
-              Update
+              Update {buttonLoad && <CircularProgress size={15} />}
             </Button>
           ) : (
             <Button
               variant="contained"
               sx={{ m: 1 }}
-              disabled={!value}
+              disabled={!value || buttonLoad}
               onClick={handleCreatFixture}
             >
-              Comfirm
+              Comfirm {buttonLoad && <CircularProgress size={15} />}
             </Button>
           )}
         </DialogActions>

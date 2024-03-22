@@ -4,6 +4,7 @@ import { createPlayer, updatePlayer } from "@/store/slice/playersSlice";
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -42,36 +43,36 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
   const [role, setRole] = useState<Role>(Role.PLAYER);
   const [player, setPlayer] = useState<DefaultPlayer>(defaultPlayer);
   const [head, setHead] = useState<Head | string>("");
-  const dispatch = useAppDispatch();
+  const [buttonLoad, setButtonLoad] = useState(false);
 
+  const dispatch = useAppDispatch();
+  const onSuccess = () => {
+    dispatch(fetchAppData());
+    setOpen(false);
+    setPlayer(defaultPlayer);
+    setHead("");
+    setButtonLoad(false);
+  };
   const handleCreatePlayer = () => {
+    setButtonLoad(true);
     dispatch(
       createPlayer({
         ...player,
         role,
         head,
-        onSuccess: () => {
-          dispatch(fetchAppData());
-          setOpen(false);
-          setPlayer(defaultPlayer);
-          setHead("");
-        },
+        onSuccess,
       })
     );
   };
   const handleUpdatePlayer = () => {
+    setButtonLoad(true);
     dispatch(
       updatePlayer({
         ...player,
         role: role,
         head: head,
         id: playerData?.id as number,
-        onSuccess: () => {
-          dispatch(fetchAppData());
-          setOpen(false);
-          setPlayer(defaultPlayer);
-          setHead("");
-        },
+        onSuccess,
       })
     );
   };
@@ -192,25 +193,29 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
             <Button
               variant="contained"
               disabled={
-                !player.name || !player.age || !player.city || !player.joinDate
-                  ? true
-                  : false
+                !player.name ||
+                !player.age ||
+                !player.city ||
+                !player.joinDate ||
+                buttonLoad
               }
               onClick={handleUpdatePlayer}
             >
-              Update
+              Update {buttonLoad && <CircularProgress size={15} />}
             </Button>
           ) : (
             <Button
               variant="contained"
               disabled={
-                !player.name || !player.age || !player.city || !player.joinDate
-                  ? true
-                  : false
+                !player.name ||
+                !player.age ||
+                !player.city ||
+                !player.joinDate ||
+                buttonLoad
               }
               onClick={handleCreatePlayer}
             >
-              Save
+              Save {buttonLoad && <CircularProgress size={15} />}
             </Button>
           )}
         </DialogActions>

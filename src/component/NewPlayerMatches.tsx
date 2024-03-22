@@ -10,6 +10,7 @@ import {
   DialogActions,
   Button,
   TextField,
+  CircularProgress,
 } from "@mui/material";
 import { PlayerMatches } from "@prisma/client";
 import { useEffect, useState } from "react";
@@ -20,15 +21,19 @@ interface Props {
   setOpen: (data: boolean) => void;
 }
 const PlayerMatches = ({ open, setOpen, data }: Props) => {
+  const [buttonLoad, setButtonLoad] = useState(false);
   const [result, setResult] = useState<PlayerMatches>(data);
   const dispatch = useAppDispatch();
   const handleUpdatePlayerMatches = () => {
+    setButtonLoad(true);
+
     dispatch(
       updatePlayerMatches({
         ...result,
         onSuccess: () => {
           dispatch(fetchAppData());
           setOpen(false);
+          setButtonLoad(false);
         },
       })
     );
@@ -100,8 +105,9 @@ const PlayerMatches = ({ open, setOpen, data }: Props) => {
             variant="contained"
             sx={{ m: 1 }}
             onClick={handleUpdatePlayerMatches}
+            disabled={buttonLoad}
           >
-            Comfirm
+            Comfirm {buttonLoad && <CircularProgress size={15} />}
           </Button>
         </DialogActions>
       </Dialog>

@@ -4,6 +4,7 @@ import { createHomeText, updateHomeText } from "@/store/slice/homeSlice";
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -21,13 +22,17 @@ interface Props {
 }
 const NewHome = ({ open, setOpen, updateText, id }: Props) => {
   const [text, setText] = useState("");
+  const [buttonLoad, setButtonLoad] = useState(false);
+
   const dispatch = useAppDispatch();
   const onSuccess = () => {
     setOpen(false), setText("");
     dispatch(fetchAppData());
+    setButtonLoad(false);
   };
 
   const handleCreateHomeText = () => {
+    setButtonLoad(true);
     dispatch(
       createHomeText({
         description: text,
@@ -36,6 +41,7 @@ const NewHome = ({ open, setOpen, updateText, id }: Props) => {
     );
   };
   const handleUpdateHomeText = () => {
+    setButtonLoad(true);
     dispatch(
       updateHomeText({
         id,
@@ -84,18 +90,18 @@ const NewHome = ({ open, setOpen, updateText, id }: Props) => {
           {updateText ? (
             <Button
               variant="contained"
-              disabled={text ? false : true}
+              disabled={text ? false : true || buttonLoad}
               onClick={handleUpdateHomeText}
             >
-              Update
+              Update {buttonLoad && <CircularProgress size={15} />}
             </Button>
           ) : (
             <Button
               variant="contained"
-              disabled={text ? false : true}
+              disabled={text ? false : true || buttonLoad}
               onClick={handleCreateHomeText}
             >
-              Save
+              Save {buttonLoad && <CircularProgress size={15} />}
             </Button>
           )}
         </DialogActions>

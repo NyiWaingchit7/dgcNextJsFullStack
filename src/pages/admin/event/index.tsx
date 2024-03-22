@@ -62,7 +62,7 @@ const Event = () => {
           }}
         >
           {data.map((d) => (
-            <EventCard data={d} />
+            <EventCard key={d.id} data={d} />
           ))}
         </Box>
       ) : (

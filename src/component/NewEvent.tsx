@@ -4,6 +4,7 @@ import { createEvent, updateEvent } from "@/store/slice/eventSlice";
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -33,15 +34,18 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
   const dispatch = useAppDispatch();
   const allEvents = useAppSelector((store) => store.event.items);
   const eventData = allEvents.find((d) => d.id === id) as DefaultEvent;
-
+  const [buttonLoad, setButtonLoad] = useState(false);
   const onSuccess = () => {
     setOpen(false);
     dispatch(fetchAppData());
+    setButtonLoad(false);
   };
   const handleCreateEvent = () => {
+    setButtonLoad(true);
     dispatch(createEvent({ ...data, onSuccess }));
   };
   const handleUpdateEvent = () => {
+    setButtonLoad(true);
     dispatch(
       updateEvent({
         id: id as number,
@@ -92,7 +96,7 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
           <FormControlLabel
             control={
               <Switch
-                defaultChecked={data.ended || false}
+                checked={data.ended}
                 onChange={(evt, value) => setData({ ...data, ended: value })}
               />
             }
@@ -117,7 +121,7 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
               variant="contained"
               color="primary"
               sx={{ m: 1 }}
-              disabled={!data.description || !data.description}
+              disabled={!data.description || !data.description || buttonLoad}
             >
               Update
             </Button>
@@ -127,9 +131,9 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
               variant="contained"
               color="primary"
               sx={{ m: 1 }}
-              disabled={!data.description || !data.description}
+              disabled={!data.description || !data.description || buttonLoad}
             >
-              Comfirm
+              Comfirm {buttonLoad && <CircularProgress size={15} />}
             </Button>
           )}
         </DialogActions>

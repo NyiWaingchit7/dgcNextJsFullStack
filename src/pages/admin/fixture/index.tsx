@@ -3,6 +3,7 @@ import {
   Button,
   ToggleButton,
   ToggleButtonGroup,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -24,7 +25,12 @@ const Fixture = () => {
   const [open, setOpen] = useState(false);
   const data = useAppSelector((store) => store.fixture.items);
   const [matches, setMatches] = useState<Fixture[]>([]);
-
+  const addNewFixture = () => {
+    return <Typography sx={{ fontSize: "1rem" }}>Add New Fixture</Typography>;
+  };
+  const opponentTeam = () => {
+    return <Typography sx={{ fontSize: "1rem" }}>Opponent Teams</Typography>;
+  };
   useEffect(() => {
     const fixtureData =
       value === originalValue.fixture
@@ -57,37 +63,57 @@ const Fixture = () => {
           alignItems: "center",
         }}
       >
-        <Box>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ m: 2 }}
-            onClick={() => setOpen(true)}
-          >
-            <AddIcon sx={{ fontSize: "1.5rem" }} />
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ m: 2 }}
-            onClick={() => {
-              router.push("/admin/opponentTeam");
-            }}
-          >
-            <WorkspacesIcon sx={{ fontSize: "1.5rem" }} />
-          </Button>
+        <Box sx={{ mx: 1 }}>
+          <Tooltip title={addNewFixture()} arrow placement="top">
+            <AddIcon
+              sx={{
+                fontSize: { xs: "1rem", sm: "1.5rem" },
+                width: "30px",
+                bgcolor: "primary.main",
+                color: "info.main",
+                p: 1,
+                borderRadius: 3,
+                mx: 1,
+              }}
+              onClick={() => setOpen(true)}
+            />
+          </Tooltip>
+
+          <Tooltip title={opponentTeam()} arrow placement="top">
+            <WorkspacesIcon
+              sx={{
+                fontSize: { xs: "1rem", sm: "1.5rem" },
+                width: "30px",
+                bgcolor: "primary.main",
+                color: "info.main",
+                p: 1,
+                borderRadius: 3,
+                mx: 1,
+              }}
+              onClick={() => {
+                router.push("/admin/opponentTeam");
+              }}
+            />
+          </Tooltip>
         </Box>
         <Box>
           <ToggleButtonGroup
-            sx={{ px: 3 }}
+            sx={{ px: 1 }}
             color="primary"
             value={value}
             exclusive
             onChange={(evt, value) => setValue(value)}
           >
-            <ToggleButton sx={{ px: 3 }} value={originalValue.fixture}>
+            <ToggleButton
+              sx={{ px: 2, fontSize: { xs: "0.7rem", sm: "1rem" } }}
+              value={originalValue.fixture}
+            >
               Fixture
             </ToggleButton>
-            <ToggleButton sx={{ px: 3 }} value={originalValue.result}>
+            <ToggleButton
+              sx={{ px: 2, fontSize: { xs: "0.7rem", sm: "1rem" } }}
+              value={originalValue.result}
+            >
               Result
             </ToggleButton>
           </ToggleButtonGroup>

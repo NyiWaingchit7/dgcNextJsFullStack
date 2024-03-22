@@ -14,6 +14,7 @@ import {
   DialogActions,
   Button,
   TextField,
+  CircularProgress,
 } from "@mui/material";
 import { OpponentTeam, PlayerMatches } from "@prisma/client";
 import { useEffect, useState } from "react";
@@ -25,6 +26,8 @@ interface Props {
 }
 const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
   const [name, setName] = useState("");
+  const [buttonLoad, setButtonLoad] = useState(false);
+
   const dispatch = useAppDispatch();
   const data = useAppSelector((store) => store.opponentTeam.items);
   const handleCreateOpponentTeam = () => {
@@ -106,19 +109,19 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
             <Button
               variant="contained"
               sx={{ m: 1 }}
-              disabled={!name}
+              disabled={!name || buttonLoad}
               onClick={handleUpdateOpponentTeam}
             >
-              Update
+              Update {buttonLoad && <CircularProgress size={15} />}
             </Button>
           ) : (
             <Button
               variant="contained"
               sx={{ m: 1 }}
-              disabled={!name}
+              disabled={!name || buttonLoad}
               onClick={handleCreateOpponentTeam}
             >
-              Comfirm
+              Comfirm {buttonLoad && <CircularProgress size={15} />}
             </Button>
           )}
         </DialogActions>
