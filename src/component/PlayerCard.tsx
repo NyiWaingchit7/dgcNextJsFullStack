@@ -19,26 +19,36 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
     <Link href={toPath} style={{ textDecoration: "none" }}>
       <Box
         sx={{
-          border: 5,
-          borderColor: "info.dark",
-          borderRadius: 3,
-          ":hover": { filter: "brightness(0.9)" },
-          transition: "all ease-in 0.3s",
+          position: "relative",
+          ":after": {
+            content: "''",
+            position: "absolute",
+            width: "100%",
+            transform: "scaleX(0)",
+            height: "3px",
+            bottom: 0,
+            left: 0,
+            bgcolor: "success.main",
+            transformOrigin: "center",
+            transition: "transform 0.5s ease-out",
+          },
+          ":hover:after": {
+            transform: "scaleX(1)",
+          },
         }}
       >
         <Box
           sx={{
             width: "100%",
             height: {
-              xs: "125px",
-              sm: "150px",
+              xs: "150px",
               md: "200px",
-              lg: "250px",
+              lg: "300px",
             },
 
+            bgcolor: "primary.main",
             borderTopRightRadius: 10,
             borderTopLeftRadius: 10,
-            bgcolor: "info.main",
           }}
         >
           <Box
@@ -50,11 +60,12 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
               objectFit: "contain",
               backgroundImage: "url(../Red_Dragon.png)",
               backgroundPosition: "center",
-              backgroundSize: "70%",
+              backgroundSize: "50%",
               backgroundRepeat: "no-repeat",
             }}
           />
         </Box>
+
         <Box
           sx={{
             display: "flex",
@@ -63,7 +74,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
             alignItems: "center",
             color: "primary.dark",
             width: "100%",
-            bgcolor: "info.dark",
+            bgcolor: "info.main",
             borderBottomRightRadius: 3,
             borderBottomLeftRadius: 3,
           }}

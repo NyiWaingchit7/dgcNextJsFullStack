@@ -52,7 +52,15 @@ const AdminDrawer = ({
           },
         }}
       >
-        <Box onClick={() => setOpen(false)} sx={{ mx: "auto", mt: 2, p: 1 }}>
+        <Box
+          onClick={() => setOpen(false)}
+          sx={{
+            width: "100%",
+            mt: 3,
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
           {Icon}
         </Box>
         <Box
@@ -79,8 +87,8 @@ const AdminDrawer = ({
                 <Box
                   sx={{
                     color: "info.main",
-                    px: 3,
-                    py: 1,
+                    px: 2,
+
                     bgcolor:
                       selected === s.name ? "success.dark" : "success.main",
                     borderRadius: 4,
@@ -93,6 +101,7 @@ const AdminDrawer = ({
                     sx={{
                       fontWeight: "bold",
                       fontSize: { xs: "0.8rem", sm: "1rem" },
+                      p: 1,
                     }}
                   >
                     {s.name}
@@ -102,7 +111,7 @@ const AdminDrawer = ({
                   variant={"middle"}
                   sx={{
                     bgcolor: "info.light",
-
+                    my: 2,
                     px: 2,
                     width: "150px",
                   }}

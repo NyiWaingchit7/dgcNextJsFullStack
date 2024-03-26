@@ -37,18 +37,17 @@ const Player = () => {
         variant="h5"
         sx={{
           textAlign: "center",
-          mt: 5,
+          mt: 3,
           fontWeight: "bold",
-
           textUnderlineOffset: 3,
-          mb: 5,
+          mb: 3,
         }}
       >
         Players
       </Typography>
       <Box
         sx={{
-          my: 2,
+          my: 1,
           maxWidth: "100vw",
           display: "flex",
           justifyContent: "space-between",

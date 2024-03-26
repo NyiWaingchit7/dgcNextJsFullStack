@@ -180,7 +180,9 @@ const TopBar = () => {
             setOpen={setOpen}
             selected={selected}
             setSelected={setSelected}
-            Icon={<CloseIcon sx={{ fontSize: "3rem", color: "info.main" }} />}
+            Icon={
+              <CloseIcon sx={{ fontSize: "2rem", color: "info.main", mx: 1 }} />
+            }
           />
         </Box>
       </Box>

@@ -71,7 +71,7 @@ const App = () => {
 
                 borderTopRightRadius: 10,
                 borderTopLeftRadius: 10,
-                bgcolor: "info.main",
+                bgcolor: "primary.main",
               }}
             >
               <Box
@@ -91,6 +91,8 @@ const App = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "center",
+                  bgcolor: "info.main",
+                  p: 1,
                 }}
               >
                 <Button
@@ -121,7 +123,7 @@ const App = () => {
 
                 borderTopRightRadius: 10,
                 borderTopLeftRadius: 10,
-                bgcolor: "info.main",
+                bgcolor: "primary.main",
               }}
             >
               <Box
@@ -141,6 +143,8 @@ const App = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "center",
+                  bgcolor: "info.main",
+                  p: 1,
                 }}
               >
                 <Button

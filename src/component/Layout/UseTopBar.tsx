@@ -24,7 +24,9 @@ const UserTopBar = () => {
     }
   }, [selected]);
   return (
-    <Box sx={{ bgcolor: "success.main", position: "sticky", top: 0 }}>
+    <Box
+      sx={{ bgcolor: "success.main", position: "sticky", top: 0, zIndex: 5 }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -34,51 +36,11 @@ const UserTopBar = () => {
           mx: 2,
         }}
       >
-        <Box
-          onClick={() => setOpen(true)}
-          sx={{ display: { xs: "block", lg: "none" } }}
-        >
-          <MenuIcon sx={{ fontSize: "1.5rem", color: "info.main" }} />
+        <Box onClick={() => setOpen(true)}>
+          <MenuIcon sx={{ fontSize: "2rem", color: "info.main" }} />
         </Box>
-        <Box sx={{ display: { xs: "none", lg: "block" } }}>
-          <Box sx={{ display: "flex" }}>
-            {sideBar.map((s) => {
-              return (
-                <Link
-                  key={s.id}
-                  style={{ textDecoration: "none" }}
-                  href={s.route}
-                  onClick={() => {
-                    setOpen(false);
-                    setSelected(s.name);
-                    localStorage.setItem("selectedItem", s.name);
-                  }}
-                >
-                  <Box
-                    sx={{
-                      color: "info.main",
-                      m: 1,
-                      px: 3,
-                      py: 1,
-                      height: "30px",
-                      bgcolor:
-                        selected === s.name ? "success.dark" : "success.main",
-                      borderRadius: 4,
-                      ":hover": {
-                        bgcolor: "success.dark",
-                      },
-                    }}
-                  >
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      {s.name}{" "}
-                    </Typography>
-                  </Box>
-                </Link>
-              );
-            })}
-          </Box>
-        </Box>
-        <Box sx={{ display: { xs: "block", lg: "none" } }}>
+
+        <Box>
           <Typography
             sx={{
               fontSize: { md: "1.5rem", sm: "1.3rem", xs: "1rem" },
@@ -95,7 +57,6 @@ const UserTopBar = () => {
       </Box>
       <Box>
         <Drawer
-          sx={{ display: { lg: "none" } }}
           anchor={"left"}
           open={open}
           onClose={() => {
@@ -107,8 +68,16 @@ const UserTopBar = () => {
             },
           }}
         >
-          <Box onClick={() => setOpen(false)} sx={{ mx: "auto", mt: 3, p: 2 }}>
-            <CloseIcon sx={{ fontSize: "3rem", color: "info.main" }} />
+          <Box
+            onClick={() => setOpen(false)}
+            sx={{
+              width: "100%",
+              mt: 3,
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <CloseIcon sx={{ fontSize: "2rem", color: "info.main", mx: 1 }} />
           </Box>
           <Box
             sx={{
@@ -117,6 +86,7 @@ const UserTopBar = () => {
               alignItems: "flex-start",
               justifyContent: "center",
               bgcolor: "success.main",
+              mt: 2,
             }}
           >
             {sideBar.map((s) => {
@@ -151,7 +121,7 @@ const UserTopBar = () => {
                     variant={"middle"}
                     sx={{
                       bgcolor: "info.light",
-                      mb: 2,
+                      my: 2,
                       px: 2,
                       width: "150px",
                     }}

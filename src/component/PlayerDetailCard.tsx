@@ -37,10 +37,9 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
         sx={{
           width: { xs: "50%", sm: "30%", md: "25%", lg: "20%" },
           height: { xs: 270, sm: 320, md: 320, lg: 420 },
-
           borderRadius: 5,
           mb: 2,
-          bgcolor: "info.main",
+          bgcolor: "primary.main",
         }}
       >
         <Box
@@ -87,6 +86,7 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
                   cursor: "pointer",
                   my: 2,
                   "&:hover": { transform: "scale(1.05)" },
+                  transition: "all 0.2s ease-in ",
                   color: "primary.main",
                 }}
               >
