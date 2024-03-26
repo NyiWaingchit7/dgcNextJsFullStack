@@ -17,26 +17,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
   const toPath = path ? `/user/player/${id}` : `/admin/player/${id}`;
   return (
     <Link href={toPath} style={{ textDecoration: "none" }}>
-      <Box
-        sx={{
-          position: "relative",
-          ":after": {
-            content: "''",
-            position: "absolute",
-            width: "100%",
-            transform: "scaleX(0)",
-            height: "3px",
-            bottom: 0,
-            left: 0,
-            bgcolor: "success.main",
-            transformOrigin: "center",
-            transition: "transform 0.5s ease-out",
-          },
-          ":hover:after": {
-            transform: "scaleX(1)",
-          },
-        }}
-      >
+      <Box className="underline">
         <Box
           sx={{
             width: "100%",

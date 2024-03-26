@@ -154,6 +154,11 @@ export const sideBar = [
   },
   {
     id: 4,
+    name: "Event",
+    route: "/user/event",
+  },
+  {
+    id: 5,
     name: "Fixture",
     route: "/user/fixture",
   },

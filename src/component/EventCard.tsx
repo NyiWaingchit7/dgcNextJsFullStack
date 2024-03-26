@@ -4,24 +4,25 @@ import Link from "next/link";
 import React from "react";
 interface Props {
   data: Event;
-  id?: number;
+
   path?: boolean;
 }
-const EventCard = ({ data, id, path }: Props) => {
+const EventCard = ({ data, path }: Props) => {
+  const toHref = path ? "user" : "admin";
   return (
-    <Link href={`/admin/event/${data.id}`} style={{ textDecoration: "none" }}>
+    <Link
+      href={`/${toHref}/event/${data.id}`}
+      style={{ textDecoration: "none" }}
+    >
       <Box
         sx={{
           bgcolor: "info.main",
           p: 2,
           borderRadius: 3,
-          border: 2,
-          borderColor: "primary.main",
-          ":hover": { borderColor: "info.dark" },
-          transition: "all ease-in 0.3s",
         }}
+        className="underline"
       >
-        <Box sx={{ width: { xs: 325, sm: 375 } }}>
+        <Box sx={{ width: { xs: 325, sm: 375 }, height: { xs: 250, sm: 300 } }}>
           <Box
             component="img"
             src="../tournament.jpg"

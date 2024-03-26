@@ -19,15 +19,12 @@ const AchievementCard = ({ data, path }: Props) => {
   const router = useRouter();
   return (
     <Box
+      className="underline"
       sx={{
         width: { xs: 350, sm: 375 },
         bgcolor: "info.main",
         borderRadius: 3,
         cursor: "pointer",
-        ":hover": { borderColor: "info.dark" },
-        transition: "all ease-in 0.3s",
-        border: 2,
-        borderColor: "primary.main",
       }}
     >
       {!path && (
