@@ -31,11 +31,12 @@ const Event = () => {
       {data.length > 0 ? (
         <Box
           sx={{
+            maxWidth: "95vw",
+            mx: "auto",
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
             flexWrap: "wrap",
-            gap: 4,
+            gap: 2,
           }}
         >
           {data.map((d) => (

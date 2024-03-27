@@ -42,11 +42,11 @@ const Fixture = () => {
         variant="h5"
         sx={{
           textAlign: "center",
-          mt: 5,
+          mt: 2,
           fontWeight: "bold",
           textDecoration: "underline",
           textUnderlineOffset: 3,
-          mb: 5,
+          mb: 2,
           cursor: "pointer",
         }}
       >
@@ -79,12 +79,13 @@ const Fixture = () => {
       {matches.length > 0 ? (
         <Box
           sx={{
-            mt: 5,
+            maxWidth: "95vw",
+            mx: "auto",
+            mt: 2,
             display: "flex",
-            justifyContent: "center",
+
             alignItems: "center",
             flexWrap: "wrap",
-            mx: "auto",
           }}
         >
           {matches.map((d) => (

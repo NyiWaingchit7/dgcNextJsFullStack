@@ -22,7 +22,13 @@ const EventCard = ({ data, path }: Props) => {
         }}
         className="underline"
       >
-        <Box sx={{ width: { xs: 325, sm: 375 }, height: { xs: 250, sm: 300 } }}>
+        <Box
+          sx={{
+            width: { xs: 300, sm: 375 },
+            height: { xs: 250, sm: 300 },
+            mx: "auto",
+          }}
+        >
           <Box
             component="img"
             src="../tournament.jpg"

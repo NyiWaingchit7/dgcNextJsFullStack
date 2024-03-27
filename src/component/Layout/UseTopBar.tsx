@@ -10,10 +10,13 @@ import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "@/store/hooks";
+import { fetchUserAppData } from "@/store/slice/appSlice";
 const UserTopBar = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
   const router = useRouter();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const selectedItem = localStorage.getItem("selectedItem");
     if (selectedItem) {
@@ -22,6 +25,7 @@ const UserTopBar = () => {
     } else {
       setSelected("Home");
     }
+    dispatch(fetchUserAppData());
   }, [selected]);
   return (
     <Box

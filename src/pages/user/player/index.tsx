@@ -38,11 +38,11 @@ const Player = () => {
         variant="h5"
         sx={{
           textAlign: "center",
-          mt: 5,
+          mt: 2,
           fontWeight: "bold",
           textDecoration: "underline",
           textUnderlineOffset: 3,
-          mb: 5,
+          mb: 2,
           cursor: "pointer",
         }}
       >
@@ -81,11 +81,13 @@ const Player = () => {
       </Box>
       <Box
         sx={{
+          maxWidth: "95vw",
+          mx: "auto",
           display: "flex",
           flexWrap: "wrap",
-          width: "100%",
-          justifyContent: "center",
           alignItems: "center",
+          gap: 2,
+          mb: 2,
         }}
       >
         {filterPlayer.length > 0 ? (
@@ -93,9 +95,7 @@ const Player = () => {
             <Box
               key={p.id}
               sx={{
-                width: { xs: "40%", sm: "26%", md: "28%", lg: "20%" },
-
-                m: 2,
+                width: { xs: "46%", sm: "31%", md: "32%", lg: "24%" },
               }}
             >
               <PlayerCard id={p.id} name={p.name} role={p.role} />

@@ -21,7 +21,8 @@ const AchievementCard = ({ data, path }: Props) => {
     <Box
       className="underline"
       sx={{
-        width: { xs: 350, sm: 375 },
+        width: { xs: 350, sm: "45%", md: "30%", lg: "25%" },
+
         bgcolor: "info.main",
         borderRadius: 3,
         cursor: "pointer",
@@ -74,17 +75,25 @@ const AchievementCard = ({ data, path }: Props) => {
         sx={{
           display: "flex",
           flexDirection: "column",
+
           alignItems: "center",
-          width: 350,
-          mx: "auto",
+          width: "100%",
         }}
       >
-        <Box sx={{ width: 325, p: 1, borderRadius: 3 }}>
+        <Box
+          sx={{
+            width: "100%",
+            p: 1,
+            borderRadius: 3,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Box
             component="img"
             src={data.assetUrl || "../defaultAch.webp"}
             sx={{
-              width: "100%",
+              width: "90%",
               height: { xs: "150px", sm: "200px" },
               borderRadius: 3,
             }}
@@ -94,9 +103,11 @@ const AchievementCard = ({ data, path }: Props) => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
             width: "200px",
             my: 2,
             color: "primary.main",
+            ml: 3,
           }}
         >
           <Typography sx={{ width: "100%" }}>Year</Typography>
