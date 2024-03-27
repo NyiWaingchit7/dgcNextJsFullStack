@@ -25,12 +25,10 @@ const Fixture = () => {
   const [open, setOpen] = useState(false);
   const data = useAppSelector((store) => store.fixture.items);
   const [matches, setMatches] = useState<Fixture[]>([]);
-  const addNewFixture = () => {
-    return <Typography sx={{ fontSize: "1rem" }}>Add New Fixture</Typography>;
+  const toolTipText = (text: string) => {
+    return <Typography sx={{ fontSize: "1rem" }}>{text}</Typography>;
   };
-  const opponentTeam = () => {
-    return <Typography sx={{ fontSize: "1rem" }}>Opponent Teams</Typography>;
-  };
+
   useEffect(() => {
     const fixtureData =
       value === originalValue.fixture
@@ -64,7 +62,7 @@ const Fixture = () => {
         }}
       >
         <Box sx={{ mx: 1 }}>
-          <Tooltip title={addNewFixture()} arrow placement="top">
+          <Tooltip title={toolTipText("Add New Fixture")} arrow placement="top">
             <AddIcon
               sx={{
                 fontSize: { xs: "1rem", sm: "1.5rem" },
@@ -79,7 +77,7 @@ const Fixture = () => {
             />
           </Tooltip>
 
-          <Tooltip title={opponentTeam()} arrow placement="top">
+          <Tooltip title={toolTipText("Opponent Teams")} arrow placement="top">
             <WorkspacesIcon
               sx={{
                 fontSize: { xs: "1rem", sm: "1.5rem" },

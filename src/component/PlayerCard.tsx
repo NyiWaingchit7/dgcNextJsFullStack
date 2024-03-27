@@ -56,8 +56,8 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
             color: "primary.dark",
             width: "100%",
             bgcolor: "info.main",
-            borderBottomRightRadius: 3,
-            borderBottomLeftRadius: 3,
+            borderBottomRightRadius: 10,
+            borderBottomLeftRadius: 10,
           }}
         >
           <Typography

@@ -39,10 +39,14 @@ const FixtureCard = ({ data, path }: prop) => {
     <Box
       sx={{
         width: { xs: "90%", md: "40%" },
-        bgcolor: "info.main",
+
         borderRadius: 3,
         m: 2,
         p: 2,
+        ":hover": {
+          boxShadow: 1,
+        },
+        cursor: "pointer",
       }}
     >
       <Box
