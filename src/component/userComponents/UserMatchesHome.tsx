@@ -44,7 +44,7 @@ const UserMatchesHome = () => {
           gap: { xs: 2, sm: 4 },
         }}
       >
-        {data.map((d) => (
+        {data.slice(0, 5).map((d) => (
           <FixtureCard key={d.id} data={d} path={path} />
         ))}
       </Box>{" "}

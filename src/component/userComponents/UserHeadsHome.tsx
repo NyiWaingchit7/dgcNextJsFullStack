@@ -45,7 +45,7 @@ const UserHeadsHome = () => {
             <Box
               key={p.id}
               sx={{
-                width: { xs: "50%", sm: "26%", md: "28%", lg: "25%" },
+                width: { xs: "50%", sm: "26%", md: "28%", lg: "20%" },
                 flexShrink: 0,
                 m: 2,
                 mb: 3,

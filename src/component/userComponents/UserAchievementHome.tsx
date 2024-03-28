@@ -41,7 +41,7 @@ const UserAchievementHome = () => {
           gap: { xs: 2, sm: 4 },
         }}
       >
-        {data.slice(0, 5).map((d) => (
+        {data.slice(0, 3).map((d) => (
           <AchievementCard key={d.id} data={d} path={path} />
         ))}
       </Box>{" "}

@@ -42,7 +42,7 @@ const UserEventHome = () => {
           gap: { xs: 2, sm: 4 },
         }}
       >
-        {data.slice(0, 4).map((d) => (
+        {data.slice(0, 3).map((d) => (
           <EventCard key={d.id} data={d} path={path} />
         ))}
       </Box>

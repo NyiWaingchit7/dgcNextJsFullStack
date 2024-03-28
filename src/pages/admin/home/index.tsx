@@ -95,8 +95,8 @@ const Home = () => {
                 sx={{
                   color: "primary.light",
                   fontWeight: "light",
-                  fontSize: { xs: "0.85rem", sm: "1.3rem" },
-                  lineHeight: 1.7,
+                  fontSize: { xs: "0.8rem", sm: "1.2rem" },
+                  lineHeight: 1.5,
                 }}
               >
                 {data[0].description ? (
