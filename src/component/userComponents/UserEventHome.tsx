@@ -29,26 +29,33 @@ const UserEventHome = () => {
       >
         Events
       </Typography>
-      {data.slice(0, 4).length > 0 ? (
-        <Box
-          sx={{
-            maxWidth: "1200px",
-            mx: "auto",
-            display: "flex",
-            overflow: "auto",
-            width: "100%",
-            alignItems: "center",
-            mt: 2,
-            gap: { xs: 2, sm: 4 },
-          }}
-        >
-          {data.map((d) => (
-            <EventCard key={d.id} data={d} path={path} />
-          ))}
-        </Box>
-      ) : (
-        <Loading />
-      )}
+
+      <Box
+        sx={{
+          maxWidth: "1200px",
+          mx: "auto",
+          display: "flex",
+          overflow: "auto",
+          width: "100%",
+          alignItems: "center",
+          mt: 2,
+          gap: { xs: 2, sm: 4 },
+        }}
+      >
+        {data.slice(0, 4).map((d) => (
+          <EventCard key={d.id} data={d} path={path} />
+        ))}
+      </Box>
+      <Box
+        sx={{
+          maxWidth: { xs: "80%", sm: "90%" },
+          mt: 2,
+          height: "1px",
+
+          bgcolor: "primary.dark",
+          mx: "auto",
+        }}
+      />
     </Box>
   );
 };

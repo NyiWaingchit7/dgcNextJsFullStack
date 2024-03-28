@@ -26,6 +26,7 @@ const AchievementCard = ({ data, path }: Props) => {
         bgcolor: "info.main",
         borderRadius: 3,
         cursor: "pointer",
+        flexShrink: 0,
       }}
     >
       {!path && (
@@ -107,7 +108,6 @@ const AchievementCard = ({ data, path }: Props) => {
             width: "200px",
             my: 2,
             color: "primary.main",
-            ml: 3,
           }}
         >
           <Typography sx={{ width: "100%" }}>Year</Typography>
@@ -115,7 +115,6 @@ const AchievementCard = ({ data, path }: Props) => {
           <Typography
             sx={{
               width: "100%",
-
               fontWeight: "bold",
               mx: 2,
             }}

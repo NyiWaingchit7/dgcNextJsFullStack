@@ -47,6 +47,8 @@ const FixtureCard = ({ data, path }: prop) => {
           boxShadow: 1,
         },
         cursor: "pointer",
+        bgcolor: "info.main",
+        flexShrink: 0,
       }}
     >
       <Box
