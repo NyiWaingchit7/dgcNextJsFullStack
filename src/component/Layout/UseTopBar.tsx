@@ -1,17 +1,13 @@
 import { Box, Divider, Drawer, Typography } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
 
+import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useEffect, useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import GroupsIcon from "@mui/icons-material/Groups";
 
-import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useAppDispatch } from "@/store/hooks";
 import { fetchUserAppData } from "@/store/slice/appSlice";
+import Link from "next/link";
+import { useRouter } from "next/router";
 const UserTopBar = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
@@ -52,7 +48,7 @@ const UserTopBar = () => {
               fontWeight: "bold",
             }}
           >
-            RED DRAGON E.F.C
+            Dragon Calcio E.F.C
           </Typography>
         </Box>
         <Box sx={{ width: "60px", borderRadius: "50%" }}>

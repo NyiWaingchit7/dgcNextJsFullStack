@@ -1,15 +1,14 @@
-import { Box, Button, Divider, Drawer, Typography } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
+import { Box, Button, Typography } from "@mui/material";
 
+import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useEffect, useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 
-import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
-import AdminDrawer from "./AdminDrawer";
 import { useRouter } from "next/router";
+import AdminDrawer from "./AdminDrawer";
 const TopBar = () => {
   const { data } = useSession();
   const router = useRouter();
@@ -48,7 +47,7 @@ const TopBar = () => {
             textAlign: "center",
           }}
         >
-          RED DRAGON E.F.C (Admin Dashboard)
+          Dragon Calcio E.F.C (Admin Dashboard)
         </Typography>
       </Box>
       <Box>
@@ -161,7 +160,7 @@ const TopBar = () => {
                   fontWeight: "bold",
                 }}
               >
-                RED DRAGON E.F.C
+                Dragon Calcio E.F.C
               </Typography>
             </Box>
             <Box sx={{ width: "60px", borderRadius: "50%" }}>

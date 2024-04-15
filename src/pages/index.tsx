@@ -1,5 +1,4 @@
-import PlayerCard from "@/component/PlayerCard";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
 const App = () => {
@@ -39,11 +38,11 @@ const App = () => {
             borderRadius: 3,
           }}
         >
-          It is our team(Red Dragon Efootball Club) mini website develope with
-          NextJs(ReactJs) , Next auth for authentication and Material UI for
-          UI/UX . It includes Admin side and User side.You can control web in
-          admin side and User side has user oriented Page.Clicking the following
-          button to where you want to go.
+          It is our team(Dragon Calcio Efootball Club) mini website develope
+          with NextJs(ReactJs) , Next auth for authentication and Material UI
+          for UI/UX . It includes Admin side and User side.You can control web
+          in admin side and User side has user oriented Page.Clicking the
+          following button to where you want to go.
         </Typography>
 
         <Box

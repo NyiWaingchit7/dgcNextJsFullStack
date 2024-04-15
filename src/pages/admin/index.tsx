@@ -33,7 +33,7 @@ export default function Home() {
                 fontWeight: "bold",
               }}
             >
-              Are you Admin at Red Dragon EFC ?
+              Are you Admin at Dragon Calcio EFC ?
             </Typography>
           </Box>
           <Button

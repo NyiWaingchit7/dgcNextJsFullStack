@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
@@ -76,7 +76,7 @@ const Footer = () => {
       </Box>
       <Box sx={{ width: "100%", my: 1 }}>
         <Typography sx={{ color: "info.dark", textAlign: "center" }}>
-          Red Dragon Efootball Club@
+          Dragon Calcio Efootball Club@
         </Typography>
       </Box>
     </Box>

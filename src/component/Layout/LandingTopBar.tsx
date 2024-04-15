@@ -1,6 +1,4 @@
-import { Box, Divider, Drawer, Typography } from "@mui/material";
-
-import { useState } from "react";
+import { Box, Typography } from "@mui/material";
 
 const LandingTopBar = () => {
   return (
@@ -30,7 +28,7 @@ const LandingTopBar = () => {
               fontSize: { xs: "1.2rem", sm: "1.5rem" },
             }}
           >
-            Red Dragon EFC
+            Dragon Calcio EFC
           </Typography>
         </Box>
         <Box sx={{ width: "60px", borderRadius: "50%" }}>

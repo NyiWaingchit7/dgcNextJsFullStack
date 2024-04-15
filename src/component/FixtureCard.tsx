@@ -1,17 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import {
-  Box,
-  Button,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-} from "@mui/material";
-import { Fixture } from "@prisma/client";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useEffect, useState } from "react";
-import { deleteFixture } from "@/store/slice/fixtureSlice";
 import { fetchAppData } from "@/store/slice/appSlice";
+import { deleteFixture } from "@/store/slice/fixtureSlice";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
+import { Box, Typography } from "@mui/material";
+import { Fixture } from "@prisma/client";
+import { useState } from "react";
 import NewFixtureCard from "./NewFixtureCard";
 
 interface prop {
@@ -68,7 +62,7 @@ const FixtureCard = ({ data, path }: prop) => {
             textAlign: "center",
           }}
         >
-          RED DRAGON
+          Dragon Calcio
         </Typography>
         {data.matchResult ? (
           <Typography
