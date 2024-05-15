@@ -4,6 +4,7 @@ import { createPlayer, updatePlayer } from "@/store/slice/playersSlice";
 import {
   Box,
   Button,
+  Chip,
   CircularProgress,
   Dialog,
   DialogActions,
@@ -18,6 +19,8 @@ import {
 } from "@mui/material";
 import { Head, Player, Role } from "@prisma/client";
 import { useEffect, useState } from "react";
+import FileDropZone from "./FileDropZone";
+import { fileUpload } from "@/utils/fileUpload";
 
 interface Props {
   open: boolean;
@@ -44,7 +47,10 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
   const [player, setPlayer] = useState<DefaultPlayer>(defaultPlayer);
   const [head, setHead] = useState<Head | string>("");
   const [buttonLoad, setButtonLoad] = useState(false);
-
+  const [image, setImage] = useState<File>();
+  const onFileSelected = (files: File[]) => {
+    setImage(files[0]);
+  };
   const dispatch = useAppDispatch();
   const onSuccess = () => {
     dispatch(fetchAppData());
@@ -53,13 +59,18 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
     setHead("");
     setButtonLoad(false);
   };
-  const handleCreatePlayer = () => {
+  const handleCreatePlayer = async () => {
     setButtonLoad(true);
+    let assetUrl;
+    if (image) {
+      assetUrl = await fileUpload(image);
+    }
     dispatch(
       createPlayer({
         ...player,
         role,
         head,
+        assetUrl,
         onSuccess,
       })
     );
@@ -174,6 +185,20 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
                 </Select>
               </FormControl>
             </Box>
+            {!playerData && (
+              <FormControl>
+                <Box sx={{ mt: 2 }}>
+                  <FileDropZone onFileSelected={onFileSelected} />
+                  {image && (
+                    <Chip
+                      sx={{ mt: 2 }}
+                      label={image.name}
+                      onDelete={() => setImage(undefined)}
+                    />
+                  )}
+                </Box>
+              </FormControl>
+            )}
           </DialogContentText>
         </DialogContent>
 

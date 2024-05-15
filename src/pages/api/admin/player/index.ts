@@ -12,13 +12,13 @@ export default async function handler(
   if (!session) return res.status(401).send("Unauthorized.");
   const method = req.method;
   if (method === "POST") {
-    const { name, age, city, joinDate, role, head } = req.body;
+    const { name, age, city, joinDate, role, head, assetUrl } = req.body;
 
     const isValidate = name && age && city && joinDate;
     if (!isValidate) return res.status(405).send("bad request");
 
     const data = await prisma.player.create({
-      data: { name, age, city, joinDate, role, head },
+      data: { name, age, city, joinDate, role, head, assetUrl },
     });
     const playerMatch = await prisma.playerMatches.create({
       data: { playerId: data.id },

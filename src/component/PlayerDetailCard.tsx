@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchAppData } from "@/store/slice/appSlice";
 import { deletePlayer } from "@/store/slice/playersSlice";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Player } from "@prisma/client";
 import router, { useRouter } from "next/router";
 import { useState } from "react";
@@ -38,8 +38,12 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
           width: { xs: "50%", sm: "30%", md: "25%", lg: "20%" },
           height: { xs: 270, sm: 320, md: 320, lg: 420 },
           borderRadius: 5,
-          mb: 2,
+          mb: 7,
           bgcolor: "primary.main",
+          display: "flext",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Box
@@ -55,12 +59,26 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
             backgroundRepeat: "no-repeat",
           }}
         />
+        <Button
+          variant="outlined"
+          component="label"
+          sx={{ ml: { xs: 4, md: 8 } }}
+          size="small"
+        >
+          Upload File
+          <input
+            type="file"
+            hidden
+            // onChange={(e) => {
+            //   handleUpdateImage(e);
+            // }}
+          />
+        </Button>
       </Box>
 
       <Box
         sx={{
           width: { xs: "90%", sm: "50%", md: "40%", lg: "40%" },
-
           borderRadius: 5,
           mx: 2,
           bgcolor: "success.main",

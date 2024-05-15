@@ -13,6 +13,7 @@ export interface CreatePlayer extends BaseOptions {
   joinDate: number;
   role: Role;
   head?: Head | null | string;
+  assetUrl?: string;
 }
 export interface UpdatePlayer extends BaseOptions {
   id: number;
@@ -22,6 +23,7 @@ export interface UpdatePlayer extends BaseOptions {
   joinDate: number;
   role: Role;
   head?: Head | null | string;
+  assetUrl?: string;
 }
 export interface DeletePlayer extends BaseOptions {
   id: number;

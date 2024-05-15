@@ -14,8 +14,17 @@ const initialState: PlayerSliceType = {
 export const createPlayer = createAsyncThunk(
   "crate/player",
   async (option: CreatePlayer, thunkApi) => {
-    const { name, age, city, joinDate, role, head, onSuccess, onError } =
-      option;
+    const {
+      name,
+      age,
+      city,
+      joinDate,
+      role,
+      head,
+      assetUrl,
+      onSuccess,
+      onError,
+    } = option;
     try {
       const response = await fetch(`${config.apiBaseUrl}/admin/player`, {
         method: "POST",
@@ -27,6 +36,7 @@ export const createPlayer = createAsyncThunk(
           joinDate,
           role,
           head: head ? head : null,
+          assetUrl,
         }),
       });
       const data = await response.json();
@@ -39,8 +49,18 @@ export const createPlayer = createAsyncThunk(
 export const updatePlayer = createAsyncThunk(
   "update/player",
   async (options: UpdatePlayer, thunkApi) => {
-    const { id, name, age, city, joinDate, role, head, onSuccess, onError } =
-      options;
+    const {
+      id,
+      name,
+      age,
+      city,
+      joinDate,
+      role,
+      head,
+      assetUrl,
+      onSuccess,
+      onError,
+    } = options;
     try {
       const response = await fetch(
         `${config.apiBaseUrl}/admin/player?id=${id}`,
@@ -54,6 +74,7 @@ export const updatePlayer = createAsyncThunk(
             joinDate,
             role,
             head: head ? head : null,
+            assetUrl,
           }),
         }
       );
