@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchAppData } from "@/store/slice/appSlice";
-import { deletePlayer } from "@/store/slice/playersSlice";
+import { deletePlayer, updatePlayer } from "@/store/slice/playersSlice";
 import { Box, Button, Typography } from "@mui/material";
 import { Player } from "@prisma/client";
 import router, { useRouter } from "next/router";
@@ -9,6 +9,7 @@ import NewPlayer from "./NewPlayer";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PlayerDetail from "./PlayerDetail";
+import { fileUpload } from "@/utils/fileUpload";
 
 interface Prop {
   id: number;
@@ -18,8 +19,24 @@ interface Prop {
 const PlayerDetailCard = ({ id, path }: Prop) => {
   const dispatch = useAppDispatch();
   const players = useAppSelector((store) => store.player.items) as Player[];
-  const playerData = players.find((p) => p.id === id);
+  const playerData = players.find((p) => p.id === id) as Player;
   const [open, setOpen] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const handleUpdateImage = async (e: any) => {
+    const image = e.target.files[0];
+
+    const assetUrl = await fileUpload(image);
+    dispatch(
+      updatePlayer({
+        ...playerData,
+        assetUrl,
+        onSuccess: () => {
+          dispatch(fetchAppData());
+          setUpdate(false);
+        },
+      })
+    );
+  };
 
   if (!playerData) return null;
   return (
@@ -38,7 +55,7 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
           width: { xs: "50%", sm: "30%", md: "25%", lg: "20%" },
           height: { xs: 270, sm: 320, md: 320, lg: 420 },
           borderRadius: 5,
-          mb: 7,
+          mb: { xs: 7, md: 0 },
           bgcolor: "primary.main",
           display: "flext",
           flexDirection: "column",
@@ -59,21 +76,25 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
             backgroundRepeat: "no-repeat",
           }}
         />
-        <Button
-          variant="outlined"
-          component="label"
-          sx={{ ml: { xs: 4, md: 8 } }}
-          size="small"
-        >
-          Upload File
-          <input
-            type="file"
-            hidden
-            // onChange={(e) => {
-            //   handleUpdateImage(e);
-            // }}
-          />
-        </Button>
+        {!path && (
+          <Button
+            variant="outlined"
+            component="label"
+            sx={{ ml: { xs: 4, md: 8 } }}
+            size="small"
+            disabled={update}
+          >
+            Update Photo
+            <input
+              type="file"
+              hidden
+              onChange={(e) => {
+                setUpdate(!update);
+                handleUpdateImage(e);
+              }}
+            />
+          </Button>
+        )}
       </Box>
 
       <Box
@@ -92,7 +113,11 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
               alignItems: "center",
             }}
           >
-            <Box sx={{ mx: 3 }}>
+            <Box
+              sx={{
+                mx: 3,
+              }}
+            >
               <Typography
                 variant="h6"
                 sx={{
@@ -103,9 +128,9 @@ const PlayerDetailCard = ({ id, path }: Prop) => {
                   fontWeight: "bold",
                   cursor: "pointer",
                   my: 2,
-                  "&:hover": { transform: "scale(1.05)" },
-                  transition: "all 0.2s ease-in ",
+
                   color: "primary.main",
+                  fontSize: "1rem",
                 }}
               >
                 {playerData.role}

@@ -18,7 +18,7 @@ body {
   height: 3px;
   bottom: 0;
   left: 0;
-  background-color: #d40b29;
+  background-color: #640002;
   transform-origin: center;
   transition: transform 0.5s ease-out;
 }

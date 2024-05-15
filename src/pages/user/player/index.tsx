@@ -98,7 +98,12 @@ const Player = () => {
                 width: { xs: "46%", sm: "31%", md: "32%", lg: "24%" },
               }}
             >
-              <PlayerCard id={p.id} name={p.name} role={p.role} />
+              <PlayerCard
+                id={p.id}
+                name={p.name}
+                role={p.role}
+                assetUrl={p.assetUrl || ""}
+              />
             </Box>
           ))
         ) : (

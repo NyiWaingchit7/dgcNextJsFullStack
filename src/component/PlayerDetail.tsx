@@ -12,7 +12,7 @@ const PlayerDetail = ({ playerData }: Prop) => {
       <Box
         sx={{
           width: "100%",
-          height: { xs: 200, lg: 350 },
+          height: { xs: 270, sm: 320, md: 320, lg: 420 },
           color: "info.light",
           display: "flex",
           flexDirection: "column",
@@ -22,14 +22,14 @@ const PlayerDetail = ({ playerData }: Prop) => {
       >
         <Box
           sx={{
-            width: { xs: "90%", lg: "60%" },
+            width: { xs: "90%", lg: "70%" },
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "0.8rem", lg: "1rem" }, width: "100%" }}
           >
             Name
           </Typography>
@@ -39,24 +39,24 @@ const PlayerDetail = ({ playerData }: Prop) => {
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1rem", lg: "1.5rem" },
+              fontSize: { xs: "0.8rem", lg: "1rem" },
               textAlign: "start",
               width: "100%",
             }}
           >
-            {playerData.name}
+            {playerData.name.toLocaleUpperCase()}
           </Typography>
         </Box>
         <Box
           sx={{
-            width: { xs: "90%", lg: "60%" },
+            width: { xs: "90%", lg: "70%" },
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "0.8rem", lg: "1rem" }, width: "100%" }}
           >
             Age
           </Typography>
@@ -65,7 +65,7 @@ const PlayerDetail = ({ playerData }: Prop) => {
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1rem", lg: "1.5rem" },
+              fontSize: { xs: "0.8rem", lg: "1rem" },
               textAlign: "start",
               width: "100%",
             }}
@@ -75,14 +75,14 @@ const PlayerDetail = ({ playerData }: Prop) => {
         </Box>
         <Box
           sx={{
-            width: { xs: "90%", lg: "60%" },
+            width: { xs: "90%", lg: "70%" },
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "0.8rem", lg: "1rem" }, width: "100%" }}
           >
             City
           </Typography>
@@ -92,24 +92,24 @@ const PlayerDetail = ({ playerData }: Prop) => {
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1rem", lg: "1.5rem" },
+              fontSize: { xs: "0.8rem", lg: "1rem" },
               textAlign: "start",
               width: "100%",
             }}
           >
-            {playerData.city}
+            {playerData.city.toLocaleUpperCase()}
           </Typography>
         </Box>
         <Box
           sx={{
-            width: { xs: "90%", lg: "60%" },
+            width: { xs: "90%", lg: "70%" },
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "1rem", lg: "1.5rem" }, width: "100%" }}
+            sx={{ fontSize: { xs: "0.8rem", lg: "1rem" }, width: "100%" }}
           >
             Join Date{" "}
           </Typography>
@@ -119,7 +119,7 @@ const PlayerDetail = ({ playerData }: Prop) => {
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "1rem", lg: "1.5rem" },
+              fontSize: { xs: "0.8rem", lg: "1rem" },
               textAlign: "start",
               width: "100%",
             }}

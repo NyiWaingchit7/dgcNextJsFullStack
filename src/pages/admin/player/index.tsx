@@ -11,8 +11,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import NewPlayers from "@/component/NewPlayer";
 import { useAppSelector } from "@/store/hooks";
 import AddIcon from "@mui/icons-material/Add";
-import { Player } from "@prisma/client";
+
 import PlayerCard from "@/component/PlayerCard";
+import { Player } from "@prisma/client";
 
 const Player = () => {
   const [open, setOpen] = useState(false);
@@ -114,7 +115,12 @@ const Player = () => {
                 m: 2,
               }}
             >
-              <PlayerCard id={p.id} name={p.name} role={p.role} />
+              <PlayerCard
+                id={p.id}
+                name={p.name}
+                role={p.role}
+                assetUrl={p.assetUrl || ""}
+              />
             </Box>
           ))
         ) : (

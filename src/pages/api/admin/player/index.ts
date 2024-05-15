@@ -26,7 +26,7 @@ export default async function handler(
     return res.status(200).json({ data, playerMatch });
   } else if (method === "PUT") {
     const id = Number(req.query.id);
-    const { name, age, city, joinDate, role, head } = req.body;
+    const { name, age, city, joinDate, role, head, assetUrl } = req.body;
     const isValidate = name && age && city && joinDate;
     if (!isValidate) return res.status(405).send("bad request");
     const isExist = await prisma.player.findFirst({
@@ -35,7 +35,7 @@ export default async function handler(
     if (!isExist) return res.status(405).send("This request does not exist");
 
     const data = await prisma.player.update({
-      data: { name, age, city, joinDate, role, head },
+      data: { name, age, city, joinDate, role, head, assetUrl },
       where: { id },
     });
     return res.status(200).json({ data });
