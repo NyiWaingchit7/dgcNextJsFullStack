@@ -27,10 +27,19 @@ const AchievementCard = ({ data, path }: Props) => {
         borderRadius: 3,
         cursor: "pointer",
         flexShrink: 0,
+        boxShadow: 3,
       }}
     >
       {!path && (
-        <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            p: 1,
+            boxShadow: 3,
+            borderRadius: 4,
+          }}
+        >
           <EditIcon
             onClick={() => setOpen(true)}
             sx={{

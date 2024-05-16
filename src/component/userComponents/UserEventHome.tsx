@@ -46,16 +46,6 @@ const UserEventHome = () => {
           <EventCard key={d.id} data={d} path={path} />
         ))}
       </Box>
-      <Box
-        sx={{
-          maxWidth: { xs: "80%", sm: "90%" },
-          mt: 2,
-          height: "1px",
-
-          bgcolor: "primary.dark",
-          mx: "auto",
-        }}
-      />
     </Box>
   );
 };

@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Role } from "@prisma/client";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -17,7 +17,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
   const toPath = path ? `/user/player/${id}` : `/admin/player/${id}`;
   return (
     <Link href={toPath} style={{ textDecoration: "none" }}>
-      <Box className="underline">
+      <Box className="underline" sx={{ boxShadow: 3, borderRadius: 4 }}>
         <Box
           sx={{
             width: "100%",

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import FixtureCard from "@/component/FixtureCard";
 import { useAppSelector } from "@/store/hooks";
+import Link from "next/link";
 
 const UserMatchesHome = () => {
   const router = useRouter();
@@ -23,15 +24,28 @@ const UserMatchesHome = () => {
           bgcolor: "success.main",
         }}
       />
-      <Typography
-        sx={{
-          fontSize: { xs: "1.5rem", sm: "2rem" },
-          fontWeight: "bold",
-          mx: 1,
-        }}
-      >
-        Matches
-      </Typography>
+      <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+        <Typography
+          sx={{
+            fontSize: { xs: "1.5rem", sm: "2rem" },
+            fontWeight: "bold",
+            mx: 1,
+          }}
+        >
+          Matches
+        </Typography>
+        <Link href={"/user/fixture"} style={{ textDecoration: "none" }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "0.6rem", sm: "0.8rem" },
+              cursor: "pointer",
+              color: "success.dark",
+            }}
+          >
+            All Matches
+          </Typography>
+        </Link>
+      </Box>
       <Box
         sx={{
           maxWidth: "1200px",
@@ -48,16 +62,6 @@ const UserMatchesHome = () => {
           <FixtureCard key={d.id} data={d} path={path} />
         ))}
       </Box>{" "}
-      <Box
-        sx={{
-          maxWidth: { xs: "80%", sm: "90%" },
-          mt: 2,
-          height: "1px",
-
-          bgcolor: "primary.dark",
-          mx: "auto",
-        }}
-      />
     </Box>
   );
 };

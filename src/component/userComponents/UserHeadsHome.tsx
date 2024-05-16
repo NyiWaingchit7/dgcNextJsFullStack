@@ -51,20 +51,15 @@ const UserHeadsHome = () => {
                 mb: 3,
               }}
             >
-              <PlayerCard id={p.id} name={p.name} role={p.head as Head} />
+              <PlayerCard
+                id={p.id}
+                name={p.name}
+                role={p.head as Head}
+                assetUrl={p.assetUrl || ""}
+              />
             </Box>
           ))}
       </Box>
-      <Box
-        sx={{
-          maxWidth: { xs: "80%", sm: "90%" },
-          mt: 2,
-          height: "1px",
-
-          bgcolor: "primary.dark",
-          mx: "auto",
-        }}
-      />
     </Box>
   );
 };

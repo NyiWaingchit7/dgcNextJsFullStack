@@ -1,4 +1,4 @@
-import { Box, Divider, Drawer, Typography } from "@mui/material";
+import { Box, Divider, Drawer, Typography, Zoom } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -36,24 +36,52 @@ const UserTopBar = () => {
           mx: 2,
         }}
       >
-        <Box onClick={() => setOpen(true)}>
-          <MenuIcon sx={{ fontSize: "2rem", color: "info.main" }} />
-        </Box>
+        <Zoom
+          in={true}
+          style={{
+            transitionDelay: "1000ms",
+            transitionDuration: "1000ms",
+          }}
+        >
+          <Box onClick={() => setOpen(true)}>
+            <MenuIcon sx={{ fontSize: "2rem", color: "info.main" }} />
+          </Box>
+        </Zoom>
 
-        <Box>
-          <Typography
-            sx={{
-              fontSize: { md: "1.5rem", sm: "1.3rem", xs: "1rem" },
-              color: "secondary.main",
-              fontWeight: "bold",
-            }}
-          >
-            Dragon Calcio E.F.C
-          </Typography>
-        </Box>
-        <Box sx={{ width: "60px", borderRadius: "50%" }}>
-          <Box sx={{ width: "100%" }} component="img" src="../Red_Dragon.png" />
-        </Box>
+        <Zoom
+          in={true}
+          style={{
+            transitionDelay: "1000ms",
+            transitionDuration: "1000ms",
+          }}
+        >
+          <Box>
+            <Typography
+              sx={{
+                fontSize: { md: "1.5rem", sm: "1.3rem", xs: "1rem" },
+                color: "secondary.main",
+                fontWeight: "bold",
+              }}
+            >
+              Dragon Calcio E.F.C
+            </Typography>
+          </Box>
+        </Zoom>
+        <Zoom
+          in={true}
+          style={{
+            transitionDelay: "1000ms",
+            transitionDuration: "1000ms",
+          }}
+        >
+          <Box sx={{ width: "60px", borderRadius: "50%" }}>
+            <Box
+              sx={{ width: "100%" }}
+              component="img"
+              src="../Red_Dragon.png"
+            />
+          </Box>
+        </Zoom>
       </Box>
       <Box>
         <Drawer
@@ -64,7 +92,7 @@ const UserTopBar = () => {
           }}
           PaperProps={{
             style: {
-              backgroundColor: "#d40b29",
+              backgroundColor: "#640002",
             },
           }}
         >

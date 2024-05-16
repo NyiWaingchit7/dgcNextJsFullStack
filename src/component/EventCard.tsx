@@ -20,12 +20,13 @@ const EventCard = ({ data, path }: Props) => {
           p: 1,
           borderRadius: 3,
           flexShrink: 0,
+          boxShadow: 3,
         }}
         className="underline"
       >
         <Box
           sx={{
-            width: { xs: 300, sm: 375 },
+            width: { xs: 300, sm: 360 },
             height: { xs: 180, sm: 250 },
             mx: "auto",
           }}
