@@ -20,7 +20,7 @@ export const createAchievement = createAsyncThunk(
       const response = await fetch(`${config.apiBaseUrl}/admin/achievement`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ year }),
+        body: JSON.stringify({ year, assetUrl }),
       });
       const data = await response.json();
       onSuccess && onSuccess();
@@ -39,7 +39,7 @@ export const updateAchievement = createAsyncThunk(
         {
           method: "PUT",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ id, year }),
+          body: JSON.stringify({ id, year, assetUrl }),
         }
       );
       const data = await response.json();

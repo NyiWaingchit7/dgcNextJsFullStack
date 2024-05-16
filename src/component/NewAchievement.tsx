@@ -7,14 +7,18 @@ import { fetchAppData } from "@/store/slice/appSlice";
 import {
   Box,
   Button,
+  Chip,
   CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import FileDropZone from "./FileDropZone";
+import { fileUpload } from "@/utils/fileUpload";
 interface Props {
   open: boolean;
   setOpen: (data: boolean) => void;
@@ -33,20 +37,37 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
   const [buttonLoad, setButtonLoad] = useState(false);
   const dispatch = useAppDispatch();
   const allAchievement = useAppSelector((store) => store.achievement.items);
+  const [image, setImage] = useState<File>();
+  const onFileSelected = (files: File[]) => {
+    setImage(files[0]);
+  };
   const onSuccess = () => {
     dispatch(fetchAppData());
     setOpen(false);
     setAchievementData(defaultAchievement);
     setButtonLoad(false);
   };
-  const handleCreateAchievement = () => {
+  const handleCreateAchievement = async () => {
     setButtonLoad(true);
-    dispatch(createAchievement({ ...achievementData, onSuccess }));
+    let assetUrl;
+    if (image) {
+      assetUrl = await fileUpload(image);
+    }
+    dispatch(createAchievement({ ...achievementData, assetUrl, onSuccess }));
   };
-  const handleUpdateAchievement = () => {
+  const handleUpdateAchievement = async () => {
     setButtonLoad(true);
+    let assetUrl;
+    if (image) {
+      assetUrl = await fileUpload(image);
+    }
     dispatch(
-      updateAchievement({ id: id as number, ...achievementData, onSuccess })
+      updateAchievement({
+        id: id as number,
+        ...achievementData,
+        assetUrl,
+        onSuccess,
+      })
     );
   };
   useEffect(() => {
@@ -66,6 +87,10 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
         <DialogContent
           sx={{
             mt: 2,
+            display: "flext",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <TextField
@@ -84,6 +109,19 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
               })
             }
           />
+
+          <FormControl fullWidth>
+            <Box sx={{ mt: 2 }}>
+              <FileDropZone onFileSelected={onFileSelected} />
+              {image && (
+                <Chip
+                  sx={{ mt: 2 }}
+                  label={image.name}
+                  onDelete={() => setImage(undefined)}
+                />
+              )}
+            </Box>
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button

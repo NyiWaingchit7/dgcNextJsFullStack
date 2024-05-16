@@ -4,16 +4,20 @@ import { createEvent, updateEvent } from "@/store/slice/eventSlice";
 import {
   Box,
   Button,
+  Chip,
   CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
   FormControlLabel,
   Switch,
   TextField,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import FileDropZone from "./FileDropZone";
+import { fileUpload } from "@/utils/fileUpload";
 interface Props {
   open: boolean;
   setOpen: (data: boolean) => void;
@@ -35,21 +39,31 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
   const allEvents = useAppSelector((store) => store.event.items);
   const eventData = allEvents.find((d) => d.id === id) as DefaultEvent;
   const [buttonLoad, setButtonLoad] = useState(false);
+  const [image, setImage] = useState<File>();
+  const onFileSelected = (files: File[]) => {
+    setImage(files[0]);
+  };
   const onSuccess = () => {
     setOpen(false);
     dispatch(fetchAppData());
     setButtonLoad(false);
   };
-  const handleCreateEvent = () => {
+  const handleCreateEvent = async () => {
     setButtonLoad(true);
-    dispatch(createEvent({ ...data, onSuccess }));
+    let assetUrl;
+    if (image) {
+      assetUrl = await fileUpload(image);
+    }
+    dispatch(createEvent({ ...data, assetUrl, onSuccess }));
   };
   const handleUpdateEvent = () => {
     setButtonLoad(true);
+
     dispatch(
       updateEvent({
         id: id as number,
         ...data,
+
         onSuccess,
       })
     );
@@ -68,6 +82,8 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
         <DialogContent
           sx={{
             mt: 2,
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           <TextField
@@ -93,6 +109,20 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
             defaultValue={data?.description}
             onChange={(e) => setData({ ...data, description: e.target.value })}
           />
+          {!eventData && (
+            <FormControl>
+              <Box sx={{ mt: 2 }}>
+                <FileDropZone onFileSelected={onFileSelected} />
+                {image && (
+                  <Chip
+                    sx={{ mt: 2 }}
+                    label={image.name}
+                    onDelete={() => setImage(undefined)}
+                  />
+                )}
+              </Box>
+            </FormControl>
+          )}
           <FormControlLabel
             control={
               <Switch

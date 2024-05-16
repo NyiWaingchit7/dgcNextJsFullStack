@@ -6,16 +6,37 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import React, { useState } from "react";
 import NewEvent from "@/component/NewEvent";
-import { deleteEvent } from "@/store/slice/eventSlice";
+import { deleteEvent, updateEvent } from "@/store/slice/eventSlice";
 import { fetchAppData } from "@/store/slice/appSlice";
+import { fileUpload } from "@/utils/fileUpload";
+import { updatePlayer } from "@/store/slice/playersSlice";
+import { Event } from "@prisma/client";
 
 const EventDetail = () => {
   const router = useRouter();
   const id = Number(router.query.id);
   const allEvents = useAppSelector((store) => store.event.items);
-  const data = allEvents.find((d) => d.id === id);
+  const data = allEvents.find((d) => d.id === id) as Event;
   const [open, setOpen] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const path = router.pathname.includes("admin");
   const dispatch = useAppDispatch();
+  const handleUpdateImage = async (e: any) => {
+    const image = e.target.files[0];
+
+    const assetUrl = await fileUpload(image);
+    dispatch(
+      updateEvent({
+        ...data,
+        assetUrl,
+        onSuccess: () => {
+          dispatch(fetchAppData());
+          setUpdate(false);
+        },
+      })
+    );
+  };
+
   if (!data) return null;
   return (
     <Box>
@@ -88,12 +109,39 @@ const EventDetail = () => {
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        <Box sx={{ width: 350 }}>
+        <Box
+          sx={{
+            width: 350,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Box
             component="img"
             src={data.assetUrl || "../../tournament.jpg"}
-            sx={{ width: "100%", borderRadius: 2, boxShadow: 2 }}
+            sx={{ width: "80%", borderRadius: 2, boxShadow: 2, mb: 2 }}
           />
+          {path && (
+            <Button
+              variant="outlined"
+              component="label"
+              sx={{ mx: "auto" }}
+              size="small"
+              disabled={update}
+            >
+              Update Photo
+              <input
+                type="file"
+                hidden
+                onChange={(e) => {
+                  setUpdate(!update);
+                  handleUpdateImage(e);
+                }}
+              />
+            </Button>
+          )}
         </Box>
         <Box sx={{ p: 2, maxWidth: "500px", cursor: "pointer" }}>
           <Typography

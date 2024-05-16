@@ -32,7 +32,7 @@ const EventCard = ({ data, path }: Props) => {
         >
           <Box
             component="img"
-            src="../tournament.jpg"
+            src={data.assetUrl || "../tournament.jpg"}
             sx={{ width: "100%", height: "100%", borderRadius: 3 }}
           />
         </Box>
