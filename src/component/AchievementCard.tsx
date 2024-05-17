@@ -21,7 +21,7 @@ const AchievementCard = ({ data, path }: Props) => {
     <Box
       className="underline"
       sx={{
-        width: { xs: 350, sm: "45%", md: "30%", lg: "25%" },
+        width: { xs: 350, sm: "45%", md: "30%", lg: "28%" },
 
         bgcolor: "info.main",
         borderRadius: 3,

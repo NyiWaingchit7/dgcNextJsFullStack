@@ -40,6 +40,10 @@ const UserMatchesHome = () => {
               fontSize: { xs: "0.6rem", sm: "0.8rem" },
               cursor: "pointer",
               color: "success.dark",
+              ":hover": {
+                textDecoration: "underline",
+                textUnderlineOffset: 3,
+              },
             }}
           >
             All Matches

@@ -36,6 +36,7 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
         name,
         onSuccess: () => {
           dispatch(fetchAppData());
+
           setOpen(false);
         },
       })

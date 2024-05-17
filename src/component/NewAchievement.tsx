@@ -45,6 +45,7 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
     dispatch(fetchAppData());
     setOpen(false);
     setAchievementData(defaultAchievement);
+    setImage(undefined);
     setButtonLoad(false);
   };
   const handleCreateAchievement = async () => {
@@ -128,6 +129,7 @@ const NewAchievement = ({ open, setOpen, id }: Props) => {
             onClick={() => {
               setOpen(false);
               setAchievementData(defaultAchievement);
+              setImage(undefined);
             }}
             variant="contained"
             color="success"

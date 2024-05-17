@@ -46,6 +46,7 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
   const onSuccess = () => {
     setOpen(false);
     dispatch(fetchAppData());
+    setImage(undefined);
     setButtonLoad(false);
   };
   const handleCreateEvent = async () => {
@@ -137,6 +138,7 @@ const NewEvent = ({ open, setOpen, id }: Props) => {
           <Button
             onClick={() => {
               setOpen(false);
+              setImage(undefined);
               setData(defaultEvent);
             }}
             variant="contained"

@@ -58,6 +58,7 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
     setPlayer(defaultPlayer);
     setHead("");
     setButtonLoad(false);
+    setImage(undefined);
   };
   const handleCreatePlayer = async () => {
     setButtonLoad(true);
@@ -207,6 +208,7 @@ const NewPlayers = ({ open, setOpen, playerData }: Props) => {
             variant="contained"
             onClick={() => {
               setOpen(false);
+              setImage(undefined);
               setPlayer(defaultPlayer);
             }}
             color="success"

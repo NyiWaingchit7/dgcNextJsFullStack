@@ -47,6 +47,7 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
     dispatch(fetchAppData());
     setOpen(false);
     setValue(undefined);
+
     setButtonLoad(false);
   };
   const handleCreatFixture = () => {
@@ -145,6 +146,7 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
           <Button
             onClick={() => {
               setOpen(false);
+
               setValue(undefined);
             }}
             variant="contained"

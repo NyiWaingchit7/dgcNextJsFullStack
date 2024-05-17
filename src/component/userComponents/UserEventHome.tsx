@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import EventCard from "../EventCard";
 import Loading from "../Loading";
+import Link from "next/link";
 
 const UserEventHome = () => {
   const data = useAppSelector((store) => store.event.items);
@@ -20,15 +21,35 @@ const UserEventHome = () => {
           bgcolor: "success.main",
         }}
       />
-      <Typography
-        sx={{
-          fontSize: { xs: "1.5rem", sm: "2rem" },
-          fontWeight: "bold",
-          mx: 1,
-        }}
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
-        Events
-      </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "1.1rem", sm: "1.7rem" },
+            fontWeight: "bold",
+            mx: 1,
+            textAlign: "center",
+          }}
+        >
+          Take Place in Tournament Events
+        </Typography>
+        <Link href={"/user/event"} style={{ textDecoration: "none" }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "0.6rem", sm: "0.8rem" },
+              cursor: "pointer",
+              color: "success.dark",
+              ":hover": {
+                textDecoration: "underline",
+                textUnderlineOffset: 3,
+              },
+            }}
+          >
+            All Events
+          </Typography>
+        </Link>
+      </Box>
 
       <Box
         sx={{

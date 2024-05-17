@@ -6,14 +6,13 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   DialogActions,
   Button,
   TextField,
   CircularProgress,
 } from "@mui/material";
 import { PlayerMatches } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   data: PlayerMatches;
