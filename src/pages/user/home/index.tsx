@@ -7,7 +7,6 @@ import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 
 const UserHome = () => {
-  const [mount, setMount] = useState(true);
   return (
     <Box>
       <Box

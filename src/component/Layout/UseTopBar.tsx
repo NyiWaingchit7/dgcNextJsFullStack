@@ -13,16 +13,7 @@ const UserTopBar = () => {
   const [selected, setSelected] = useState("");
   const router = useRouter();
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    const selectedItem = localStorage.getItem("selectedItem");
-    if (selectedItem) {
-      setSelected(selectedItem);
-      router.push(`/user/${selectedItem.toLocaleLowerCase()}`);
-    } else {
-      setSelected("Home");
-    }
-    dispatch(fetchUserAppData());
-  }, [selected]);
+
   return (
     <Box
       sx={{ bgcolor: "success.main", position: "sticky", top: 0, zIndex: 5 }}

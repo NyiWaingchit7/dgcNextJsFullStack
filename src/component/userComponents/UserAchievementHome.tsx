@@ -10,11 +10,21 @@ const UserAchievementHome = () => {
   const path = router.pathname.includes("user");
   const data = useAppSelector((store) => store.achievement.items);
   return (
-    <Box sx={{ my: 3, maxWidth: "90vw", mx: "auto" }}>
+    <Box
+      sx={{
+        my: 3,
+        maxWidth: "95vw",
+        mx: "auto",
+        bgcolor: "info.light",
+        borderRadius: 4,
+        p: { xs: 0, sm: 2 },
+        boxShadow: 3,
+      }}
+    >
       <Box
         sx={{
           width: { xs: "80px", sm: "100px" },
-          mt: 5,
+          mt: 2,
           height: "5px",
 
           bgcolor: "success.main",

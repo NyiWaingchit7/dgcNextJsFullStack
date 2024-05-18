@@ -7,7 +7,15 @@ const UserHeadsHome = () => {
   const playerData = useAppSelector((store) => store.player.items);
   const head = playerData.filter((d) => d.head !== null);
   return (
-    <Box sx={{ maxWidth: "90vw", mx: "auto" }}>
+    <Box
+      sx={{
+        maxWidth: "98vw",
+        mx: "auto",
+        bgcolor: "info.light",
+        boxShadow: 3,
+        borderRadius: 4,
+      }}
+    >
       <Box
         sx={{
           width: { xs: "80px", sm: "100px" },

@@ -5,6 +5,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, Typography } from "@mui/material";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
 const Footer = () => {
   return (
@@ -18,57 +19,44 @@ const Footer = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-evenly",
           alignItems: "center",
-          color: "info.dark",
+          color: "info.light",
           flexDirection: { xs: "column", sm: "row" },
         }}
       >
         <Box
           sx={{
-            m: { xs: 0, sm: 2 },
-            width: { xs: "75%", sm: "40%", md: "30%", lg: "20%" },
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            mb: { xs: 2, sm: 0 },
           }}
         >
-          {footerOne.map((v) => {
-            return (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mx: 3,
-                  p: 1,
-                }}
-                key={v.id}
-              >
-                <Typography>{v.name}</Typography>
-                {v.icon}
-              </Box>
-            );
-          })}
+          <LocalPhoneIcon sx={{ fontSize: "2rem" }} />
+          <Box>
+            <Typography sx={{ cursor: "pointer" }}>0983834738</Typography>
+            <Typography sx={{ cursor: "pointer" }}>0983834738</Typography>
+          </Box>
         </Box>
         <Box
           sx={{
             m: { xs: 0, sm: 2 },
-            width: { xs: "75%", sm: "40%", md: "30%", lg: "20%" },
+            display: "flex",
+            gap: 2,
           }}
         >
-          {footerTwo.map((v) => {
+          {footer.map((v) => {
             return (
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mx: 3,
-                  p: 1,
-                  flexDirection: { xs: "row-reverse", sm: "row" },
+                  ":hover": {
+                    transform: "scale(1.1)",
+                  },
                 }}
                 key={v.id}
               >
                 {v.icon}
-                <Typography>{v.name}</Typography>
               </Box>
             );
           })}
@@ -84,7 +72,7 @@ const Footer = () => {
 };
 export default Footer;
 
-export const footerOne = [
+export const footer = [
   {
     id: 1,
     name: "Email",
@@ -103,22 +91,20 @@ export const footerOne = [
     icon: <YouTubeIcon sx={{ fontSize: "2rem" }} />,
     link: "",
   },
-];
-export const footerTwo = [
   {
-    id: 1,
+    id: 4,
     name: "Facebook",
     icon: <FacebookIcon sx={{ fontSize: "2rem" }} />,
     link: "",
   },
   {
-    id: 2,
+    id: 5,
     name: "Instagram",
     icon: <InstagramIcon sx={{ fontSize: "2rem" }} />,
     link: "",
   },
   {
-    id: 3,
+    id: 6,
     name: "Twitter",
     icon: <TwitterIcon sx={{ fontSize: "2rem" }} />,
     link: "",

@@ -11,7 +11,17 @@ const UserEventHome = () => {
   const router = useRouter();
   const path = router.pathname.includes("user");
   return (
-    <Box sx={{ my: 3, maxWidth: "90vw", mx: "auto" }}>
+    <Box
+      sx={{
+        my: 3,
+        maxWidth: "95vw",
+        mx: "auto",
+        bgcolor: "info.light",
+        borderRadius: 4,
+        boxShadow: 3,
+        p: { xs: 0, sm: 2 },
+      }}
+    >
       <Box
         sx={{
           width: { xs: "80px", sm: "100px" },

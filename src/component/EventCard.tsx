@@ -18,9 +18,11 @@ const EventCard = ({ data, path }: Props) => {
         sx={{
           bgcolor: "info.main",
           p: 1,
-          borderRadius: 3,
-          flexShrink: 0,
+          borderRadius: 4,
+          border: 1,
+          borderColor: "info.dark",
           boxShadow: 3,
+          mb: 1,
         }}
         className="underline"
       >

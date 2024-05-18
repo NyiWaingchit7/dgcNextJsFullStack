@@ -21,13 +21,15 @@ const AchievementCard = ({ data, path }: Props) => {
     <Box
       className="underline"
       sx={{
-        width: { xs: 350, sm: "45%", md: "30%", lg: "28%" },
-
+        width: { xs: 350, sm: "45%", md: "30%" },
         bgcolor: "info.main",
         borderRadius: 3,
         cursor: "pointer",
         flexShrink: 0,
+        border: 1,
+        borderColor: "info.dark",
         boxShadow: 3,
+        mb: 1,
       }}
     >
       {!path && (
@@ -36,7 +38,7 @@ const AchievementCard = ({ data, path }: Props) => {
             display: "flex",
             justifyContent: "flex-end",
             p: 1,
-            boxShadow: 3,
+
             borderRadius: 4,
           }}
         >
