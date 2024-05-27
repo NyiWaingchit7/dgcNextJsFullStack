@@ -24,7 +24,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
             height: {
               xs: "150px",
               md: "200px",
-              lg: "300px",
+              lg: "250px",
             },
             backgroundImage: "url(../Red_Dragon.png)",
             backgroundPosition: "center",

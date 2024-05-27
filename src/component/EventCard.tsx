@@ -28,8 +28,8 @@ const EventCard = ({ data, path }: Props) => {
       >
         <Box
           sx={{
-            width: { xs: 300, sm: 360 },
-            height: { xs: 180, sm: 250 },
+            width: { xs: 300, sm: 350 },
+            height: { xs: 150, sm: 220 },
             mx: "auto",
           }}
         >

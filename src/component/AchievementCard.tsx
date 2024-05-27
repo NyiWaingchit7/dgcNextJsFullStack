@@ -21,7 +21,7 @@ const AchievementCard = ({ data, path }: Props) => {
     <Box
       className="underline"
       sx={{
-        width: { xs: 350, sm: "45%", md: "30%" },
+        width: { xs: 300, sm: "45%", md: "27%" },
         bgcolor: "info.main",
         borderRadius: 3,
         cursor: "pointer",
@@ -30,6 +30,7 @@ const AchievementCard = ({ data, path }: Props) => {
         borderColor: "info.dark",
         boxShadow: 3,
         mb: 1,
+        mx: "auto",
       }}
     >
       {!path && (
@@ -87,7 +88,6 @@ const AchievementCard = ({ data, path }: Props) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-
           alignItems: "center",
           width: "100%",
         }}
@@ -106,7 +106,7 @@ const AchievementCard = ({ data, path }: Props) => {
             src={data.assetUrl || "../defaultAch.webp"}
             sx={{
               width: "90%",
-              height: { xs: "150px", sm: "200px" },
+              height: { xs: "120px", sm: "170px" },
               borderRadius: 3,
             }}
           />
@@ -117,7 +117,7 @@ const AchievementCard = ({ data, path }: Props) => {
             justifyContent: "space-between",
             alignItems: "center",
             width: "200px",
-            my: 2,
+            my: 1,
             color: "primary.main",
           }}
         >

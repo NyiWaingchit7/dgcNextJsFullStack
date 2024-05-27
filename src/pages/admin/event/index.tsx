@@ -16,11 +16,11 @@ const Event = () => {
         variant="h5"
         sx={{
           textAlign: "center",
-          mt: 5,
+          mt: 3,
           fontWeight: "bold",
           textDecoration: "underline",
           textUnderlineOffset: 3,
-          mb: 5,
+          mb: 3,
           cursor: "pointer",
         }}
       >

@@ -44,6 +44,7 @@ const UserAchievementHome = () => {
           maxWidth: "1200px",
           mx: "auto",
           display: "flex",
+          justifyContent: { xs: "flex-start", md: "center" },
           overflow: "auto",
           width: "100%",
           alignItems: "center",
