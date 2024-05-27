@@ -26,8 +26,11 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
               md: "200px",
               lg: "300px",
             },
-
-            bgcolor: "primary.main",
+            backgroundImage: "url(../Red_Dragon.png)",
+            backgroundPosition: "center",
+            backgroundSize: "100%",
+            backgroundRepeat: "no-repeat",
+            bgcolor: "success.dark",
             borderTopRightRadius: 10,
             borderTopLeftRadius: 10,
           }}
@@ -39,10 +42,7 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
               width: "100%",
               height: "100%",
               objectFit: "contain",
-              backgroundImage: "url(../Red_Dragon.png)",
-              backgroundPosition: "center",
-              backgroundSize: "50%",
-              backgroundRepeat: "no-repeat",
+              opacity: 0.9,
             }}
           />
         </Box>
@@ -53,9 +53,9 @@ const PlayerCard = ({ id, name, role, assetUrl, head }: prop) => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            color: "primary.dark",
+            color: "info.main",
             width: "100%",
-            bgcolor: "info.main",
+            bgcolor: "primary.main",
             borderBottomRightRadius: 10,
             borderBottomLeftRadius: 10,
           }}

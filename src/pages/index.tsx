@@ -10,6 +10,7 @@ const App = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        mb: 3,
       }}
     >
       <Box sx={{ maxWidth: "1300px" }}>
@@ -56,7 +57,10 @@ const App = () => {
           }}
         >
           <Box
-            sx={{ width: { xs: "30%", sm: "25%", md: "30%", lg: "40%" }, m: 2 }}
+            sx={{
+              width: { xs: "30%", sm: "25%", md: "30%" },
+              m: 2,
+            }}
           >
             <Box
               sx={{
@@ -71,6 +75,10 @@ const App = () => {
                 borderTopRightRadius: 10,
                 borderTopLeftRadius: 10,
                 bgcolor: "primary.main",
+                backgroundImage: "url(../Red_Dragon.png)",
+                backgroundPosition: "center",
+                backgroundSize: "100%",
+                backgroundRepeat: "no-repeat",
               }}
             >
               <Box
@@ -80,10 +88,7 @@ const App = () => {
                   width: "100%",
                   height: "100%",
                   objectFit: "contain",
-                  backgroundImage: "url(../Red_Dragon.png)",
-                  backgroundPosition: "center",
-                  backgroundSize: "70%",
-                  backgroundRepeat: "no-repeat",
+                  opacity: "0.9",
                 }}
               />
               <Box
@@ -92,6 +97,7 @@ const App = () => {
                   justifyContent: "center",
                   bgcolor: "info.main",
                   p: 1,
+                  boxShadow: 3,
                 }}
               >
                 <Button
@@ -108,7 +114,10 @@ const App = () => {
             </Box>
           </Box>
           <Box
-            sx={{ width: { xs: "30%", sm: "25%", md: "30%", lg: "40%" }, m: 2 }}
+            sx={{
+              width: { xs: "30%", sm: "25%", md: "30%" },
+              m: 2,
+            }}
           >
             <Box
               sx={{
@@ -119,7 +128,10 @@ const App = () => {
                   md: "200px",
                   lg: "250px",
                 },
-
+                backgroundImage: "url(../Red_Dragon.png)",
+                backgroundPosition: "center",
+                backgroundSize: "100%",
+                backgroundRepeat: "no-repeat",
                 borderTopRightRadius: 10,
                 borderTopLeftRadius: 10,
                 bgcolor: "primary.main",
@@ -132,10 +144,7 @@ const App = () => {
                   width: "100%",
                   height: "100%",
                   objectFit: "contain",
-                  backgroundImage: "url(../Red_Dragon.png)",
-                  backgroundPosition: "center",
-                  backgroundSize: "70%",
-                  backgroundRepeat: "no-repeat",
+                  opacity: "0.9",
                 }}
               />
               <Box
@@ -144,6 +153,7 @@ const App = () => {
                   justifyContent: "center",
                   bgcolor: "info.main",
                   p: 1,
+                  boxShadow: 3,
                 }}
               >
                 <Button
