@@ -16,13 +16,14 @@ const initialState: OpponentTeamSlice = {
 export const createOpponentTeam = createAsyncThunk(
   "crate/opponentTeam",
   async (option: CreateOpponentTeam, thunkApi) => {
-    const { name, onSuccess, onError } = option;
+    const { name, assetUrl, onSuccess, onError } = option;
     try {
       const response = await fetch(`${config.apiBaseUrl}/admin/opponent-team`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           name,
+          assetUrl,
         }),
       });
       const data = await response.json();
@@ -35,7 +36,7 @@ export const createOpponentTeam = createAsyncThunk(
 export const updateOpponentTeam = createAsyncThunk(
   "update/opponentTeam",
   async (options: UpdateOpponentTeam, thunkApi) => {
-    const { id, name, onSuccess, onError } = options;
+    const { id, name, assetUrl, onSuccess, onError } = options;
     try {
       const response = await fetch(
         `${config.apiBaseUrl}/admin/opponent-team?id=${id}`,
@@ -44,6 +45,7 @@ export const updateOpponentTeam = createAsyncThunk(
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             name,
+            assetUrl,
           }),
         }
       );

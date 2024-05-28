@@ -15,9 +15,13 @@ import {
   Button,
   TextField,
   CircularProgress,
+  FormControl,
+  Chip,
 } from "@mui/material";
 import { OpponentTeam, PlayerMatches } from "@prisma/client";
 import { useEffect, useState } from "react";
+import FileDropZone from "./FileDropZone";
+import { fileUpload } from "@/utils/fileUpload";
 
 interface Props {
   open: boolean;
@@ -27,30 +31,45 @@ interface Props {
 const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
   const [name, setName] = useState("");
   const [buttonLoad, setButtonLoad] = useState(false);
+  const [image, setImage] = useState<File>();
+  const onFileSelected = (files: File[]) => {
+    setImage(files[0]);
+  };
 
   const dispatch = useAppDispatch();
   const data = useAppSelector((store) => store.opponentTeam.items);
-  const handleCreateOpponentTeam = () => {
+  const onSuccess = () => {
+    dispatch(fetchAppData());
+    setButtonLoad(false);
+    setOpen(false);
+    setImage(undefined);
+  };
+  const handleCreateOpponentTeam = async () => {
+    setButtonLoad(true);
+    let assetUrl;
+    if (image) {
+      assetUrl = await fileUpload(image);
+    }
     dispatch(
       createOpponentTeam({
         name,
-        onSuccess: () => {
-          dispatch(fetchAppData());
-
-          setOpen(false);
-        },
+        assetUrl,
+        onSuccess,
       })
     );
   };
-  const handleUpdateOpponentTeam = () => {
+  const handleUpdateOpponentTeam = async () => {
+    setButtonLoad(true);
+    let assetUrl;
+    if (image) {
+      assetUrl = await fileUpload(image);
+    }
     dispatch(
       updateOpponentTeam({
         id,
         name,
-        onSuccess: () => {
-          dispatch(fetchAppData());
-          setOpen(false);
-        },
+        assetUrl,
+        onSuccess,
       })
     );
   };
@@ -94,6 +113,19 @@ const NewOpponentTeam = ({ open, setOpen, id }: Props) => {
               setName(e.target.value);
             }}
           />
+
+          <FormControl>
+            <Box sx={{ mt: 2 }}>
+              <FileDropZone onFileSelected={onFileSelected} />
+              {image && (
+                <Chip
+                  sx={{ mt: 2 }}
+                  label={image.name}
+                  onDelete={() => setImage(undefined)}
+                />
+              )}
+            </Box>
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button

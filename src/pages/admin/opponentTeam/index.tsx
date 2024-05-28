@@ -90,18 +90,43 @@ const OpponentTeam = () => {
                     alignItems: "center",
                     width: { xs: "100%", sm: "80%", md: "40%" },
                     m: 1,
-                    p: 2,
+                    p: 1,
                     bgcolor: "info.main",
                     borderRadius: 5,
                   }}
                   key={d.id}
                 >
-                  <Typography sx={{ width: "fit-content" }}>
-                    {d.name.toUpperCase()}
-                  </Typography>
                   <Box
                     sx={{
-                      width: "fit-content",
+                      width: "80%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        width: "fit-content",
+                        fontSize: { xs: "0.8rem", sm: "1rem" },
+                      }}
+                    >
+                      {d.name.toUpperCase()}
+                    </Typography>
+                    <Box sx={{ width: 50, height: 50 }}>
+                      <Box
+                        component="img"
+                        src={d.assetUrl || ""}
+                        sx={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </Box>
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "100px",
                       display: "flex",
                     }}
                   >
@@ -110,20 +135,28 @@ const OpponentTeam = () => {
                         setId(d.id);
                         setOpen(true);
                       }}
-                      sx={{ width: "40%" }}
+                      sx={{ width: "20px" }}
+                      size="small"
                     >
                       <EditIcon
-                        sx={{ fontSize: "1.5rem", color: "primary.main" }}
+                        sx={{
+                          fontSize: { xs: "1rem", sm: "1.3rem" },
+                          color: "primary.main",
+                        }}
                       />
                     </Button>
                     <Button
                       onClick={() => {
                         handleDeleteOpponentTeam(d.id);
                       }}
-                      sx={{ width: "40%" }}
+                      sx={{ width: "20px" }}
+                      size="small"
                     >
                       <DeleteForeverIcon
-                        sx={{ fontSize: "1.5rem", color: "success.main" }}
+                        sx={{
+                          fontSize: { xs: "1rem", sm: "1.3rem" },
+                          color: "success.main",
+                        }}
                       />
                     </Button>
                   </Box>

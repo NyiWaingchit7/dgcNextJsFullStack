@@ -12,17 +12,17 @@ export default async function handler(
   if (!session) return res.status(401).send("Unauthorized.");
   const method = req.method;
   if (method === "POST") {
-    const { name } = req.body;
+    const { name, assetUrl } = req.body;
 
     if (!name) return res.status(405).send("bad request");
 
     const data = await prisma.opponentTeam.create({
-      data: { name },
+      data: { name, assetUrl },
     });
     return res.status(200).json({ data });
   } else if (method === "PUT") {
     const id = Number(req.query.id);
-    const { name } = req.body;
+    const { name, assetUrl } = req.body;
 
     if (!name) return res.status(405).send("bad request");
     const isExist = await prisma.opponentTeam.findFirst({
@@ -31,7 +31,7 @@ export default async function handler(
     if (!isExist) return res.status(405).send("This request does not exist");
 
     const data = await prisma.opponentTeam.update({
-      data: { name },
+      data: { name, assetUrl },
       where: { id },
     });
     return res.status(200).json({ data });
