@@ -8,10 +8,12 @@ export interface OpponentTeamSlice {
 }
 export interface CreateOpponentTeam extends BaseOptions {
   name: string;
+  assetUrl?: string;
 }
 export interface UpdateOpponentTeam extends BaseOptions {
   id: number;
   name: string;
+  assetUrl?: string;
 }
 export interface DeleteOpponentTeam extends BaseOptions {
   id: number;

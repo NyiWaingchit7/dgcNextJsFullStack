@@ -4,7 +4,7 @@ import { deleteFixture } from "@/store/slice/fixtureSlice";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, Typography } from "@mui/material";
-import { Fixture } from "@prisma/client";
+import { Fixture, OpponentTeam } from "@prisma/client";
 import { useState } from "react";
 import NewFixtureCard from "./NewFixtureCard";
 
@@ -16,7 +16,7 @@ const FixtureCard = ({ data, path }: prop) => {
   const opponentTeams = useAppSelector((store) => store.opponentTeam.items);
   const opponentTeam = opponentTeams.find(
     (d) => d.id === data.opponentTeamId
-  )?.name;
+  ) as OpponentTeam;
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const handleDeleteFixture = () => {
@@ -54,24 +54,40 @@ const FixtureCard = ({ data, path }: prop) => {
           width: "100%",
         }}
       >
-        <Typography
+        <Box
           sx={{
-            width: "40%",
-            mx: 1,
-            fontSize: { xs: "0.7rem", sm: "1rem" },
-            fontWeight: { xs: "bold" },
-            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          Dragon Calcio
-        </Typography>
+          <Box sx={{ width: 80 }}>
+            <Box
+              component="img"
+              sx={{ width: "100%" }}
+              src="../Red_Dragon.png"
+            />
+          </Box>
+          <Typography
+            sx={{
+              width: "40%",
+              mx: 1,
+              fontSize: { xs: "0.6rem", sm: "0.8rem" },
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
+            Dragon Calcio
+          </Typography>
+        </Box>
         {data.matchResult ? (
           <Typography
             sx={{
               textAlign: "center",
               width: "15%",
               mx: 1,
-              fontSize: { xs: "0.7rem", sm: "1rem" },
+              fontSize: { xs: "0.6rem", sm: "0.8rem" },
             }}
           >
             {data.myTeamResult} - {data.opponentTeamResult}
@@ -79,16 +95,33 @@ const FixtureCard = ({ data, path }: prop) => {
         ) : (
           <Typography>Vs</Typography>
         )}
-        <Typography
+        <Box
           sx={{
-            width: "40%",
-            mx: 1,
-            fontSize: { xs: "0.7rem", sm: "1rem" },
-            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          {opponentTeam?.toUpperCase()}
-        </Typography>
+          <Box sx={{ width: 80 }}>
+            <Box
+              component="img"
+              sx={{ width: "100%" }}
+              src={opponentTeam.assetUrl || ""}
+            />
+          </Box>
+          <Typography
+            sx={{
+              width: "40%",
+              mx: 1,
+              fontSize: { xs: "0.6rem", sm: "0.8rem" },
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {opponentTeam.name.toUpperCase()}
+          </Typography>
+        </Box>
         {!path && (
           <Box
             sx={{
