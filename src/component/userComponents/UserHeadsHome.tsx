@@ -13,7 +13,7 @@ const UserHeadsHome = () => {
         mx: "auto",
         bgcolor: "info.light",
         boxShadow: 3,
-        borderRadius: 4,
+        borderRadius: 2,
       }}
     >
       <Box

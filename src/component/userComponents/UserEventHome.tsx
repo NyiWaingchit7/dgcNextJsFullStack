@@ -17,7 +17,7 @@ const UserEventHome = () => {
         maxWidth: "95vw",
         mx: "auto",
         bgcolor: "info.light",
-        borderRadius: 4,
+        borderRadius: 2,
         boxShadow: 3,
         p: { xs: 0, sm: 2 },
       }}
