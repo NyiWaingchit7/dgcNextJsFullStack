@@ -46,6 +46,6 @@ export default function Home() {
       </Box>
     );
   } else {
-    router.push("/admin/home");
+    router.push("/admin/login");
   }
 }

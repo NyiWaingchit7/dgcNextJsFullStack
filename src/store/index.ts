@@ -8,6 +8,7 @@ import opponentTeamReducer from "./slice/opponentTeamSlice";
 import fixtureReducer from "./slice/fixtureSlice";
 import achievementReducer from "./slice/achievementSlice";
 import eventReducer from "./slice/eventSlice";
+import adminReducer from "./slice/adminSlice";
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
     fixture: fixtureReducer,
     achievement: achievementReducer,
     event: eventReducer,
+    admin: adminReducer,
   },
 });
 

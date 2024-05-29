@@ -8,6 +8,7 @@ import { setOpponentTeam } from "./opponentTeamSlice";
 import { setFixture } from "./fixtureSlice";
 import { setAchievement } from "./achievementSlice";
 import { setEvent } from "./eventSlice";
+import { setAdmin } from "./adminSlice";
 const initialState: AppSlice = {
   init: false,
   isLoading: false,
@@ -25,6 +26,7 @@ export const fetchAppData = createAsyncThunk(
       fixture,
       achievement,
       event,
+      admin,
     } = await response.json();
     thunApi.dispatch(setInit(true));
     thunApi.dispatch(setHomeData(homeData));
@@ -34,6 +36,7 @@ export const fetchAppData = createAsyncThunk(
     thunApi.dispatch(setFixture(fixture));
     thunApi.dispatch(setAchievement(achievement));
     thunApi.dispatch(setEvent(event));
+    thunApi.dispatch(setAdmin(admin));
   }
 );
 export const fetchUserAppData = createAsyncThunk(

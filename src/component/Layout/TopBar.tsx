@@ -9,21 +9,14 @@ import Link from "next/link";
 
 import { useRouter } from "next/router";
 import AdminDrawer from "./AdminDrawer";
+import { useAppSelector } from "@/store/hooks";
 const TopBar = () => {
   const { data } = useSession();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("Home");
-  useEffect(() => {
-    const selectedItem = localStorage.getItem("adminSelectedItem");
+  const admins = "";
 
-    if (selectedItem) {
-      setSelected(selectedItem);
-      router.push(`/admin/${selectedItem.toLocaleLowerCase()}`);
-    } else {
-      setSelected("Home");
-    }
-  }, [selected]);
   return (
     <Box
       sx={{
@@ -51,7 +44,7 @@ const TopBar = () => {
         </Typography>
       </Box>
       <Box>
-        {data ? (
+        {data && admins ? (
           <Box
             sx={{
               display: "flex",
@@ -78,7 +71,6 @@ const TopBar = () => {
                       onClick={() => {
                         setOpen(false);
                         setSelected(s.name);
-                        localStorage.setItem("adminSelectedItem", s.name);
                       }}
                     >
                       <Box
@@ -144,33 +136,7 @@ const TopBar = () => {
             </Box>
           </Box>
         ) : (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              mx: 2,
-            }}
-          >
-            <Box>
-              <Typography
-                sx={{
-                  fontSize: { md: "1.5rem", sm: "1.3rem", xs: "1rem" },
-                  color: "secondary.main",
-                  fontWeight: "bold",
-                }}
-              >
-                Dragon Calcio E.F.C
-              </Typography>
-            </Box>
-            <Box sx={{ width: "60px", borderRadius: "50%" }}>
-              <Box
-                sx={{ width: "100%" }}
-                component="img"
-                src="../Red_Dragon.png"
-              />
-            </Box>
-          </Box>
+          <Box></Box>
         )}
         <Box>
           <AdminDrawer

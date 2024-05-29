@@ -27,16 +27,7 @@ const AdminDrawer = ({
   setSelected,
 }: props) => {
   const router = useRouter();
-  useEffect(() => {
-    const selectedItem = localStorage.getItem("adminSelectedItem");
 
-    if (selectedItem) {
-      setSelected(selectedItem);
-      router.push(`/admin/${selectedItem.toLocaleLowerCase()}`);
-    } else {
-      setSelected("Home");
-    }
-  }, [selected]);
   return (
     <Box>
       <Drawer
@@ -81,7 +72,6 @@ const AdminDrawer = ({
                 onClick={() => {
                   setOpen(false);
                   setSelected(s.name);
-                  localStorage.setItem("adminSelectedItem", s.name);
                 }}
               >
                 <Box
